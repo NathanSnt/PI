@@ -22,5 +22,8 @@ server.use((req, res) => {
     res.status(404).send("Página não encontrada")
 })
 
+// Habilitando criptografia (Usando o método POST)
+server.use(express.urlencoded({extended:true}))
+
 server.listen(port)
 console.log("Servidor online")
