@@ -1,0 +1,53 @@
+.empresa {
+    display: flex;
+}
+
+.empresa img {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.empresa2 {
+    display: flex;
+    margin-left: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.empresa2 p {
+    font-size: 20px;
+}
+
+.par p {
+    font-size: 20px;
+}
+
+.oi {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 90px;
+}
+
+.hr {
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+
+.map {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 50px;
+}
+
+.map img {
+    border-radius: 10px;
+}
+
+.par {
+    margin-left: 15px;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
