@@ -1,0 +1,11 @@
+.img-404{
+    justify-content: center;
+    display: flex;
+    margin-left: 450px;
+    margin-top: 125px ;
+    width: 450px;
+    height: 450px;
+}
+.mensagem{
+  margin-left: 450px;
+}
