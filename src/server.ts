@@ -2,10 +2,12 @@ import express from 'express'
 import mainRoutes from './routes/index'
 import path from 'path'
 import mustache from 'mustache-express'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 console.clear()
 const server = express()
-const port: number = 8080
 
 // Configuração do mustache
 server.set('view engine', 'mustache')
@@ -19,11 +21,11 @@ server.use(mainRoutes)
 
 // Not Found
 server.use((req, res) => {
-    res.status(404).send("Página não encontrada")
+    res.render('pages/not_found')
 })
 
 // Habilitando criptografia (Usando o método POST)
 server.use(express.urlencoded({extended:true}))
 
-server.listen(port)
+server.listen(process.env.PORT)
 console.log("Servidor online")
