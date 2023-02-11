@@ -17,6 +17,7 @@ server.engine('mustache', mustache())
 // Importando a pasta public
 server.use(express.static(path.join(__dirname, '../public')))
 
+server.use(express.urlencoded({extended:true}))
 server.use(mainRoutes)
 
 // Not Found
@@ -24,8 +25,8 @@ server.use((req, res) => {
     res.render('pages/not_found')
 })
 
-// Habilitando criptografia (Usando o método POST)
-server.use(express.urlencoded({extended:true}))
+// Habilitando criptografia (Usando o método POST)(COLOCAR ANTES DA DECLARAÇÃO DAS ROTAS!)
+//server.use(express.urlencoded({extended:true}))
 
 server.listen(process.env.PORT)
 console.log("Servidor online")
