@@ -19,7 +19,7 @@
     background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
     -webkit-background-clip: text;
     background-clip: border-box;
-    -webkit-text-fill-color: transparent;
+    /* -webkit-text-fill-color: transparent; */
 }
 
 .login-title {
