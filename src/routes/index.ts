@@ -8,6 +8,8 @@ router.get('/', (req:Request, res:Response) =>{
     res.render('pages/home')
 })
 
+router.get('/home', pagesController.home)
+
 router.get('/cadastro', userController.cadastro)
 router.get('/login', userController.login)
 
