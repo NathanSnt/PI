@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+body{
+    margin: 0px;
+    background: linear-gradient(0deg, rgba(4,5,8,1) 1%, rgba(78,99,230,1) 28%, rgba(115,173,237,0.5634628851540616) 66%);
+    background-repeat: no-repeat;
+  }
+
+.banner{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+.barraDePesquisa input{
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 60px;
+    width: 800px;
+    height: 30px;
+    background-color: #EDEFEE;
+    padding: 10px 10px 10px 50px;
+    font-size: 20px;
+    color: grey;
+    background-image: url('/src/images/lupa.png');
+    background-size: 20px;
+    background-position-x: 20px;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 12px grey;
+}
+
+.barraDePesquisa{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 650px;
+}
+
+.navegacao{
+    background-color: transparent;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 200px;
+    padding: 0px 10px;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 100;
+    font-size: larger;
+    position: relative;
+    bottom: 650px;
+}
+
+
+.menu ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.menu li{
+    margin: 10px;
+    text-decoration: none;
+}
+
+.menu a{
+    text-decoration: none;
+    color: black;
+}
+
+li{
+    display: inline-block;
+    position: relative;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 20px 30px;
+  }
+  span{
+    display: block;
+    padding: 10px 10px;
+  }
+  li::before, li::after{
+    content:"";
+    width: 0;
+    height: 2px;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: black;
+  }
+  
+  span::before, span::after{
+    content:"";
+    width:2px;
+    height:0;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: black;
+  }
+  li:hover::before, li:hover::after{
+    width: 100%;
+  }
+  li:hover span::before, li:hover span::after{
+    height: 100%;
+  }
+
+
+li::before, li::after{
+    transition-delay: 0.2s;
+  }
+  li span::before, li span::after{
+    transition-delay: 0s;
+  }
+  li::before{
+    right: 0;
+    top: 0;
+  }
+  li::after{
+    left: 0;
+    bottom: 0;
+  }
+  li span::before{
+    left: 0;
+    top: 0;
+  }
+  li span::after{
+    right: 0;
+    bottom: 0;
+  }
+  li:hover::before, li:hover::after{
+    transition-delay: 0s;
+  }
+  li:hover span::before, li:hover span::after{
+    transition-delay: 0.2s;
+  }
+
+
+.container{
+    display:flex;
+    flex-direction: column;
+    margin: 30px;
+    color: white;
+    font-family: 'Concert One', cursive;
+}
+
+
+
+.instrucoes{
+    display: flex;
+    justify-content: column;
+    align-items: center;
+    margin: 30px;
+    padding: 150px;
+}
+
+.imagens img{
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  -webkit-filter: drop-shadow(0px 0px 20px rgba(0 0 0 / 90%)); 
+  filter: drop-shadow(0px 0px 20px rgba(0 0 0 / 90%));
+}
+
+.textos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 200px;
+    margin-left: 100px;
+    font-size: larger;
+    text-shadow: grey 2px 2px;
+}
+
+.inicio a{
+    text-decoration: none;
+    color: black;
+}
+
+.reveal{
+  position: relative;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 2s ease;
+}
+
+.reveal.active{
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+footer {
+  margin-top: 120px;
+  color: white;
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 120px;
+  font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 100;
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+  left: 30px;
+}
+
+.fale-conosco {
+  display: flex;
+  justify-content: center;
+}
+
+.contatos {
+  display: flex;
+  align-items: center;
+}
+
+.contatos a{
+  text-decoration: none;
+  color: white;
+}
+
+.email{
+  position: relative;
+  right: 130px;
+}
+
+.video-container {
+  height: 300px;
+  width: 300px;
+  position: relative;
+}
+
+.video-container video {
+width: 100%;
+height: 100%;
+position: absolute;
+object-fit: cover;
+z-index: 0;
+}
+
+footer img{
+  padding-right: 10px;
+}
+
+footer div a{
+  text-decoration: none;
+  color: white;
+}
+
+.esquerda img{
+  position: relative;
+  top: 30px;
+  right: 70px;
+}

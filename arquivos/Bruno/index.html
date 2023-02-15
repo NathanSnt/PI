@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./src/css/home.css">
+</head>
+<body>
+    <div class="home">
+
+        <div class="banner fadeOutOnScroll" id="banner">
+
+            <header class="videoContainer">
+
+                <video autoplay muted loop>
+                    <source src="./src/images/PI.mp4" type="video/mp4" />
+                </video>
+
+                <div class="navegacao">
+                    <div class="inicio">
+                        <a href="#">DISTRIK</a>
+                    </div>
+        
+                    <div class="menu">
+                        <nav>
+                            <ul>
+                                <li class="active"><a href=""><span>LOGIN</span></a></li>
+                                <li><a href=""><span>CADASTRO</span></a> </li>
+                                <li><a href=""><span>FALE CONOSCO</span></a></li>
+                                <li><a href=""><span>SOBRE NÓS</span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+           
+
+            <div class="barraDePesquisa">
+                
+                <input type="text" class="icon" value placeholder="Digite sua localização">
+            </div>
+
+
+        </div>
+
+        <div class="container">
+            <div class="instrucoes reveal">
+                <div class="imagens"><img src="./src/images/lua2.jpg" alt=""></div>
+
+                <div class="textos">Pesquise serviços perto de você</div>
+            </div>
+
+            <div class="instrucoes reveal">
+                <div class="textos">TEXTO 2</div>
+                <div class="imagens"><img src="./src/images/lua2.jpg" alt=""></div>
+            </div>
+
+            <div class="instrucoes reveal">
+                <div class="imagens"><img src="./src/images/lua2.jpg" alt=""></div>
+
+                <div class="textos">TEXTO 3</div>
+            </div>
+
+            <div class="instrucoes reveal">
+                <div class="textos">TEXTO 4</div>
+                <div class="imagens"><img src="./src/images/lua2.jpg" alt=""></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="esquerda">
+            <a href="#"> <img src="/src/images/iconeBranco.png" width="30px"> </a>
+
+        </div>
+
+        <div class="meio">
+
+            <div class="copyright">
+                <img src="/src/images/iconCopyrightBranco.png" width="25px"><p>COPYRIGHT 2022</p>
+            </div>
+
+            <div class="contatos">
+                <img src="/src/images/iconEmailBranco.png" width="25px" class="email"><a href="#" class="email">contato@distrik.com</a> 
+                               
+                <img src="/src/images/iconWhatsappBranco.png" width="25px"><a href="#">(11) 93350-1184</a>
+            </div>
+                
+        </div>
+
+
+        <div class="direita">
+            <p><a href="#">LOGIN</a></p>
+            <p><a href="#">CADASTRO</a></p>
+            <p><a href="#">SOBRE NÓS</a></p>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript">
+        window.addEventListener('scroll', reveal);
+    
+        function reveal(){
+          var reveals = document.querySelectorAll('.reveal');
+    
+          for(var i = 0; i < reveals.length; i++){
+    
+            var windowheight = window.innerHeight;
+            var revealtop = reveals[i].getBoundingClientRect().top;
+            var revealpoint = 150;
+    
+            if(revealtop < windowheight - revealpoint){
+              reveals[i].classList.add('active');
+            }
+            else{
+              reveals[i].classList.remove('active');
+            }
+          }
+        }
+
+        var banner = document.getElementById('banner');
+
+        function fadeOutOnScroll(element) {
+        if (!element) {
+        return;
+        }
+    
+        var distanceToTop = window.pageYOffset + element.getBoundingClientRect().top;
+        var elementHeight = element.offsetHeight;
+     var scrollTop = document.documentElement.scrollTop;
+    
+        var opacity = 1;
+    
+        if (scrollTop > distanceToTop) {
+        opacity = 1 - (scrollTop - distanceToTop) / elementHeight;
+        }
+    
+        if (opacity >= 0) {
+        element.style.opacity = opacity;
+        }
+        }
+
+        function scrollHandler() {
+        fadeOutOnScroll(banner);
+        }
+
+        window.addEventListener('scroll', scrollHandler);
+
+    </script>
+</body>
+</html>
