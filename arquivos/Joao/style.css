@@ -1,0 +1,23 @@
+.classe1{
+width: 500px;
+height: 20px;
+padding: 15px;
+border: 1px solid black;
+}
+
+.classe2{
+background-color: coral;
+color: white;
+}
+
+.classe3{
+text-transform: uppercase;
+}
+
+.classeblu{
+    background-color: blue;
+}
+
+.classered{
+    color: red;
+}
