@@ -6,3 +6,13 @@ function mudarCarrossel(estacao){
     document.getElementById("carrossel5").src = "images/"+estacao+"5.jpg"
     document.getElementById("slide1").checked = true
 }
+
+const nav = document.querySelector('nav');
+const faixa = document.querySelector('#faixa');
+const alturaNav = nav.offsetHeight;
+const alturaFaixa = alturaNav * 0.95;
+const margem = alturaNav * 0.025;
+
+faixa.style.height = `${alturaFaixa}px`;
+faixa.style.marginTop = `${margem}px`;
+faixa.style.marginBottom = `${margem}px`;

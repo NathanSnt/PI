@@ -2,12 +2,14 @@
 /* MENU VERTICAL */
 
 #estacao img {
-    max-width: 50px;
-    margin-right: 15px;
+    max-width: 29%;
+    margin-right: 10%;
 }
 #estacao a{
-    width: 150px;
-    height: 40px;
+    /* width: 150px; */
+    /* height: 40px; */
+    width: 80%;
+    height: auto;
     font-size: 15px;
     font-family: arial;
     font-weight: bold;
@@ -19,26 +21,32 @@
 }
 
 #estacao {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 200px;
+    /* margin-top: 30px; */
+    /* margin-bottom: 30px; */
+    /* width: 200px; */
+    margin-top: 7%;
+    margin-bottom: 7%;
+    width: 70%;
     display: flex;
     justify-content: center;
 }
 
 #menu-estacoes {
-    width: 200px;
-    height: 1370px;
+    width: 20%;
+    /* height: 1370px; */
+    height: auto;
 }
 
 #faixa {
     background-color: #50c878;
     z-index: -1;
     position: absolute;
-    height: 1430px;
-    width: 28px;
-    left: 35px;
-    margin-top: 30px;
+    width: 2%;
+    left: 2%;
+    /* width: 28px; */
+    /* left: 35px; */
+    /* height: 1430px; */
+    /* margin-top: 30px; */
 }
 
 
@@ -133,11 +141,12 @@ input {
 /* PRINCIPAL */
 #status { 
     margin-bottom: 50px;
+    width: 100%;
 }
 
 #principal {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     
     /* background-color: #c1c1c1; */
 }
@@ -151,6 +160,7 @@ input {
     flex-direction: row;
     align-items: center;
     margin-bottom: 30px;
+    width: 70%;
 }
 
 #foto-comentario {
@@ -187,6 +197,7 @@ input {
 
 #conteudo {
     margin-right: 5%;
+    margin-left: 5%;
     width: 70%;
 
     /* background-color: #3DEBB0; */
