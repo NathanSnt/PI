@@ -237,6 +237,7 @@ input {
 }
 #nome-usuario, #botoes, #data-post, #denunciar{
     display: flex;
+    width: 20%;
 }
 
 #nome-usuario, #data-post, #denunciar{
