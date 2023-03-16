@@ -159,6 +159,10 @@ input {
     margin-right: 20%;
 }
 
+#informacoes {
+    width: 100%;
+}
+
 #principal {
     display: flex;
     /* justify-content: space-between; */
@@ -174,26 +178,34 @@ input {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 30px;
-    width: 70%;
+    /* margin-bottom: 30px; */
+    margin-bottom: 5%;
+    /* width: 70%; */
 }
 
 #foto-comentario {
     display: flex;
     align-items: center;
-    margin-right: 15px;
+    margin-right: 3%;
+    width: 85%;
+    max-width: 85%;
 }
 
 #caixa-reclamar img{
-    width: 80px;
+    /* width: 80px; */
+    /* margin-right: 25px; */
+    /* margin-left: 18px; */
+    width: 10%;
     border-radius: 50%;
-    margin-right: 25px;
-    margin-left: 18px;
+    margin-right: 3%;
+    margin-left: 3%;
 }
 
 #reclamacao {
     resize: none;
-    font-size: 15px;
+    /* font-size: 15px; */
+    font-size: 1.5vw;
+    max-width: 90%;
     font-family: Arial;
     border-radius: 10px;
     padding: 10px;
@@ -202,10 +214,12 @@ input {
 
 #caixa-reclamar button {
     font-family: Arial;
+    font-size: 1.5vw;
     font-weight: bold;
     border-radius: 3px;
     height: 35px;
-    width: 70px;
+    /* width: 70px; */
+    width: 10%;
 }
 
 /* FIM RECLAMAÇÃO */
