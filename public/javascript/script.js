@@ -19,10 +19,9 @@ function atualizaTamanhoFaixa(){
     faixa.style.marginBottom = `${margem}px`;
 }
 
-atualizaTamanhoFaixa()
-window.addEventListener('resize', function() {
-
+window.addEventListener('load', function() {
     atualizaTamanhoFaixa()
-
-
+})
+window.addEventListener('resize', function() {
+    atualizaTamanhoFaixa()
 })
