@@ -38,7 +38,7 @@ img {
     list-style: none;
     z-index: -1;
     justify-content: center;
-    width: 100%;
+    max-width: 100%;
 }
 
 li {
@@ -46,7 +46,7 @@ li {
 }
 
 header {
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 #faixa-esmeralda {
