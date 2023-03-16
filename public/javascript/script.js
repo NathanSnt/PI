@@ -7,12 +7,22 @@ function mudarCarrossel(estacao){
     document.getElementById("slide1").checked = true
 }
 
-const nav = document.querySelector('nav');
-const faixa = document.querySelector('#faixa');
-const alturaNav = nav.offsetHeight;
-const alturaFaixa = alturaNav * 0.95;
-const margem = alturaNav * 0.025;
+function atualizaTamanhoFaixa(){
+    const nav = document.querySelector('nav');
+    const faixa = document.querySelector('#faixa');
+    const alturaNav = nav.offsetHeight;
+    const alturaFaixa = alturaNav * 0.95;
+    const margem = alturaNav * 0.025;
+    
+    faixa.style.height = `${alturaFaixa}px`;
+    faixa.style.marginTop = `${margem}px`;
+    faixa.style.marginBottom = `${margem}px`;
+}
 
-faixa.style.height = `${alturaFaixa}px`;
-faixa.style.marginTop = `${margem}px`;
-faixa.style.marginBottom = `${margem}px`;
+atualizaTamanhoFaixa()
+window.addEventListener('resize', function() {
+
+    atualizaTamanhoFaixa()
+
+
+})
