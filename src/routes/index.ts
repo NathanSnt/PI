@@ -13,14 +13,6 @@ router.get('/home', pagesController.home)
 router.get('/cadastro', userController.cadastro)
 router.get('/login', userController.login)
 
-router.get('/contato', pagesController.contato)
-
-router.get('/empresa', pagesController.empresa)
-
-router.get('/resultados', pagesController.resultados)
-
 router.get('/sobre', pagesController.sobre)
-
-
 
 export default router
