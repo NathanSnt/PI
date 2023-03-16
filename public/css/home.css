@@ -1,8 +1,5 @@
 
 /* MENU VERTICAL */
-@media (max-width: 500px){
-
-}
 
 #estacao img {
     max-width: 50px;
@@ -50,7 +47,8 @@
 /* CARROSSEL */
 
 .content {
-    height: 520px;
+    /* height: 520px; */
+    height: auto;
     width: 95%;
     border-radius: 20px 25px ;
 
@@ -64,17 +62,21 @@
 
 .navigation {
     position: absolute;
-    bottom: 20px;
+    /* bottom: 20px; */
+    bottom: 5%;
     left: 50%;
     transform: translate(-50%);
     display: flex;
+    width: 100%;
 }
 
 .bar {
-    width: 70px;
+    /* width: 70px; */
+    width: 16%;
     height: 17px;
     border: 2px solid #FFF;
-    margin: 16px;
+    /* margin: 16px; */
+    margin: 1.5%;
     border-radius: 10px;
     cursor: pointer; /* quando passar por cima de algo selecionavel, altera o cursor do mouse */
     transition: .3s;
