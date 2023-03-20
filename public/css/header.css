@@ -43,6 +43,7 @@ img {
 
 li {
     position: relative;
+    cursor: pointer;
 }
 
 header {

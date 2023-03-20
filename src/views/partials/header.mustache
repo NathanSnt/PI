@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/header.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -12,31 +13,31 @@
         <div id="lista">
             <ul>
                 <li>
-                    <a href="/" onclick="mudarCarrossel('noticia')">
+                    <a href="/">
                         <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
                         <img class="menu-img" src="images/home2.png" alt="">
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a onclick="mudarConteudo('mapa', '#conteudo', 'noticia')">
                         <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
                         <img class="menu-img" src="images/mapa2.png" alt="">
                     </a>
                 </li>
                 <li>
-                    <a href="sobre">
+                    <a onclick="mudarConteudo('sobre', '#conteudo', 'noticia')">
                         <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
                         <img class="menu-img" src="images/sobreNos2.png" alt="">
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a onclick="mudarConteudo('reclamar', '#conteudo', 'noticia')">
                         <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
                         <img class="menu-img" src="images/reclamar2.png" alt="">
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a onclick="mudarConteudo('login', '#conteudo', 'noticia')">
                         <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
                         <img class="menu-img" src="images/loginCadastro2.png" alt="">
                     </a>
