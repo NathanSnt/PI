@@ -68,7 +68,7 @@
         <div id="estacao">
             <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'lobos', 'vila-lobos-jaguare')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Vila Lobos - jaguaré</p>
+                <p>Vila Lobos jaguaré</p>
             </a>
         </div>
         <div id="estacao">
@@ -86,7 +86,7 @@
         <div id="estacao">
             <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'hebraica', 'hebraica-reboucas')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Hebraica - Rebouças</p>
+                <p>Hebraica Rebouças</p>
             </a>
         </div>
         <div id="estacao">
@@ -152,7 +152,7 @@
         <div id="estacao">
             <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'primavera', 'primavera-interlagos')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Primavera - Interlagos</p>
+                <p>Primavera Interlagos</p>
             </a>
         </div>
         <div id="estacao">
@@ -164,7 +164,7 @@
         <div id="estacao">
             <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'mendes', 'mendes-vila-natal')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Mendes - Vila Natal</p>
+                <p>Mendes Vila Natal</p>
             </a>
         </div>
         <div id="estacao">
@@ -174,17 +174,22 @@
             </a>
         </div>
     </nav>
+    
     <div id="conteudo">
         <div id="status">
-            <img src="images/triste.png" alt="">
-            <h1>Status da linha: Muito ruim.</h1>
+            <div id="imagem">
+                <img src="images/triste.png" alt="">
+            </div>
+            <div id="statush1">
+                <h1>Status da linha: Muito ruim.</h1>
+            </div>
         </div>
         <div id="informacoes">
 
             <form id="caixa-reclamar" action="">
                 <div id="foto-comentario">
                     <img src="images/user4.png" alt="">
-                    <textarea name="reclamacao" id="reclamacao" cols="100" rows="2" placeholder="Conte-nos um pouco da sua experiência com a linha 9 esmeralda."></textarea>
+                    <textarea name="reclamacao" id="reclamacao" cols="100" rows="2" placeholder="Diga algo."></textarea>
                 </div>
                 <button type="submit" value="enviar">Enviar</button>
             </form>
@@ -212,6 +217,7 @@
                         </div>
                     </div>
                 </div>
+                <img id="exclamation" src="images/exclamation.svg" alt="" style="display: none;" onclick="mostrarInfo(this)">
             </div>
             <div id="comentario">
                 <img src="images/user2.png" alt="foto de perfil" id="foto-perfil">
@@ -236,6 +242,7 @@
                         </div>
                     </div>
                 </div>
+                <img id="exclamation" src="images/exclamation.svg" alt="" style="display: none;" onclick="mostrarInfo(this)">
             </div>
             <div id="comentario">
                 <img src="images/user3.png" alt="foto de perfil" id="foto-perfil">
@@ -260,6 +267,7 @@
                         </div>
                     </div>
                 </div>
+                <img id="exclamation" src="images/exclamation.svg" alt="" style="display: none;" onclick="mostrarInfo(this)">
             </div>
         
         </div>

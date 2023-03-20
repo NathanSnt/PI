@@ -1,10 +1,24 @@
 
 /* MENU VERTICAL */
 
+#menu-estacoes {
+    width: 20%;
+    height: auto;
+}
+
+#estacao {
+    margin-top: 7%;
+    margin-bottom: 7%;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}
+
 #estacao img {
     max-width: 29%;
     margin-right: 10%;
 }
+
 #estacao a{
     width: 80%;
     height: auto;
@@ -18,18 +32,6 @@
     text-decoration: none;
 }
 
-#estacao {
-    margin-top: 7%;
-    margin-bottom: 7%;
-    width: 70%;
-    display: flex;
-    justify-content: center;
-}
-
-#menu-estacoes {
-    width: 20%;
-    height: auto;
-}
 
 #faixa {
     background-color: #50c878;
@@ -128,6 +130,10 @@
 /* FIM CARROSSEL */
 
 /* PRINCIPAL */
+#principal {
+    display: flex;
+}
+
 #status {
     display: flex;
     justify-content: space-around;
@@ -138,39 +144,51 @@
 
 #status img{
     margin-left: 20%;
-    width: 8%;
+    width: 80%;
 }
 
 #status h1 {
-    font-size: 2vw;
+    /* font-size: 2vw; */
+    font-size: 1.5rem;
     margin-right: 20%;
+}
+
+#imagem {
+    width: 10%;
+}
+
+#statush1 {
+    width: 85%;
 }
 
 #informacoes {
     width: 100%;
 }
 
-#principal {
-    display: flex;
-}
-/* FIM PRINCIPAL */
+
 
 /* CONTEUDO */
+#conteudo {
+    margin-right: 5%;
+    margin-left: 5%;
+    width: 70%;
+}
 
 /* RECLEMAÇÃO */
 #caixa-reclamar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 5%;
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* align-items: center; */
+    width: 100%;
+    margin-bottom: 3%;
 }
 
 #foto-comentario {
     display: flex;
     align-items: center;
     margin-right: 3%;
-    width: 85%;
-    max-width: 85%;
+    margin-bottom: 2%;
+    width: 100%;
 }
 
 #caixa-reclamar img{
@@ -182,8 +200,8 @@
 
 #reclamacao {
     resize: none;
-    font-size: 1.5vw;
-    max-width: 90%;
+    font-size: 1.5rem;
+    width: 80%;
     font-family: Arial;
     border-radius: 10px;
     padding: 10px;
@@ -192,20 +210,17 @@
 
 #caixa-reclamar button {
     font-family: Arial;
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     font-weight: bold;
     border-radius: 3px;
-    height: 35px;
-    width: 10%;
+    left: 3%;
+    height: 30px;
+    width: 20%;
+    margin-left: 75%;
 }
 
 /* FIM RECLAMAÇÃO */
 
-#conteudo {
-    margin-right: 5%;
-    margin-left: 5%;
-    width: 70%;
-}
 
 /* COMENTÁRIO */
 #comentario {
@@ -231,7 +246,7 @@
 
 #caixa-comentario p {
     padding-bottom: 2.5%;
-}
+    font-size: 1.2rem;}
 
 #comentario-footer {
     display: flex;
@@ -244,13 +259,33 @@
     width: 20%;
 }
 
-#nome-usuario, #data-post, #denunciar{
+#botoes {
+    min-width: 80px;
+}
+
+#nome-usuario, #data-post, #denunciar, #comentario-footer{
     font-weight: bold;
-    font-size: 12px;
+    font-size: 1rem;
     align-items: flex-end;
     color: #aaa;
 }
 
+@media (max-width: 1290px) {
+    #comentario-footer {
+        display: none;
+        height: 5%;
+    }
+    
+    #comentario #exclamation {
+        display: block !important;
+        width: 10%;
+        max-width: 30px;
+    }
+
+    #nome-usuario, #botoes, #data-post, #denunciar{
+        width: 100%;
+    }
+}
 #denunciar a{ 
     text-decoration: none;
     color: inherit;
@@ -268,5 +303,5 @@
     cursor: pointer;
 }
 /* FIM COMENTÁRIO */
-
 /* FIM CONTEUDO */
+/* FIM PRINCIPAL */

@@ -29,6 +29,16 @@ function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
     })
 }
 
+function mostrarInfo(objeto) {
+    // document.querySelector('#comentario-footer')
+    const divComentarioFooter = objeto.parentElement.children[1].children[1]
+    if (divComentarioFooter.style.display == 'block') {
+        divComentarioFooter.style.display = 'none'
+    }else {
+        divComentarioFooter.style.display = 'block'
+    }
+}
+
 // $('#sobre_nos').click(function() {
 //     $.get('sobre', function(data) {
 //         $('#conteudo').html(data)
