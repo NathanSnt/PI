@@ -19,6 +19,22 @@ function atualizaTamanhoFaixa(){
     faixa.style.marginBottom = `${margem}px`;
 }
 
+function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
+    if (nome_estacao) {
+        pagina += `?estacao=${nome_estacao}`
+    }
+    $.get(pagina, function(data) {
+        $(divId).html(data)
+        mudarCarrossel(carrossel)
+    })
+}
+
+// $('#sobre_nos').click(function() {
+//     $.get('sobre', function(data) {
+//         $('#conteudo').html(data)
+//     })
+// })
+
 window.addEventListener('load', function() {
     atualizaTamanhoFaixa()
 })
