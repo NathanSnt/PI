@@ -15,4 +15,10 @@ router.get('/login', userController.login)
 
 router.get('/sobre', pagesController.sobre)
 
+router.get('/reclamar', pagesController.reclamar)
+
+router.get('/mapa', pagesController.mapa)
+
+router.get('/estacao', pagesController.estacao)
+
 export default router
