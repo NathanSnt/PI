@@ -80,7 +80,11 @@
     background-color: #3DEBB0;
 }
 
-input {
+#slide1,
+#slide2, 
+#slide3, 
+#slide4,
+#slide5 {
     display: none;
 }
 
