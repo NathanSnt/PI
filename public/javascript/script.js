@@ -39,6 +39,42 @@ function mostrarInfo(objeto) {
     }
 }
 
+function mostrarMenu() {
+    //let divMenuEstacao = document.querySelector('#menu-estacoes')
+    if (document.querySelector('#menu-estacoes').style.display){
+        console.log('on')
+        ativaMenu()
+    }
+    else {
+        console.log('off')
+        desativaMenu()
+    }
+}
+
+function ativaMenu() {
+    let divMenuEstacao = document.querySelector('#menu-estacoes')
+    let divConteudo = document.querySelector("#conteudo")
+    let faixa = document.querySelector("#faixa")
+
+    divMenuEstacao.style.display = 'block'
+    divMenuEstacao.style.width = '50%'
+    divMenuEstacao.style.backgroundColor = '#eee'
+    divConteudo.style.display = 'none'
+    faixa.style.display = 'none'
+}
+
+function desativaMenu() {
+    let divMenuEstacao = document.querySelector('#menu-estacoes')
+    let divConteudo = document.querySelector("#conteudo")
+    let faixa = document.querySelector("#faixa")
+
+    divMenuEstacao.style.setProperty('display', 'block', '!important')
+    divMenuEstacao.style.setProperty('background-color', '#fff', '!important')
+    faixa.style.display = 'block'
+    divConteudo.style.display = 'block'
+    faixa.style.display = 'none'
+}
+
 // $('#sobre_nos').click(function() {
 //     $.get('sobre', function(data) {
 //         $('#conteudo').html(data)
@@ -51,3 +87,32 @@ window.addEventListener('load', function() {
 window.addEventListener('resize', function() {
     atualizaTamanhoFaixa()
 })
+
+
+
+
+
+// LISTENER RESIZE
+// let menuEstacao = this.document.querySelector("menu-estacoes").style
+    // let faixa = this.document.querySelector("faixa").style
+    // let conteudo = this.document.querySelector("conteudo").style
+    // let hamburger = this.document.querySelector("menu-hamburger").style
+   // if (this.window.width <= 600){
+        // menuEstacao.display = 'none '
+        // conteudo.width = '90%'
+        // conteudo.margin = 'auto'
+        // hamburger.display = 'block'
+        // hamburger.width = '7.5%'
+        // hamburger.height = '50px'
+        // hamburger.marginLeft = '2.5%'
+        // faixa.display = 'none'
+    //    ativaMenu()
+   // }
+   // else if (this.window.width > 600){
+        // hamburger.display = 'none'
+        // menuEstacao.display = 'block'
+        // menuEstacao.backgroundColor = 'white'
+        // faixa.display = 'block'
+        // conteudo.display = 'block'
+      //  desativaMenu()
+   // }

@@ -22,7 +22,7 @@
 #estacao a{
     width: 80%;
     height: auto;
-    font-size: 15px;
+    font-size: 1.3rem;
     font-family: arial;
     font-weight: bold;
     color: black;
@@ -38,7 +38,7 @@
     z-index: -1;
     position: absolute;
     width: 2%;
-    left: 2%;
+    left: 1.85%;
 }
 
 /* FIM MENU VERTICAL */
@@ -139,7 +139,9 @@
     justify-content: space-around;
     align-items: center;
     margin-bottom: 5%;
-    width: 100%;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 5%;
 }
 
 #status img{
@@ -157,8 +159,9 @@
     width: 10%;
 }
 
-#statush1 {
+#status #statush1 {
     width: 85%;
+    text-align: center;
 }
 
 #informacoes {
@@ -210,7 +213,7 @@
 
 #caixa-reclamar button {
     font-family: Arial;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     border-radius: 3px;
     left: 3%;
@@ -270,22 +273,6 @@
     color: #aaa;
 }
 
-@media (max-width: 1290px) {
-    #comentario-footer {
-        display: none;
-        height: 5%;
-    }
-    
-    #comentario #exclamation {
-        display: block !important;
-        width: 10%;
-        max-width: 30px;
-    }
-
-    #nome-usuario, #botoes, #data-post, #denunciar{
-        width: 100%;
-    }
-}
 #denunciar a{ 
     text-decoration: none;
     color: inherit;
@@ -305,3 +292,47 @@
 /* FIM COMENTÁRIO */
 /* FIM CONTEUDO */
 /* FIM PRINCIPAL */
+
+@media (max-width: 1290px) {
+    #comentario-footer {
+        display: none;
+        height: 5%;
+    }
+    
+    #comentario #exclamation {
+        display: block !important;
+        width: 10%;
+        max-width: 30px;
+    }
+
+    #nome-usuario, #botoes, #data-post, #denunciar{
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px){
+    #menu-estacoes {
+        display: none !important;
+    }
+    #conteudo {
+        width: 90%;
+        margin: auto;
+    }
+    #menu-hamburger {
+        display: block !important;
+        width: 7.5%;
+        height: 50px;
+        margin-left: 2.5%;
+    }
+    #linha1,
+    #linha2,
+    #linha3 {
+        width: 100%;
+        height: 16.6%;
+        background-color: black;
+        margin-top: 10%;
+    }
+    #faixa {
+        display: none;
+    }
+}
