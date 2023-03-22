@@ -33,15 +33,18 @@ function mostrarInfo(objeto) {
     // document.querySelector('#comentario-footer')
     const divComentarioFooter = objeto.parentElement.children[1].children[1]
     if (divComentarioFooter.style.display == 'block') {
-        divComentarioFooter.style.display = 'none'
+        console.log(divComentarioFooter.style.display)
+        divComentarioFooter.style.display = ''
     }else {
+        console.log(divComentarioFooter.style.display)
         divComentarioFooter.style.display = 'block'
     }
 }
 
 function mostrarMenu() {
     //let divMenuEstacao = document.querySelector('#menu-estacoes')
-    if (document.querySelector('#menu-estacoes').style.display){
+    //if (document.querySelector('#menu-estacoes').style.display === 'none'){
+    if (document.querySelector('#menu-estacoes').offsetWidth === 0) {
         console.log('on')
         ativaMenu()
     }
@@ -53,26 +56,39 @@ function mostrarMenu() {
 
 function ativaMenu() {
     let divMenuEstacao = document.querySelector('#menu-estacoes')
+    let estacao = document.querySelector('#estacao')
     let divConteudo = document.querySelector("#conteudo")
     let faixa = document.querySelector("#faixa")
 
-    divMenuEstacao.style.display = 'block'
-    divMenuEstacao.style.width = '50%'
-    divMenuEstacao.style.backgroundColor = '#eee'
+    // divMenuEstacao.style.setProperty('display', 'block', 'important')
+    //divMenuEstacao.style.width = '50%'
+    // divMenuEstacao.style.backgroundColor = '#eee'
+    // divMenuEstacao.style.zIndex = '-3'
+    divMenuEstacao.classList.add('menuAtivo')
     divConteudo.style.display = 'none'
-    faixa.style.display = 'none'
+    faixa.classList.add('faixaMenuHamburger')
+    estacao.classList.add('estacaoMenuHamburger')
+    //faixa.style.display = 'block'
+    atualizaTamanhoFaixa()
+    //faixa.style.left = '15%'
+    //faixa.style.width = '4.5%'
+    //faixa.style.zIndex = '-2'
+    //estacao.style.zIndex = '-1'
 }
 
 function desativaMenu() {
     let divMenuEstacao = document.querySelector('#menu-estacoes')
     let divConteudo = document.querySelector("#conteudo")
+    let estacao = document.querySelector('#estacao')
     let faixa = document.querySelector("#faixa")
 
-    divMenuEstacao.style.setProperty('display', 'block', '!important')
-    divMenuEstacao.style.setProperty('background-color', '#fff', '!important')
-    faixa.style.display = 'block'
-    divConteudo.style.display = 'block'
-    faixa.style.display = 'none'
+    divMenuEstacao.classList.remove('menuAtivo')
+    faixa.classList.remove('faixaMenuHamburger')
+    estacao.classList.remove('estacaoMenuHamburger')
+    //divMenuEstacao.style.setProperty('display', 'none', 'important')
+    //divMenuEstacao.style.setProperty('background-color', '#fff', 'important')
+    //faixa.style.display = 'block'
+    divConteudo.style.setProperty('display', 'block', 'important')
 }
 
 // $('#sobre_nos').click(function() {
@@ -86,6 +102,7 @@ window.addEventListener('load', function() {
 })
 window.addEventListener('resize', function() {
     atualizaTamanhoFaixa()
+    desativaMenu()
 })
 
 

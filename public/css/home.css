@@ -292,8 +292,22 @@
 /* FIM COMENTÁRIO */
 /* FIM CONTEUDO */
 /* FIM PRINCIPAL */
-
-@media (max-width: 1290px) {
+.menuAtivo {
+    display: block !important;
+    width: 50% !important;
+    background-color: #eee !important;
+    z-index: -3 !important;
+}
+.faixaMenuHamburger {
+    display: block !important;
+    left: 15% !important;
+    width: 4.5% !important;
+    z-index: -2 !important;
+}
+.estacaoMenuHamburger {
+    z-index: -1 !important;
+}
+@media (max-width: 1000px) {
     #comentario-footer {
         display: none;
         height: 5%;
@@ -301,28 +315,30 @@
     
     #comentario #exclamation {
         display: block !important;
+        cursor: pointer;
         width: 10%;
         max-width: 30px;
     }
 
-    #nome-usuario, #botoes, #data-post, #denunciar{
+    #nome-usuario, #data-post, #denunciar{
         width: 100%;
     }
 }
 
 @media (max-width: 600px){
-    #menu-estacoes {
-        display: none !important;
-    }
     #conteudo {
         width: 90%;
         margin: auto;
+    }
+    #menu-estacoes {
+        display: none;
     }
     #menu-hamburger {
         display: block !important;
         width: 7.5%;
         height: 50px;
         margin-left: 2.5%;
+        cursor: pointer;
     }
     #linha1,
     #linha2,
