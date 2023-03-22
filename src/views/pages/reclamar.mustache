@@ -1,103 +1,105 @@
-<link rel="stylesheet" href="reclamar.css">
-<h1>Reclamação sobre:</h1>
+<link rel="stylesheet" href="css/reclamar.css">
+<div id="cardReclamacao">
+    <h1>Reclamação sobre:</h1>
 
-<input type="radio" id="radio-linha" name="reclamacao" value="linha-geral" checked>
-<label for="radio-linha">Linha em geral</label>
+    <input type="radio" id="radio-linha" name="reclamacao" value="linha-geral" checked>
+    <label for="radio-linha">Linha em geral</label>
 
-<input type="radio" id="radio-estacao" name="reclamacao" value="estacao-especifica">
-<label for="radio-estacao">Estação específica</label>
+    <input type="radio" id="radio-estacao" name="reclamacao" value="estacao-especifica">
+    <label for="radio-estacao">Estação específica</label>
 
-<input type="radio" id="radio-carro" name="reclamacao" value="carro-especifico">
-<label for="radio-carro">Carro específico</label>
+    <input type="radio" id="radio-carro" name="reclamacao" value="carro-especifico">
+    <label for="radio-carro">Carro específico</label>
 
-<form id="linha-geral">
+    <form id="linha-geral">
 
-    <label for="motivo-reclamacao">Motivo da reclamação:</label>
-    <br><br>
-    <select id="motivo-reclamacao" name="motivoReclamacao">
-        <option value="velocidade-reduzida">Velocidade reduzida</option>
-        <option value="somente-um-lado-da-via-funcionando">Somente um lado da via funcionando</option>
-        <option value="greve">Greve</option>
-        <option value="linha-paralizada">Linha paralizada</option>
-    </select>
-    <br>
-    <label for="descricao-reclamacao">Fale um pouco mais sobre sua experiência:</label>
-    <textarea id="descricao-eclamacao" name="descricaoReclamacao" placeholder="Digite aqui..."></textarea>
-    <br><br>
-    <button type="submit" value="Enviar">Enviar</button>
+        <label for="motivo-reclamacao">Motivo da reclamação:</label>
+        <br><br>
+        <select id="motivo-reclamacao" name="motivoReclamacao">
+            <option value="velocidade-reduzida">Velocidade reduzida</option>
+            <option value="somente-um-lado-da-via-funcionando">Somente um lado da via funcionando</option>
+            <option value="greve">Greve</option>
+            <option value="linha-paralizada">Linha paralizada</option>
+        </select>
+        <br>
+        <label for="descricao-reclamacao">Fale um pouco mais sobre sua experiência:</label>
+        <textarea id="descricao-eclamacao" name="descricaoReclamacao" placeholder="Digite aqui..." class="caixaReclamacao"></textarea>
+        <br><br>
+        <button type="submit" value="Enviar" class="botao">Enviar</button>
 
-</form>
-<form action="" id="estacao-especifica" style="display:none">
+    </form>
+    <form action="" id="estacao-especifica" style="display:none">
 
-    <label>Selecione a estação:</label>
-    <br>
-    <select name="nomeEstacao">
-        <option value="osasco">Osasco</option>
-        <option value="presidenteAltino">Presidente Altino</option>
-        <option value="ceasa">Ceasa</option>
-        <option value="vilaLobosJaguare">Vila Lobos-Jaguaré</option>
-        <option value="cidadeUniversitaria">Cidade Universitária</option>
-        <option value="pinheiros">Pinheiros</option>
-        <option value="hebraicaReboucas">Hebraica Rebouças</option>
-        <option value="cidadeJardim">Cidade Jardim</option>
-        <option value="vilaOlimpia">Vila Olímpia</option>
-        <option value="berrini">Berrini</option>
-        <option value="morumbi">Morumbi</option>
-        <option value="granjaJulieta">Granja Julieta</option>
-        <option value="joaoDias">joão Dias</option>
-        <option value="santoAmaro">Santo Amaro</option>
-        <option value="socorro">Socorro</option>
-        <option value="jurubatuba">Jurubatuba</option>
-        <option value="autodromo">Autódromo</option>
-        <option value="primaveraInterlagos">Primavera Interlagos</option>
-        <option value="grajau">Grajaú</option>
-        <option value="mendesVilaNatal">Mendes Vila Natal</option>
-        <option value="varginha">Varginha</option>
-    </select>
-    <br><br>
-    <label>Selecione o problema:</label>
-    <br>
-    <select name="problema">
-        <option value="elevadorQuebrado">Elevador quebrado</option>
-        <option value="escadaRolanteQuebrada">Escada rolante quebrada</option>
-        <option value="estacaoFechada">Estação fechada</option>
-        <option value="estacaoSemGuardas">Estação sem guardas</option>
-        <option value="estacaoAlagada">Estação alagada</option>
-        <option value="acidente">Acidente</option>
-        <option value="briga">Briga</option>
-    </select>
-    <br><br>
-    <label>Conte um pouco mais sobre sua experiência:</label>
-    <br>
-    <textarea name="descricaoProblema" placeholder="Digite aqui..."></textarea>
-    <br><br>
-    <button type="submit" value="Enviar">Enviar</button>
+        <label>Selecione a estação:</label>
+        <br>
+        <select name="nomeEstacao">
+            <option value="osasco">Osasco</option>
+            <option value="presidenteAltino">Presidente Altino</option>
+            <option value="ceasa">Ceasa</option>
+            <option value="vilaLobosJaguare">Vila Lobos-Jaguaré</option>
+            <option value="cidadeUniversitaria">Cidade Universitária</option>
+            <option value="pinheiros">Pinheiros</option>
+            <option value="hebraicaReboucas">Hebraica Rebouças</option>
+            <option value="cidadeJardim">Cidade Jardim</option>
+            <option value="vilaOlimpia">Vila Olímpia</option>
+            <option value="berrini">Berrini</option>
+            <option value="morumbi">Morumbi</option>
+            <option value="granjaJulieta">Granja Julieta</option>
+            <option value="joaoDias">joão Dias</option>
+            <option value="santoAmaro">Santo Amaro</option>
+            <option value="socorro">Socorro</option>
+            <option value="jurubatuba">Jurubatuba</option>
+            <option value="autodromo">Autódromo</option>
+            <option value="primaveraInterlagos">Primavera Interlagos</option>
+            <option value="grajau">Grajaú</option>
+            <option value="mendesVilaNatal">Mendes Vila Natal</option>
+            <option value="varginha">Varginha</option>
+        </select>
+        <br><br>
+        <label>Selecione o problema:</label>
+        <br>
+        <select name="problema">
+            <option value="elevadorQuebrado">Elevador quebrado</option>
+            <option value="escadaRolanteQuebrada">Escada rolante quebrada</option>
+            <option value="estacaoFechada">Estação fechada</option>
+            <option value="estacaoSemGuardas">Estação sem guardas</option>
+            <option value="estacaoAlagada">Estação alagada</option>
+            <option value="acidente">Acidente</option>
+            <option value="briga">Briga</option>
+        </select>
+        <br><br>
+        <label>Conte um pouco mais sobre sua experiência:</label>
+        <br>
+        <textarea name="descricaoProblema" placeholder="Digite aqui..." class="areaTexto"></textarea>
+        <br><br>
+        <button type="submit" value="Enviar" class="botao">Enviar</button>
 
-</form>
-<form action="" id="carro-especifico" style='display: none;'>
+    </form>
+    <form action="" id="carro-especifico" style='display: none;'>
 
-    <label>Número do carro:</label>
-    <input name="numeroCarro" type="text" placeholder="Número do carro">
-    <select name="problema">
-        <option>Porta quebrada</option>
-        <option>Ar Condicionado desligado</option>
-        <option>Trem muito sujo</option>
-        <option>Janela quebrada</option>
-    </select>
-    <textarea name="descricaoProblema" placeholder="Conte um pouco mais sobre sua experiência"></textarea>
-    <br><br>
-    <button type="submit" value="Enviar">Enviar</button>
+        <label>Número do carro:</label>
+        <input name="numeroCarro" type="text" placeholder="Número do carro">
+        <select name="problema">
+            <option>Porta quebrada</option>
+            <option>Ar Condicionado desligado</option>
+            <option>Trem muito sujo</option>
+            <option>Janela quebrada</option>
+        </select>
+        <textarea name="descricaoProblema" placeholder="Conte um pouco mais sobre sua experiência" class="areaTexto"></textarea>
+        <br><br>
+        <button type="submit" value="Enviar" class="botao">Enviar</button>
 
-</form>
+    </form>
+</div>
 
 
 <script>
-    const radio_linha = document.querySelector('#radio-linha');
-    const radio_estacao = document.querySelector('#radio-estacao');
-    const radio_carro = document.querySelector('#radio-carro');
-    const div_linha_geral = document.querySelector('#linha-geral');
-    const div_estacao_especifica = document.querySelector('#estacao-especifica');
-    const div_carro_especifico = document.querySelector('#carro-especifico');
+    let radio_linha = document.querySelector('#radio-linha');
+    let radio_estacao = document.querySelector('#radio-estacao');
+    let radio_carro = document.querySelector('#radio-carro');
+    let div_linha_geral = document.querySelector('#linha-geral');
+    let div_estacao_especifica = document.querySelector('#estacao-especifica');
+    let div_carro_especifico = document.querySelector('#carro-especifico');
     //const motivoReclamacao = document.querySelector('#motivo-reclamacao');
     // const descricaoReclamacao = document.querySelector('#descricao-reclamacao');
 
