@@ -5,7 +5,7 @@ create table tb_estacoes (
     id_estacao int not null auto_increment,
     nome_estacao varchar(50) not null,
     localizacao varchar(100) not null,
-    banheiro varchar(50),
+    banheiro varchar(50), -- Cada característica pode ter entre 4 valores (null, 'funcionando', 'em manutenção', 'quebrado')
     elevador varchar(50),
     terminal_interurbano varchar(50),
     terminal_urbano varchar(50),
@@ -32,11 +32,3 @@ create table tb_estacoes (
     primary key (id_estacao)
 );
 
-insert into tb_estacoes (nome_estacao, localizacao, banheiro, elevador, terminal_interurbano, terminal_urbano, transferencia_interna, bicicletario, 
-banheiro_acessivel, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes, acesso_elevador, lanchonete, emporio, 
-caixa_eletronico, calcados, telefone_p_surdos, piso_tatil, transferencia_gratuita, acessorios, farmacia, rota_acessivel, achados_perdidos) values
-('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-
-
-insert into tb_estacoes (nome_estacao, localizacao, banheiro, terminal_interurbano, terminal_urbano, transferencia_interna, bicicletario, banheiro_acessivel, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes, acesso_elevador, lanchonete, emporio, caixa_eletronico, calcados) values
-('osasco', 'Praça Antonio Menck, s/nº (Centro)/ Rua Erasmo Braga, s/nº (Bonfim) – Osasco<br/>06093-090 ', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando', 'Funcionando');
