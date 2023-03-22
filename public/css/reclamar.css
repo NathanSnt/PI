@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+#cardReclamacao{
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+    padding: 3%;
+    border-radius: 20px;
+}
+
+#cardReclamacao h1{
+    color: #58c078;
+    font-family: 'Raleway', sans-serif;
+}
+
+.botao{
+    /* width: 21%;
+    height: 25%; */
+    background-color: #58c078;
+    color: white;
+    border-radius: 20px;
+    border: 1px solid #58c078;
+}
+
+.areaTexto{
+    margin-top: 5%;
+}
