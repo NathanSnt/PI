@@ -25,6 +25,9 @@ function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
     }
     $.get(pagina, function(data) {
         $(divId).html(data)
+        $('html, body').animate({
+            scrollTop: $('#conteudo').offset().top
+        })
         mudarCarrossel(carrossel)
     })
 }
