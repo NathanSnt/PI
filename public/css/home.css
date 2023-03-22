@@ -307,6 +307,9 @@
 .estacaoMenuHamburger {
     z-index: -1 !important;
 }
+.mostrarInfo {
+    display: block !important;
+}
 @media (max-width: 1000px) {
     #comentario-footer {
         display: none;
