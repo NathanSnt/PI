@@ -91,6 +91,10 @@
     
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 #botoes-login-cadastro {
     display: flex;
     flex-direction: row;
