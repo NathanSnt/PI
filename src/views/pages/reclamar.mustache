@@ -93,45 +93,4 @@
 </div>
 
 
-<script>
-    let radio_linha = document.querySelector('#radio-linha');
-    let radio_estacao = document.querySelector('#radio-estacao');
-    let radio_carro = document.querySelector('#radio-carro');
-    let div_linha_geral = document.querySelector('#linha-geral');
-    let div_estacao_especifica = document.querySelector('#estacao-especifica');
-    let div_carro_especifico = document.querySelector('#carro-especifico');
-    //const motivoReclamacao = document.querySelector('#motivo-reclamacao');
-    // const descricaoReclamacao = document.querySelector('#descricao-reclamacao');
-
-    radio_estacao.addEventListener('change', () => {
-        div_estacao_especifica.style.display = 'block';
-        div_linha_geral.style.display = 'none';
-        div_carro_especifico.style.display = 'none';
-        //   motivoReclamacao.required = false;
-        //   descricaoReclamacao.required = false;
-        console.log("estação específica selecionado")
-    });
-
-    radio_carro.addEventListener('change', () => {
-        div_carro_especifico.style.display = 'block';
-        div_linha_geral.style.display = 'none';
-        div_estacao_especifica.style.display = 'none';
-        //   motivoReclamacao.required = false;
-        //   descricaoReclamacao.required = false;
-        console.log("Carro específico selecionado")
-    });
-
-    radio_linha.addEventListener('change', () => {
-        try {
-            div_linha_geral.style.display = 'block';
-            div_estacao_especifica.style.display = 'none';
-            div_carro_especifico.style.display = 'none';
-        }
-        catch (error){
-            console.log(error)
-        }
-        //   motivoReclamacao.required = true;
-        //   descricaoReclamacao.required = true;
-        console.log("Linha em geral selecionado")
-    });
-</script>
+<script src="javascript/reclamacao.js"></script>
