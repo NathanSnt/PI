@@ -1,47 +1,7 @@
 <link rel="stylesheet" href="css/home.css">
 {{>partials/header}}
 
-<div class="content">
-
-    <div class="slides">
-        <input type="radio" name="radio" id="slide1" checked>
-        <input type="radio" name="radio" id="slide2">
-        <input type="radio" name="radio" id="slide3">
-        <input type="radio" name="radio" id="slide4">
-        <input type="radio" name="radio" id="slide5">
-    
-        <div class="slide s1">
-            <img id="carrossel1" src="images/noticia1.jpg" alt="">
-        </div>
-    
-        <div class="slide">
-            <img id="carrossel2" src="images/noticia2.jpg" alt="">
-        </div>
-    
-        <div class="slide">
-            <img id="carrossel3" src="images/noticia3.jpg" alt="">
-        </div>
-    
-        <div class="slide">
-            <img id="carrossel4" src="images/noticia4.jpg" alt= "">
-        </div>
-    
-        <div class="slide">
-            <img id="carrossel5" src="images/noticia5.jpg" alt="">
-        </div>
-    </div>
-    
-    <div class="navigation">
-
-        <label class="bar" for="slide1"></label>
-        <label class="bar" for="slide2"></label>
-        <label class="bar" for="slide3"></label>
-        <label class="bar" for="slide4"></label>
-        <label class="bar" for="slide5"></label>
-    </div>
-</div>
-
-<div id="principal">
+<div id="top">
 
     <div id="menu-hamburger" style="display: none;" onclick="mostrarMenu()">
         <div id="linha1"></div>
@@ -49,9 +9,9 @@
         <div id="linha3"></div>
     </div>
     <nav id="menu-estacoes">
-
+    
         <div id="faixa"></div>
-
+    
         <div id="estacao">       
             <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'osasco', 'osasco')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
@@ -179,6 +139,50 @@
             </a>
         </div>
     </nav>
+    
+    <div class="content">
+        
+        <div class="slides">
+            <input type="radio" name="radio" id="slide1" checked>
+            <input type="radio" name="radio" id="slide2">
+            <input type="radio" name="radio" id="slide3">
+            <input type="radio" name="radio" id="slide4">
+            <input type="radio" name="radio" id="slide5">
+        
+            <div class="slide s1">
+                <img id="carrossel1" src="images/noticia1.jpg" alt="">
+            </div>
+        
+            <div class="slide">
+                <img id="carrossel2" src="images/noticia2.jpg" alt="">
+            </div>
+        
+            <div class="slide">
+                <img id="carrossel3" src="images/noticia3.jpg" alt="">
+            </div>
+        
+            <div class="slide">
+                <img id="carrossel4" src="images/noticia4.jpg" alt= "">
+            </div>
+        
+            <div class="slide">
+                <img id="carrossel5" src="images/noticia5.jpg" alt="">
+            </div>
+        </div>
+        
+        <div class="navigation">
+    
+            <label class="bar" for="slide1"></label>
+            <label class="bar" for="slide2"></label>
+            <label class="bar" for="slide3"></label>
+            <label class="bar" for="slide4"></label>
+            <label class="bar" for="slide5"></label>
+        </div>
+    </div>
+</div>
+
+<div id="principal">
+
     
     <div id="conteudo">
         <div id="status">
