@@ -10,9 +10,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80%;
+    /* height: 80%; */
     padding: 3%;
     border-radius: 20px;
+    font-size: large;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: -1px 0px 31px -1px rgba(143, 141, 141, 0.75);
 }
 
 #cardReclamacao h1{
@@ -21,18 +24,92 @@
 }
 
 .botao{
-    width: 21%;
+    width: 15%;
     max-width: 120px;
     min-width: 100px;
-    height: 25%;
-    min-height: 20px;
-    max-height: 30px;
+    height: 30%;
+    min-height: 30px;
+    max-height: 35px;
     background-color: #58c078;
     color: white;
     border-radius: 20px;
     border: 1px solid #58c078;
 }
 
-.areaTexto{
-    margin-top: 5%;
+.botao:hover{
+    background-color: #eee;
+    border: 2px solid #58c078;
+    color: #58c078;
+}
+
+#botoesRadio{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#botoesRadio input{
+    margin-right: 10px;
+}
+
+#botoesRadio label{
+    margin-right: 10px;
+}
+
+
+.motivo-reclamacao{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.descricao-reclamacao{
+    margin-top: 5px;
+    width: 600px;
+    height: 250px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: large;
+}
+
+#formCarro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formEstacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formEstacao label{
+    margin-right: 10px;
+}
+
+#formEstacao select{
+    margin-right: 10px;
+}
+
+#formLinha{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+option{
+    text-align: center;
+}
+
+#numeroCarro{
+    text-align: center;
+}
+
+textarea{
+    font-family: 'Poppins', sans-serif;
 }
