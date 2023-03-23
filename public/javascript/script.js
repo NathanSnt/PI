@@ -19,16 +19,36 @@ function atualizaTamanhoFaixa(){
     faixa.style.marginBottom = `${margem}px`;
 }
 
+// function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
+//     if (nome_estacao) {
+//         pagina += `?estacao=${nome_estacao}`
+//     }
+//     $.get(pagina, function(data) {
+//         $(divId).html(data)
+//         $('html, body').animate({
+//             scrollTop: $('#conteudo').offset().top
+//         })
+//         mudarCarrossel(carrossel)
+//     })
+// }
+
 function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
     if (nome_estacao) {
         pagina += `?estacao=${nome_estacao}`
     }
-    $.get(pagina, function(data) {
-        $(divId).html(data)
-        $('html, body').animate({
-            scrollTop: $('#conteudo').offset().top
-        })
-        mudarCarrossel(carrossel)
+    $.ajax({
+        url: pagina,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'XMLHttpRequest': '1'
+        },
+        success: function(data) {
+            $(divId).html(data)
+            $('html, body').animate({
+                scrollTop: $('#conteudo').offset().top
+            })
+            mudarCarrossel(carrossel)
+        }
     })
 }
 
