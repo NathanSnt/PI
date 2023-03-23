@@ -1,5 +1,6 @@
 import {Router, Request, Response} from 'express'
 import { sequelize } from '../conn/mysql'
+import { Estacao } from '../models/Estacao'
 
 export const home = async (req:Request, res:Response) => {
     try {
@@ -25,13 +26,13 @@ export const mapa = ((req: Request, res: Response) => {
     res.render('pages/mapa.mustache')
 })
 
-export const estacao = ((req:Request, res: Response) => {
+export async function estacao(req: Request, res: Response) {
     let estacao: string = req.query.estacao as string
-    // Realizar consulta ao banco pelo nome da 
-    // estacao e retornar valores necessários
+    const estacoes = await Estacao.findAll()
+    
+    let valores = estacoes[0]['dataValues']
 
     res.render('pages/estacao', {
-        estacao,
-        localizacao:'Rua dezessete de maio - Jardim Europa'
+        valores
     })
-})
+}
