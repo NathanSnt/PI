@@ -21,8 +21,12 @@
 }
 
 .botao{
-    /* width: 21%;
-    height: 25%; */
+    width: 21%;
+    max-width: 120px;
+    min-width: 100px;
+    height: 25%;
+    min-height: 20px;
+    max-height: 30px;
     background-color: #58c078;
     color: white;
     border-radius: 20px;
