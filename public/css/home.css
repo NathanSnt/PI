@@ -296,7 +296,7 @@
     display: block !important;
     width: 50% !important;
     background-color: #eee !important;
-    z-index: -3 !important;
+    z-index: 3 !important;
 }
 .faixaMenuHamburger {
     display: block !important;
