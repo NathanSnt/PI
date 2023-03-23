@@ -1,6 +1,7 @@
 import {Router, Request, Response} from 'express'
 import * as userController from '../controllers/userController'
 import * as pagesController from '../controllers/pagesController'
+import * as estacoesController from '../controllers/estacoesController'
 
 const router = Router()
 
@@ -19,6 +20,6 @@ router.get('/reclamar', pagesController.reclamar)
 
 router.get('/mapa', pagesController.mapa)
 
-router.get('/estacao', pagesController.estacao)
+router.get('/estacao', estacoesController.findAll)
 
-export default router
+export default router 

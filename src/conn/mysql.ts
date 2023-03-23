@@ -5,6 +5,7 @@ import {Sequelize} from "sequelize";
 import dotenv from 'dotenv'
 dotenv.config()
 
+const dbHost = process.env.MYSQL_HOST as string
 export const sequelize = new Sequelize(
     //recebendo os parametros de 
     //dotenv para iniciar nossa conexão 
@@ -13,6 +14,7 @@ export const sequelize = new Sequelize(
     process.env.MYSQL_PASSWORD as string,
     {
         dialect:'mysql',
+        host: dbHost,
         port: parseInt(process.env.MYSQL_PORT as string)
     }
 )

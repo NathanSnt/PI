@@ -2,7 +2,7 @@ import {Model, DataTypes} from'sequelize'
 import {sequelize} from '../conn/mysql'
 
 export interface EstacaoInstance extends Model {
-    id_estacao : number,
+    cod_estacao : number,
     nome_estacao : string,
     localizacao : string,
     banheiro : string,
@@ -14,7 +14,7 @@ export interface EstacaoInstance extends Model {
     banheiro_acessivel : string,
     estacao_acessivel : string,
     rampa : string,
-    transposicao_plataforma : string,
+    transposicao_plataformas : string,
     escadas_rolantes : string,
     acesso_elevador : string,
     lanchonete : string,
@@ -31,7 +31,7 @@ export interface EstacaoInstance extends Model {
 }
 
 export const Estacao = sequelize.define<EstacaoInstance>("Estacao,", {
-    id_estacao : {
+    cod_estacao : {
         primaryKey: true,
         type:DataTypes.INTEGER
     },
@@ -68,7 +68,7 @@ export const Estacao = sequelize.define<EstacaoInstance>("Estacao,", {
     rampa : {
         type:DataTypes.STRING
     },
-    transposicao_plataforma : {
+    transposicao_plataformas : {
         type:DataTypes.STRING
     },
     escadas_rolantes : {
@@ -112,5 +112,5 @@ export const Estacao = sequelize.define<EstacaoInstance>("Estacao,", {
     }
 }, {
     tableName: 'tb_estacoes',
-    timestamps:false
+    timestamps: false
 })

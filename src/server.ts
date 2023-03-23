@@ -16,18 +16,18 @@ server.engine('mustache', mustache())
 
 // Importando a pasta public
 server.use(express.static(path.join(__dirname, '../public')))
-
+server.use(express.json());
 server.use(express.urlencoded({extended:true}))
 
 // Verificando se a requisição está sendo feita para a página raiz ou sendo feita através de 
 // uma requisição ajax.
-server.use((req, res, next) => {
-    if (req.url === '/'  || (req.xhr && req.headers['x-requested-with'] === 'XMLHttpRequest')) {
-        next();
-    } else {
-        res.render('pages/not_found')
-    }
-});
+// server.use((req, res, next) => {
+//     if (req.url === '/' || req.url === '/home'  || (req.xhr && req.headers['x-requested-with'] === 'XMLHttpRequest')) {
+//         next();
+//     } else {
+//         res.render('pages/not_found')
+//     }
+// });
 
 server.use(mainRoutes)
 

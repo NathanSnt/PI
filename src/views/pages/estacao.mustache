@@ -1,3 +1,15 @@
-<h1>INFORMAÇÕES SOBRE A ESTAÇÃO {{estacao}}</h1>
+<h1>INFORMAÇÕES SOBRE A ESTAÇÃO {{valores.nome_estacao}}</h1>
+<p>Localização: {{valores.localizacao}}</p>
 
-<p>Localização: {{localizacao}}</p>
+
+{{#valores.banheiro}}
+    <img src="images/banheiro.png" alt="" width="10%" height="auto">
+{{/valores.banheiro}}
+
+{{#valores.elevador}}
+    <img src="images/elevador.png" alt="" width="10%" height="auto">
+{{/valores.elevador}}
+
+{{#valores.terminal_interurbano}}
+    <img src="images/terminal_interurbano.png" alt="" width="10%" height="auto">
+{{/valores.terminal_interurbano}}
