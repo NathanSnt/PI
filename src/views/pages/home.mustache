@@ -1,7 +1,53 @@
 <link rel="stylesheet" href="css/home.css">
 {{>partials/header}}
 
-<div id="top">
+
+<div class="content">
+    
+    <div class="slides">
+        <input type="radio" name="radio" id="slide1" checked>
+        <input type="radio" name="radio" id="slide2">
+        <input type="radio" name="radio" id="slide3">
+        <input type="radio" name="radio" id="slide4">
+        <input type="radio" name="radio" id="slide5">
+    
+        <div class="slide s1">
+            <img id="carrossel1" src="images/noticia1.jpg" alt="">
+        </div>
+    
+        <div class="slide">
+            <img id="carrossel2" src="images/noticia2.jpg" alt="">
+        </div>
+    
+        <div class="slide">
+            <img id="carrossel3" src="images/noticia3.jpg" alt="">
+        </div>
+    
+        <div class="slide">
+            <img id="carrossel4" src="images/noticia4.jpg" alt= "">
+        </div>
+    
+        <div class="slide">
+            <img id="carrossel5" src="images/noticia5.jpg" alt="">
+        </div>
+    </div>
+    
+    <div class="navigation">
+
+        <label class="bar" for="slide1"></label>
+        <label class="bar" for="slide2"></label>
+        <label class="bar" for="slide3"></label>
+        <label class="bar" for="slide4"></label>
+        <label class="bar" for="slide5"></label>
+    </div>
+</div>
+
+
+
+
+
+
+<div id="principal">
 
     <div id="menu-hamburger" style="display: none;" onclick="mostrarMenu()">
         <div id="linha1"></div>
@@ -19,7 +65,7 @@
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'altino', 'presidente-altino')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'altino', 'presidente altino')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Presidente Altino</p>
             </a>
@@ -31,13 +77,13 @@
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'lobos', 'vila-lobos-jaguare')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'lobos', 'vila lobos jaguare')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Vila Lobos jaguaré</p>
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'universitaria', 'cidade-universitaria')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'universitaria', 'cidade universitaria')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Cidade Universitária</p>
             </a>
@@ -49,19 +95,19 @@
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'hebraica', 'hebraica-reboucas')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'hebraica', 'hebraica reboucas')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Hebraica Rebouças</p>
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'jardim', 'cidade-jardim')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'jardim', 'cidade jardim')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Cidade Jardim</p>
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'olimpia', 'vila-olimpia')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'olimpia', 'vila olimpia')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Vila Olímpia</p>
             </a>
@@ -79,19 +125,19 @@
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'julieta', 'granja-julieta')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'julieta', 'granja julieta')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Granja Julieta</p>
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'dias', 'joao-dias')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'dias', 'joao dias')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>João Dias</p>
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'amaro', 'santo-amaro')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'amaro', 'santo amaro')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Santo Amaro</p>
             </a>
@@ -115,7 +161,7 @@
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'primavera', 'primavera-interlagos')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'primavera', 'primavera interlagos')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Primavera Interlagos</p>
             </a>
@@ -127,7 +173,7 @@
             </a>
         </div>
         <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'mendes', 'mendes-vila-natal')">
+            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'mendes', 'mendes vila natal')">
                 <img src="images/bola-estacao.png" alt="simbolo da estação">
                 <p>Mendes Vila Natal</p>
             </a>
@@ -139,50 +185,6 @@
             </a>
         </div>
     </nav>
-    
-    <div class="content">
-        
-        <div class="slides">
-            <input type="radio" name="radio" id="slide1" checked>
-            <input type="radio" name="radio" id="slide2">
-            <input type="radio" name="radio" id="slide3">
-            <input type="radio" name="radio" id="slide4">
-            <input type="radio" name="radio" id="slide5">
-        
-            <div class="slide s1">
-                <img id="carrossel1" src="images/noticia1.jpg" alt="">
-            </div>
-        
-            <div class="slide">
-                <img id="carrossel2" src="images/noticia2.jpg" alt="">
-            </div>
-        
-            <div class="slide">
-                <img id="carrossel3" src="images/noticia3.jpg" alt="">
-            </div>
-        
-            <div class="slide">
-                <img id="carrossel4" src="images/noticia4.jpg" alt= "">
-            </div>
-        
-            <div class="slide">
-                <img id="carrossel5" src="images/noticia5.jpg" alt="">
-            </div>
-        </div>
-        
-        <div class="navigation">
-    
-            <label class="bar" for="slide1"></label>
-            <label class="bar" for="slide2"></label>
-            <label class="bar" for="slide3"></label>
-            <label class="bar" for="slide4"></label>
-            <label class="bar" for="slide5"></label>
-        </div>
-    </div>
-</div>
-
-<div id="principal">
-
     
     <div id="conteudo">
         <div id="status">
