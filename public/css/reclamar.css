@@ -6,6 +6,9 @@
 }
 
 #cardReclamacao{
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 5%;
     background-color: #eee;
     display: flex;
     flex-direction: column;
@@ -13,7 +16,7 @@
     /* height: 80%; */
     padding: 3%;
     border-radius: 20px;
-    font-size: large;
+    font-size: 2rem;
     font-family: 'Poppins', sans-serif;
     box-shadow: -1px 0px 31px -1px rgba(143, 141, 141, 0.75);
 }
@@ -69,19 +72,21 @@
 
 .descricao-reclamacao{
     margin-top: 5px;
-    width: 600px;
-    height: 250px;
+    width: 100%;
+    height: 50%;
     padding: 10px;
     border-radius: 10px;
-    font-size: large;
+    font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
+    resize: none;
 }
 
-#formCarro{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+form {
+    width: 60%;
 }
 
+#formCarro,
+#formLinha,
 #formEstacao{
     display: flex;
     flex-direction: column;
@@ -96,12 +101,6 @@
     margin-right: 10px;
 }
 
-#formLinha{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 option{
     text-align: center;
 }
@@ -110,6 +109,3 @@ option{
     text-align: center;
 }
 
-textarea{
-    font-family: 'Poppins', sans-serif;
-}
