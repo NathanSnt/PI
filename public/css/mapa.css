@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+    font-family: url("https://www.dafontfree.net/museo-700/f28696.htm");
+  }
+  
+  .box {
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  
+    width: 90%;
+    background-color: #50c878;
+    border-radius: 25px;
+    box-shadow: inset 0 0 1em rgb(0, 0, 0);
+  }
+  
+  .box img {
+    width: 100%;
+  }
+  
+  .AlerTrem {
+    color: rgb(29, 31, 30);
+    margin-top: 2.5%;
+    font-size: 25px;
+  }
+  
+  
+  
