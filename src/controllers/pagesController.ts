@@ -35,9 +35,12 @@ export async function estacao(req: Request, res: Response) {
     }
     else {
         let valores = estacoes
-    
-        res.render('pages/estacao', {
-            valores
-        })
+        try {
+            res.render('pages/estacao', {
+                valores
+            })
+        }catch (error) {
+            console.log(error)
+        }
     }
 }

@@ -1,96 +1,150 @@
-<h1>INFORMAÇÕES SOBRE A ESTAÇÃO {{valores.nome_estacao}}</h1>
-<p>Localização: {{valores.localizacao}}</p>
+<link rel="stylesheet" href="css/estacao.css">
 
-<div id="caracteristicas">
-    {{#valores.banheiro}}
-        <img src="images/banheiro.png" alt="" width="10%" height="auto">
-    {{/valores.banheiro}}
+<div id="info_estacao">
+        
+    <div id="nome">
+        <div id="titulo">
+            <img src="/images/600px-Logo_ViaMobilidade_(branco).png" alt="logo">
+            <h3>Estação {{valores.nome_estacao}}</h3>
+        </div>
+        <hr id="quebra">
+    </div>
     
-    {{#valores.elevador}}
-        <img src="images/elevador.png" alt="" width="10%" height="auto">
-    {{/valores.elevador}}
-    
-    {{#valores.terminal_interurbano}}
-        <img src="images/terminal-interurbano-de-onibus.png" alt="" width="10%" height="auto">
-    {{/valores.terminal_interurbano}}
-    
-    {{#valores.terminal_urbano}}
-        <img src="images/terminal-urbano-de-onibus.png" alt="" width="10%" height="auto">
-    {{/valores.terminal_urbano}}
-    
-    {{#valores.transferencia_interna}}
-        <img src="images/transferencia-interna-gratuita.png" alt="" width="10%" height="auto">
-    {{/valores.transferencia_interna}}
-    
-    {{#valores.bicicletario}}
-        <img src="images/bicicletario.png" alt="" width="10%" height="auto">
-    {{/valores.bicicletario}}
-    
-    {{#valores.banheiro_acessivel}}
-        <img src="images/banheiro-acessivel.png" alt="" width="10%" height="auto">
-    {{/valores.banheiro_acessivel}}
-    
-    {{#valores.estacao_acessivel}}
-        <img src="images/estacao-acessivel.png" alt="" width="10%" height="auto">
-    {{/valores.estacao_acessivel}}
-    
-    {{#valores.rampa}}
-        <img src="images/rampa.png" alt="" width="10%" height="auto">
-    {{/valores.rampa}}
-    
-    {{#valores.transposicao_plataformas}}
-        <img src="images/transposicao-de-plataformas.png" alt="" width="10%" height="auto">
-    {{/valores.transposicao_plataformas}}
-    
-    {{#valores.escadas_rolantes}}
-        <img src="images/escadas-rolantes.png" alt="" width="10%" height="auto">
-    {{/valores.escadas_rolantes}}
-    
-    {{#valores.acesso_elevador}}
-        <img src="images/acesso-elevador.png" alt="" width="10%" height="auto">
-    {{/valores.acesso_elevador}}
-    
-    {{#valores.lanchonete}}
-        <img src="images/lanchonete.png" alt="" width="10%" height="auto">
-    {{/valores.lanchonete}}
-    
-    {{#valores.emporio}}
-        <img src="images/emporio.png" alt="" width="10%" height="auto">
-    {{/valores.emporio}}
-    
-    {{#valores.caixa_eletronico}}
-        <img src="images/caixa-eletronico.png" alt="" width="10%" height="auto">
-    {{/valores.caixa_eletronico}}
-    
-    {{#valores.calcados}}
-        <img src="images/calcados.png" alt="" width="10%" height="auto">
-    {{/valores.calcados}}
-    
-    {{#valores.telefone_p_surdos}}
-        <img src="images/telefone-para-surdos.png" alt="" width="10%" height="auto">
-    {{/valores.telefone_p_surdos}}
-    
-    {{#valores.piso_tatil}}
-        <img src="images/piso-tatil.png" alt="" width="10%" height="auto">
-    {{/valores.piso_tatil}}
-    
-    {{#valores.tranferencia_gratuita}}
-        <img src="images/tranferencia-gratuita-cptm-metro.png" alt="" width="10%" height="auto">
-    {{/valores.tranferencia_gratuita}}
-    
-    {{#valores.acessorios}}
-        <img src="images/acessorios.png" alt="" width="10%" height="auto">
-    {{/valores.acessorios}}
-    
-    {{#valores.farmacia}}
-        <img src="images/farmacia.png" alt="" width="10%" height="auto">
-    {{/valores.farmacia}}
-    
-    {{#valores.rota_acessivel}}
-        <img src="images/rota-acessivel.png" alt="" width="10%" height="auto">
-    {{/valores.rota_acessivel}}
-    
-    {{#valores.achados_perdidos}}
-        <img src="images/achados-e-perdidos.png" alt="" width="10%" height="auto">
-    {{/valores.achados_perdidos}}
+    <div id="informacoes">
+        {{! <div class="icones"><img src="/images/toilet.png" alt="banheiro"> <img src="/images/wheelchair.png" alt="Cadeira de rodas"> <img src="/images/elevator.png" alt="Elevador"> <img src="/images/escada-rolante-para-baixo.png" alt="Escada rolante"> <img src="/images/wifi.png" alt="Wi-fi"></div> }}
+        <div id="sobre">
+            <p><strong>Localização: {{valores.localizacao}}</strong</p>
+            {{! <p class="servicos"><span id="servico">Serviços:</span> Integração com a linha 5-Lilás<img src="/images/linha5.jpg" alt="Linha 5" id="linha5"></p> }}
+            <p><strong>Horário de funcionamento: </strong>Todos os dias das 4h00 à 0h00</p>
+            <p><strong>Saídas:</strong> </p>
+            <p><strong>Status de movimentação: </strong><span id="status">muito cheio</span> (atualizado a 30 min)</p>
+        </div>
+        <form id="caixa-reclamar" action="">
+            <div id="foto-comentario">
+                <img src="images/user4.png" alt="">
+                <textarea name="reclamacao" id="reclamacao" cols="100" rows="2" placeholder="Diga algo."></textarea>
+            </div>
+            <button type="submit" value="enviar">Enviar</button>
+        </form>
+        <div id="comentario">
+            <img src="images/user1.png" alt="foto de perfil" id="foto-perfil">
+                <div id="caixa-comentario">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima asperiores perspiciatis facilis, quas cumque consequuntur omnis excepturi earum cupiditate obcaecati, corrupti doloribus atque non maiores? Quos voluptate laboriosam reprehenderit delectus!
+                    </p>
+                    <div id="comentario-footer">
+                        <div id="nome-usuario">
+                            <p>Nome do usuário</p>
+                        </div>
+                        <div id="data-post">
+                            <p>14/03/2023 17:24</p>
+                        </div>
+                        <div id="denunciar">
+                            <p><a href="#">Denunciar comentário</a></p>
+                        </div>
+                        <div id="botoes">
+                            <img id="bom" src="/images/green-face.svg" alt="">
+                            <img id="neutro" src="images/yellow-face.svg" alt="">
+                            <img id="ruim" src="images/red-face.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <img id="exclamation" src="images/exclamation.svg" alt="" style="display: none;" onclick="mostrarInfo(this)">
+        </div>
+
+        <div id="caracteristicas">
+            {{#valores.banheiro}}
+                <img src="images/banheiro.png" alt="">
+            {{/valores.banheiro}}
+            
+            {{#valores.elevador}}
+                <img src="images/elevador.png" alt="">
+            {{/valores.elevador}}
+            
+            {{#valores.terminal_interurbano}}
+                <img src="images/terminal-interurbano-de-onibus.png" alt="">
+            {{/valores.terminal_interurbano}}
+            
+            {{#valores.terminal_urbano}}
+                <img src="images/terminal-urbano-de-onibus.png" alt="">
+            {{/valores.terminal_urbano}}
+            
+            {{#valores.transferencia_interna}}
+                <img src="images/transferencia-interna-gratuita.png" alt="">
+            {{/valores.transferencia_interna}}
+            
+            {{#valores.bicicletario}}
+                <img src="images/bicicletario.png" alt="">
+            {{/valores.bicicletario}}
+            
+            {{#valores.banheiro_acessivel}}
+                <img src="images/banheiro-acessivel.png" alt="">
+            {{/valores.banheiro_acessivel}}
+            
+            {{#valores.estacao_acessivel}}
+                <img src="images/estacao-acessivel.png" alt="">
+            {{/valores.estacao_acessivel}}
+            
+            {{#valores.rampa}}
+                <img src="images/rampa.png" alt="">
+            {{/valores.rampa}}
+            
+            {{#valores.transposicao_plataformas}}
+                <img src="images/transposicao-de-plataformas.png" alt="">
+            {{/valores.transposicao_plataformas}}
+            
+            {{#valores.escadas_rolantes}}
+                <img src="images/escadas-rolantes.png" alt="">
+            {{/valores.escadas_rolantes}}
+            
+            {{#valores.acesso_elevador}}
+                <img src="images/acesso-elevador.png" alt="">
+            {{/valores.acesso_elevador}}
+            
+            {{#valores.lanchonete}}
+                <img src="images/lanchonete.png" alt="">
+            {{/valores.lanchonete}}
+            
+            {{#valores.emporio}}
+                <img src="images/emporio.png" alt="">
+            {{/valores.emporio}}
+            
+            {{#valores.caixa_eletronico}}
+                <img src="images/caixa-eletronico.png" alt="">
+            {{/valores.caixa_eletronico}}
+            
+            {{#valores.calcados}}
+                <img src="images/calcados.png" alt="">
+            {{/valores.calcados}}
+            
+            {{#valores.telefone_p_surdos}}
+                <img src="images/telefone-para-surdos.png" alt="">
+            {{/valores.telefone_p_surdos}}
+            
+            {{#valores.piso_tatil}}
+                <img src="images/piso-tatil.png" alt="">
+            {{/valores.piso_tatil}}
+            
+            {{#valores.tranferencia_gratuita}}
+                <img src="images/tranferencia-gratuita-cptm-metro.png" alt="">
+            {{/valores.tranferencia_gratuita}}
+            
+            {{#valores.acessorios}}
+                <img src="images/acessorios.png" alt="">
+            {{/valores.acessorios}}
+            
+            {{#valores.farmacia}}
+                <img src="images/farmacia.png" alt="">
+            {{/valores.farmacia}}
+            
+            {{#valores.rota_acessivel}}
+                <img src="images/rota-acessivel.png" alt="">
+            {{/valores.rota_acessivel}}
+            
+            {{#valores.achados_perdidos}}
+                <img src="images/achados-e-perdidos.png" alt="">
+            {{/valores.achados_perdidos}}
+        </div>
+    </div>
 </div>
+
