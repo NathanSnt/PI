@@ -5,7 +5,7 @@
     <div id="nome">
         <div id="titulo">
             <img src="/images/600px-Logo_ViaMobilidade_(branco).png" alt="logo">
-            <h3>Estação {{valores.nome_estacao}}</h3>
+            <h3>Estação {{estacao.nome_estacao}}</h3>
         </div>
         <hr id="quebra">
     </div>
@@ -13,7 +13,7 @@
     <div id="informacoes">
         {{! <div class="icones"><img src="/images/toilet.png" alt="banheiro"> <img src="/images/wheelchair.png" alt="Cadeira de rodas"> <img src="/images/elevator.png" alt="Elevador"> <img src="/images/escada-rolante-para-baixo.png" alt="Escada rolante"> <img src="/images/wifi.png" alt="Wi-fi"></div> }}
         <div id="sobre">
-            <p><strong>Localização: {{valores.localizacao}}</strong</p>
+            <p><strong>Localização: {{estacao.localizacao}}</strong</p>
             {{! <p class="servicos"><span id="servico">Serviços:</span> Integração com a linha 5-Lilás<img src="/images/linha5.jpg" alt="Linha 5" id="linha5"></p> }}
             <p><strong>Horário de funcionamento: </strong>Todos os dias das 4h00 à 0h00</p>
             <p><strong>Saídas:</strong> </p>
@@ -53,97 +53,97 @@
         </div>
 
         <div id="caracteristicas">
-            {{#valores.banheiro}}
+            {{#estacao.banheiro}}
                 <img src="images/banheiro.png" alt="">
-            {{/valores.banheiro}}
+            {{/estacao.banheiro}}
             
-            {{#valores.elevador}}
+            {{#estacao.elevador}}
                 <img src="images/elevador.png" alt="">
-            {{/valores.elevador}}
+            {{/estacao.elevador}}
             
-            {{#valores.terminal_interurbano}}
+            {{#estacao.terminal_interurbano}}
                 <img src="images/terminal-interurbano-de-onibus.png" alt="">
-            {{/valores.terminal_interurbano}}
+            {{/estacao.terminal_interurbano}}
             
-            {{#valores.terminal_urbano}}
+            {{#estacao.terminal_urbano}}
                 <img src="images/terminal-urbano-de-onibus.png" alt="">
-            {{/valores.terminal_urbano}}
+            {{/estacao.terminal_urbano}}
             
-            {{#valores.transferencia_interna}}
+            {{#estacao.transferencia_interna}}
                 <img src="images/transferencia-interna-gratuita.png" alt="">
-            {{/valores.transferencia_interna}}
+            {{/estacao.transferencia_interna}}
             
-            {{#valores.bicicletario}}
+            {{#estacao.bicicletario}}
                 <img src="images/bicicletario.png" alt="">
-            {{/valores.bicicletario}}
+            {{/estacao.bicicletario}}
             
-            {{#valores.banheiro_acessivel}}
+            {{#estacao.banheiro_acessivel}}
                 <img src="images/banheiro-acessivel.png" alt="">
-            {{/valores.banheiro_acessivel}}
+            {{/estacao.banheiro_acessivel}}
             
-            {{#valores.estacao_acessivel}}
+            {{#estacao.estacao_acessivel}}
                 <img src="images/estacao-acessivel.png" alt="">
-            {{/valores.estacao_acessivel}}
+            {{/estacao.estacao_acessivel}}
             
-            {{#valores.rampa}}
+            {{#estacao.rampa}}
                 <img src="images/rampa.png" alt="">
-            {{/valores.rampa}}
+            {{/estacao.rampa}}
             
-            {{#valores.transposicao_plataformas}}
+            {{#estacao.transposicao_plataformas}}
                 <img src="images/transposicao-de-plataformas.png" alt="">
-            {{/valores.transposicao_plataformas}}
+            {{/estacao.transposicao_plataformas}}
             
-            {{#valores.escadas_rolantes}}
+            {{#estacao.escadas_rolantes}}
                 <img src="images/escadas-rolantes.png" alt="">
-            {{/valores.escadas_rolantes}}
+            {{/estacao.escadas_rolantes}}
             
-            {{#valores.acesso_elevador}}
+            {{#estacao.acesso_elevador}}
                 <img src="images/acesso-elevador.png" alt="">
-            {{/valores.acesso_elevador}}
+            {{/estacao.acesso_elevador}}
             
-            {{#valores.lanchonete}}
+            {{#estacao.lanchonete}}
                 <img src="images/lanchonete.png" alt="">
-            {{/valores.lanchonete}}
+            {{/estacao.lanchonete}}
             
-            {{#valores.emporio}}
+            {{#estacao.emporio}}
                 <img src="images/emporio.png" alt="">
-            {{/valores.emporio}}
+            {{/estacao.emporio}}
             
-            {{#valores.caixa_eletronico}}
+            {{#estacao.caixa_eletronico}}
                 <img src="images/caixa-eletronico.png" alt="">
-            {{/valores.caixa_eletronico}}
+            {{/estacao.caixa_eletronico}}
             
-            {{#valores.calcados}}
+            {{#estacao.calcados}}
                 <img src="images/calcados.png" alt="">
-            {{/valores.calcados}}
+            {{/estacao.calcados}}
             
-            {{#valores.telefone_p_surdos}}
+            {{#estacao.telefone_p_surdos}}
                 <img src="images/telefone-para-surdos.png" alt="">
-            {{/valores.telefone_p_surdos}}
+            {{/estacao.telefone_p_surdos}}
             
-            {{#valores.piso_tatil}}
+            {{#estacao.piso_tatil}}
                 <img src="images/piso-tatil.png" alt="">
-            {{/valores.piso_tatil}}
+            {{/estacao.piso_tatil}}
             
-            {{#valores.tranferencia_gratuita}}
+            {{#estacao.tranferencia_gratuita}}
                 <img src="images/tranferencia-gratuita-cptm-metro.png" alt="">
-            {{/valores.tranferencia_gratuita}}
+            {{/estacao.tranferencia_gratuita}}
             
-            {{#valores.acessorios}}
+            {{#estacao.acessorios}}
                 <img src="images/acessorios.png" alt="">
-            {{/valores.acessorios}}
+            {{/estacao.acessorios}}
             
-            {{#valores.farmacia}}
+            {{#estacao.farmacia}}
                 <img src="images/farmacia.png" alt="">
-            {{/valores.farmacia}}
+            {{/estacao.farmacia}}
             
-            {{#valores.rota_acessivel}}
+            {{#estacao.rota_acessivel}}
                 <img src="images/rota-acessivel.png" alt="">
-            {{/valores.rota_acessivel}}
+            {{/estacao.rota_acessivel}}
             
-            {{#valores.achados_perdidos}}
+            {{#estacao.achados_perdidos}}
                 <img src="images/achados-e-perdidos.png" alt="">
-            {{/valores.achados_perdidos}}
+            {{/estacao.achados_perdidos}}
         </div>
     </div>
 </div>
