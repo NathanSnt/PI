@@ -28,11 +28,16 @@ export const mapa = ((req: Request, res: Response) => {
 
 export async function estacao(req: Request, res: Response) {
     let estacao: string = req.query.estacao as string
-    const estacoes = await Estacao.findAll()
+    const estacoes = await Estacao.findOne({where: {nome_estacao: estacao}})
     
-    let valores = estacoes[0]['dataValues']
-
-    res.render('pages/estacao', {
-        valores
-    })
+    if (estacoes === null){
+        res.render('pages/not_found')
+    }
+    else {
+        let valores = estacoes
+    
+        res.render('pages/estacao', {
+            valores
+        })
+    }
 }
