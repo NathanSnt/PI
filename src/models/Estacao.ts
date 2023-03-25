@@ -2,8 +2,8 @@ import {Model, DataTypes} from'sequelize'
 import {sequelize} from '../conn/mysql'
 
 export interface EstacaoInstance extends Model {
-    cod_estacao : number,
-    nome_estacao : string,
+    codigo : number,
+    nome : string,
     localizacao : string,
     banheiro : string,
     elevador : string,
@@ -31,14 +31,18 @@ export interface EstacaoInstance extends Model {
 }
 
 export const Estacao = sequelize.define<EstacaoInstance>("Estacao,", {
-    cod_estacao : {
+    codigo : {
+        type:DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true,
-        type:DataTypes.INTEGER
+        allowNull: false
     },
-    nome_estacao : {
+    nome : {
+        allowNull: false,
         type:DataTypes.STRING
     },
     localizacao : {
+        allowNull: false,
         type:DataTypes.STRING
     },
     banheiro : {
