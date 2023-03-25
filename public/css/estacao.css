@@ -1,15 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-
-/* body{
-    margin: 0px;
-    padding: 0px;
-} */
-
 #info_estacao{
     width: 100%;
-    /* position: relative; */
-    /* left: 600px; */
-    /* top: 100px; */
 }
 
 #nome{
@@ -36,8 +27,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 90px; */
-    /* padding-top: 5px; */
 }
 
 #quebra{
@@ -60,15 +49,10 @@
     font-size: 1.6rem;
 }
 
-
-
-
 #caixa-reclamar {
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* align-items: center; */
     width: 100%;
     margin-bottom: 3%;
+    margin-top: 3%;
 }
 
 #foto-comentario {
@@ -93,7 +77,6 @@
     font-family: Arial;
     border-radius: 10px;
     padding: 10px;
-    background-color: #eee;
 }
 
 #caixa-reclamar button {
