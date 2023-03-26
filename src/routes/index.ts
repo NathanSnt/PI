@@ -12,7 +12,9 @@ router.get('/home', pagesController.home)
 
 router.get('/cadastro', userController.cadastro)
 router.post('/cadastro', userController.cadastrar_usuario)
+
 router.get('/login', userController.login)
+router.post('/login', userController.pesquisa_usuario)
 
 router.get('/sobre', pagesController.sobre)
 

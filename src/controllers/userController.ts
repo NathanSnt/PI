@@ -22,13 +22,24 @@ export const cadastrar_usuario = ( async (req: Request, res: Response) => {
             data_cadastro
         })
         await novo_usuario.save()
-        res.redirect('/')
     }
-    else {
-        res.redirect('/')
-    }
+    res.redirect('/')
 })
 
 export const login = ((req: Request, res: Response) => {
     res.render('pages/login')
 })
+
+export const pesquisa_usuario = async (req:Request, res: Response) => {
+    const email = req.body.email
+    const senha = req.body.senha
+
+    const usuario = await Usuario.findOne({where: {email: email} && {senha: senha}})
+
+    if (usuario) {
+        res.redirect('/')
+    }
+    else {
+        res.render("pages/not_found")
+    }
+}
