@@ -34,7 +34,7 @@ export const pesquisa_usuario = async (req:Request, res: Response) => {
     const email = req.body.email
     const senha = req.body.senha
 
-    const usuario = await Usuario.findOne({where: {email: email} && {senha: senha}})
+    const usuario = await Usuario.findOne({where: {email: email, senha: senha}})
 
     if (usuario) {
         res.redirect('/')
