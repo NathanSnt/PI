@@ -11,6 +11,7 @@ router.get('/', (req:Request, res:Response) =>{
 router.get('/home', pagesController.home)
 
 router.get('/cadastro', userController.cadastro)
+router.post('/cadastro', userController.cadastrar_usuario)
 router.get('/login', userController.login)
 
 router.get('/sobre', pagesController.sobre)

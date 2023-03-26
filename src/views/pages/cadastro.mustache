@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/login_cadastro.css">
 
-<div class="containerLoginCadastro">
+<form action="/cadastro" method="POST" class="containerLoginCadastro">
 
     <div id="botoes-login-cadastro">
         <div class="btn-cadrastro" onclick="mudarConteudo('login', '#conteudo', 'noticia')">
@@ -27,14 +27,14 @@
             </div>
             <div class="textfield">
                 <label for="usuario">CPF</label>
-                <input type="text" name="email" placeholder="CPF">
+                <input type="text" name="cpf" placeholder="CPF">
             </div>
             <div class="textfield">
                 <label for="Senha">Senha</label>
                 <input type="password" name="senha" placeholder="Senha">
             </div>
             
-            <button class="btn-cadrastro">Cadrastrar</button>
+            <button type="submit" class="btn-cadrastro">Cadrastrar</button>
         </div>
     </div>
-</div>
+</form>
