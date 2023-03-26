@@ -19,6 +19,7 @@ router.post('/login', userController.pesquisa_usuario)
 router.get('/sobre', pagesController.sobre)
 
 router.get('/reclamar', pagesController.reclamar)
+router.post('/reclamar', pagesController.arquivar_reclamacao)
 
 router.get('/mapa', pagesController.mapa)
 
