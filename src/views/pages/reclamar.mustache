@@ -12,11 +12,12 @@
         <label for="radio-carro">Carro específico</label>
     </div>
 
-    <form id="linha-geral">
+    <form action="/reclamar" method="POST" id="linha-geral">
 
         <div id="formLinha">
             <label for="motivo-reclamacao">Motivo da reclamação:</label>
-            <select class="motivo-reclamacao" name="motivoReclamacao">
+            <select class="motivo-reclamacao" name="problema" required>
+                <option value="" disabled selected>Selecione</option>
                 <option value="velocidade-reduzida">Velocidade reduzida</option>
                 <option value="somente-um-lado-da-via-funcionando">Somente um lado da via funcionando</option>
                 <option value="greve">Greve</option>
@@ -29,78 +30,84 @@
             </select>
             <br><br>
             <label for="descricao-reclamacao">Fale um pouco mais sobre sua experiência:</label>
-            <textarea class="descricao-reclamacao" name="descricaoReclamacao" placeholder="Digite aqui..."></textarea>
+            <textarea class="descricao-reclamacao" name="descricaoProblema" placeholder="Digite aqui..." required></textarea>
             <br><br>
+            <input type="radio" name="tipo" value="1" checked style="display: none !important">
             <button type="submit" value="Enviar" class="botao">Enviar</button>
         </div>
 
     </form>
-    <form action="" id="estacao-especifica" style="display:none">
+    <form action="/reclamar" method="POST" id="estacao-especifica" style="display:none">
 
         <div id="formEstacao">
             <label>Selecione a estação:</label>
-            <select name="nomeEstacao" class="motivo-reclamacao">
+            <select name="nomeEstacao" class="motivo-reclamacao" required>
+                <option value="" disabled selected>Selecione</option>
                 <option value="osasco">Osasco</option>
-                <option value="presidenteAltino">Presidente Altino</option>
+                <option value="presidente altino">Presidente Altino</option>
                 <option value="ceasa">Ceasa</option>
-                <option value="vilaLobosJaguare">Vila Lobos-Jaguaré</option>
-                <option value="cidadeUniversitaria">Cidade Universitária</option>
+                <option value="vila lobos jaguare">Vila Lobos-Jaguaré</option>
+                <option value="cidade universitaria">Cidade Universitária</option>
                 <option value="pinheiros">Pinheiros</option>
-                <option value="hebraicaReboucas">Hebraica Rebouças</option>
-                <option value="cidadeJardim">Cidade Jardim</option>
-                <option value="vilaOlimpia">Vila Olímpia</option>
+                <option value="hebraica reboucas">Hebraica Rebouças</option>
+                <option value="cidade jardim">Cidade Jardim</option>
+                <option value="vila olimpia">Vila Olímpia</option>
                 <option value="berrini">Berrini</option>
                 <option value="morumbi">Morumbi</option>
-                <option value="granjaJulieta">Granja Julieta</option>
-                <option value="joaoDias">joão Dias</option>
-                <option value="santoAmaro">Santo Amaro</option>
+                <option value="granja julieta">Granja Julieta</option>
+                <option value="joao dias">joão Dias</option>
+                <option value="santo amaro">Santo Amaro</option>
                 <option value="socorro">Socorro</option>
                 <option value="jurubatuba">Jurubatuba</option>
                 <option value="autodromo">Autódromo</option>
-                <option value="primaveraInterlagos">Primavera Interlagos</option>
+                <option value="primavera interlagos">Primavera Interlagos</option>
                 <option value="grajau">Grajaú</option>
-                <option value="mendesVilaNatal">Mendes Vila Natal</option>
+                <option value="mendes vila natal">Mendes Vila Natal</option>
                 <option value="varginha">Varginha</option>
             </select>
             <br>
             <label>Selecione o problema:</label>
-            <select name="problema" class="motivo-reclamacao">
-                <option value="elevadorQuebrado">Elevador quebrado</option>
-                <option value="escadaRolanteQuebrada">Escada rolante quebrada</option>
-                <option value="estacaoFechada">Estação fechada</option>
-                <option value="estacaoSemGuardas">Estação sem guardas</option>
-                <option value="estacaoAlagada">Estação alagada</option>
+            <select name="problema" class="motivo-reclamacao" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="elevador-quebrado">Elevador quebrado</option>
+                <option value="escada-rolante-quebrada">Escada rolante quebrada</option>
+                <option value="estacao-fechada">Estação fechada</option>
+                <option value="estacao-sem-guardas">Estação sem guardas</option>
+                <option value="estacao-alagada">Estação alagada</option>
                 <option value="acidente">Acidente</option>
                 <option value="briga">Briga</option>
-                <option value="acessibilidade">Falta de acessiblidade</option>
+                <option value="falta-acessibilidade">Falta de acessiblidade</option>
                 <option value="outro">Outro</option>
             </select>
             <br><br>
             <label>Fale um pouco mais sobre sua experiência:</label>
-            <textarea name="descricaoProblema" placeholder="Digite aqui..." class="descricao-reclamacao"></textarea>
+            <textarea name="descricaoProblema" placeholder="Digite aqui..." class="descricao-reclamacao" required></textarea>
             <br><br>
+            <input type="radio" name="tipo" value="2" checked style="display: none !important">
             <button type="submit" value="Enviar" class="botao">Enviar</button>
         </div>
 
     </form>
-    <form action="" id="carro-especifico" style='display: none;'>
+    <form action="/reclamar" method="POST" id="carro-especifico" style='display: none;'>
 
         <div id="formCarro">
             <label>Número do carro:</label>
             <div id="problemaCarro">
-                <input name="numeroCarro" type="text" placeholder="Número do carro" class="motivo-reclamacao" id="numeroCarro">
-                <select name="problema" class="motivo-reclamacao">
-                    <option value="portaQuebrada">Porta quebrada</option>
-                    <option value="ar">Ar Condicionado desligado</option>
+                <input name="numeroCarro" type="number" placeholder="Número do carro" class="motivo-reclamacao" id="numeroCarro" required>
+                <select name="problema" class="motivo-reclamacao"  required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="porta-quebrada">Porta quebrada</option>
+                    <option value="ar-desligado">Ar Condicionado desligado</option>
                     <option value="sujeira">Trem muito sujo</option>
-                    <option value="janela">Janela quebrada</option>
+                    <option value="janela-quebrada">Janela quebrada</option>
                     <option value="Outro">Outro</option>
                 </select>
             </div>
             <br><br>
             <label for="descricao-reclamacao">Fale um pouco mais sobre sua experiência:</label>
-            <textarea name="descricaoProblema" placeholder="Digite aqui..." class="descricao-reclamacao"></textarea>
-            <br>
+            <textarea name="descricaoProblema" placeholder="Digite aqui..." class="descricao-reclamacao" required></textarea>
+            <br><br>
+            <input type="radio" name="tipo" value="3" checked style="display: none !important">
             <button type="submit" value="Enviar" class="botao">Enviar</button>
         </div>
 
