@@ -144,3 +144,13 @@ create table tb_avaliacoes (
 	foreign key(cod_usu)references tb_usuarios(codigo),
 	primary key(codigo)
 );
+
+create table tb_comentarios (
+    codigo int not null auto_increment,
+    data_hora date not null,
+    comentario varchar(500) not null,
+    avaliacao int not null default 0,
+    cod_usuario int not null,
+    primary key (codigo),
+    foreign key (cod_usuario) references tb_usuarios(codigo)
+);
