@@ -4,9 +4,11 @@ use db_alertrem;
 create table tb_usuarios (
 	codigo int not null auto_increment,
 	nome varchar(50) not null,
-	senha varchar(50) not null,
+    salt varchar(60) not null,
+	senha varchar(256) not null,
 	email varchar(100) not null,
 	cpf char(14) not null,
+    foto_perfil blob,
 	data_cadastro date not null,
 	primary key(codigo) 
 );
