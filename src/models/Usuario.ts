@@ -4,9 +4,11 @@ import {sequelize} from '../conn/mysql'
 export interface UsuarioInstance extends Model{
     codigo:number,
     nome:string,
+    salt: string,
     senha:string
     email:string
     cpf:string
+    foto_perfil: Blob
     data_cadastro:Date
 }
 
@@ -19,24 +21,31 @@ export const Usuario = sequelize.define<UsuarioInstance>("Usuario,",{
         allowNull: false
     },
     nome:{
-        allowNull: false,
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        allowNull: false
+    },
+    salt: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     senha:{
-        allowNull: false,
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        allowNull: false
     },
     email:{
-        allowNull: false,
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        allowNull: false
     },
     cpf:{
-        allowNull: false,
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        allowNull: false
     },
-    data_cadastro:{
-        allowNull: false,
-        type:DataTypes.DATE
+    foto_perfil: {
+        type: DataTypes.BLOB
+    },
+    data_cadastro: {
+        type:DataTypes.DATE,
+        allowNull: false
     },
 },{
     tableName:'tb_usuarios',
