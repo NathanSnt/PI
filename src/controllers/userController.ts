@@ -40,6 +40,7 @@ export const pesquisa_usuario = async (req:Request, res: Response) => {
     if (usuario) {
         const hashSenha = await bcrypt.hash(req.body.senha, usuario.salt)
         if (hashSenha === usuario.senha){ 
+            console.log(`Usuário ${usuario.nome} autenticado com sucesso!`)
             res.redirect('/')
         }
     }

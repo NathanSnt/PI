@@ -46,7 +46,7 @@ export const Usuario = sequelize.define<UsuarioInstance>("Usuario,",{
     data_cadastro: {
         type:DataTypes.DATE,
         allowNull: false
-    },
+    }
 },{
     tableName:'tb_usuarios',
     timestamps:false
