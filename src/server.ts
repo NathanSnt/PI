@@ -23,9 +23,8 @@ server.use(express.urlencoded({extended:true}))
 // uma requisição ajax.
 server.use((req, res, next) => {
     if (req.url === '/' 
-    || req.url === '/home'  
     || (req.xhr && req.headers['x-requested-with'] === 'XMLHttpRequest')
-    || ((req.method === 'POST' && req.url ==='/cadastrar') || (req.method === 'POST' && req.url ==='/login'))) {
+    || ((req.method === 'POST' && req.url ==='/cadastro') || (req.method === 'POST' && req.url ==='/login'))) {
         next();
     } else {
         res.render('pages/not_found')

@@ -44,7 +44,5 @@ export const pesquisa_usuario = async (req:Request, res: Response) => {
             res.redirect('/')
         }
     }
-    else {
-        res.render("pages/not_found") // Aqui exibir erro de autenticação!
-    }
+    res.render("pages/not_found") // Aqui exibir erro de autenticação!
 }
