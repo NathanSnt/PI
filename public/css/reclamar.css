@@ -55,12 +55,23 @@
 
 #botoesRadio input{
     margin-right: 10px;
+    display: none;
 }
 
 #botoesRadio label{
-    margin-right: 10px;
+    margin: 10px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #58c078;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid #58c078;
 }
 
+.selecionado {
+    background-color: white !important;
+    color: #58c078 !important;
+}
 
 .motivo-reclamacao{
     margin-top: 5px;
@@ -87,7 +98,8 @@ form {
 
 #formCarro,
 #formLinha,
-#formEstacao{
+#formEstacao,
+#problemaCarro{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,3 +121,8 @@ option{
     text-align: center;
 }
 
+@media (max-width: 1050px) {
+    #botoesRadio {
+        flex-direction: column;
+    }
+}

@@ -3,13 +3,13 @@
     <h1>Reclamação sobre:</h1>
     <div id="botoesRadio">
         <input type="radio" id="radio-linha" name="reclamacao" value="linha-geral" checked>
-        <label for="radio-linha">Linha em geral</label>
+        <label id="radioLinha" class="selecionado" for="radio-linha">Linha em geral</label>
 
         <input type="radio" id="radio-estacao" name="reclamacao" value="estacao-especifica">
-        <label for="radio-estacao">Estação específica</label>
+        <label id="radioEstacao" for="radio-estacao">Estação específica</label>
 
         <input type="radio" id="radio-carro" name="reclamacao" value="carro-especifico">
-        <label for="radio-carro">Carro específico</label>
+        <label id="radioCarro" for="radio-carro">Carro específico</label>
     </div>
 
     <form action="/reclamar" method="POST" id="linha-geral">
