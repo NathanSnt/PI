@@ -13,14 +13,6 @@ create table tb_usuarios (
 	primary key(codigo) 
 );
 
-insert into tb_usuarios (nome, senha, email, cpf, data_cadastro) values
-('Bruno', 'alertrem', 'bruno@hotmail.com', '111.111.111-11', CURDATE()),
-('Leonardo', 'alertrem', 'leonardo@hotmail.com', '222.222.222-22', CURDATE()),
-('Gustavo', 'alertrem', 'gustavo@hotmail.com', '333.333.333-33', CURDATE()),
-('Gabriel', 'alertrem', 'gabriel@hotmail.com', '444.444.444-44', CURDATE()),
-('Joao', 'alertrem', 'joao@hotmail.com', '555.555.555-55', CURDATE()),
-('Nathan', 'alertrem', 'nathan@hotmail.com', '666.666.666-66', CURDATE());
-
 create table tb_estacoes (
     codigo int not null auto_increment,
     nome varchar(50) not null,
