@@ -110,7 +110,7 @@ insert into tb_estacoes (nome, localizacao) values
 
 create table tb_reclamacoes (
 	codigo int not null auto_increment,
-	data_hora date not null,
+	data_hora datetime not null default now(),
 	tipo int not null, -- 1 ao 3
 	descricao varchar(100),
 	motivo varchar(100),
@@ -125,7 +125,7 @@ create table tb_reclamacoes (
 create table tb_status (
 	codigo int not null auto_increment,
 	descricao varchar(100) not null,
-	data_hora date not null,
+	data_hora datetime not null default now(),
 	primary key(codigo)
 );
 
@@ -139,7 +139,7 @@ create table tb_avaliacoes (
 
 create table tb_comentarios (
     codigo int not null auto_increment,
-    data_hora date not null,
+    data_hora datetime not null default now(),
     comentario varchar(500) not null,
     avaliacao int not null default 0,
     cod_usuario int not null,
