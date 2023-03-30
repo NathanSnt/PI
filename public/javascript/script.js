@@ -1,20 +1,20 @@
 function mudarCarrossel(estacao){
-    if (estacao == 'altino'){
-        document.getElementById("carrossel1").src = "images/"+estacao+"6.png"
-        document.getElementById("carrossel2").src = "images/"+estacao+"7.png"
-        document.getElementById("carrossel3").src = "images/"+estacao+"8.png"
-        document.getElementById("carrossel4").src = "images/"+estacao+"9.png"
-        document.getElementById("carrossel5").src = "images/"+estacao+"10.png"
+    // if (estacao == 'altino'){
+        document.getElementById("carrossel1").src = "images/"+estacao+"1.png"
+        document.getElementById("carrossel2").src = "images/"+estacao+"2.png"
+        document.getElementById("carrossel3").src = "images/"+estacao+"3.png"
+        document.getElementById("carrossel4").src = "images/"+estacao+"4.png"
+        document.getElementById("carrossel5").src = "images/"+estacao+"5.png"
         document.getElementById("slide1").checked = true
-    }
-    else {
-        document.getElementById("carrossel1").src = "images/"+estacao+"1.jpg"
-        document.getElementById("carrossel2").src = "images/"+estacao+"2.jpg"
-        document.getElementById("carrossel3").src = "images/"+estacao+"3.jpg"
-        document.getElementById("carrossel4").src = "images/"+estacao+"4.jpg"
-        document.getElementById("carrossel5").src = "images/"+estacao+"5.jpg"
-        document.getElementById("slide1").checked = true
-    }
+    // }
+    // else {
+        // document.getElementById("carrossel1").src = "images/"+estacao+"1.jpg"
+        // document.getElementById("carrossel2").src = "images/"+estacao+"2.jpg"
+        // document.getElementById("carrossel3").src = "images/"+estacao+"3.jpg"
+        // document.getElementById("carrossel4").src = "images/"+estacao+"4.jpg"
+        // document.getElementById("carrossel5").src = "images/"+estacao+"5.jpg"
+        // document.getElementById("slide1").checked = true
+    // }
 }
 
 function atualizaTamanhoFaixa(){
