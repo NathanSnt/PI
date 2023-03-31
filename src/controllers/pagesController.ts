@@ -47,10 +47,26 @@ export const home = async (req:Request, res:Response) => {
                     tempo = `${diferencaDias} dias atrás`
                 }
 
+                let tipoReclamacao = ''
+                if (comentario?.tipo == 1){
+                    tipoReclamacao = 'Sobre a linha'
+                }
+                else if (comentario?.tipo == 2) {
+                    tipoReclamacao = 'Estação específica'
+                }
+                else if (comentario?.tipo == 3) {
+                    tipoReclamacao = 'Carro específico'
+                }
+                const estacao = await Estacao.findOne({where: {codigo: comentario?.cod_estacao}})
+                const nomeEstacao = estacao?.nome
+
                 const comentInfo = {
                     descricao: comentario?.descricao,
                     usuario: usuario?.nome,
-                    tempo: tempo
+                    tempo: tempo,
+                    tipo: tipoReclamacao,
+                    estacao: nomeEstacao,
+                    carro: comentario.numero_carro
                 }
 
                 return comentInfo

@@ -241,6 +241,23 @@
     border-radius: 50%;
 }
 
+.tags {
+    display: flex;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 2%;
+}
+
+.tag {
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    width: auto;
+    text-align: center;
+    margin-right: 3%;
+}
+
 #caixa-comentario {
     width: 80%;
     padding: 1% 2.5%;
@@ -315,6 +332,14 @@
     #comentario-footer {
         display: none;
         height: 5%;
+    }
+
+    .tags{
+        display: none;
+    }
+    .tag {
+        /* display: table; */
+        margin-top: 2%;
     }
     
     #comentario #exclamation {

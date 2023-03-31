@@ -63,8 +63,10 @@ function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
 }
 
 function mostrarInfo(objeto) {
-    const divComentarioFooter = objeto.parentElement.children[1].children[1]
+    const divComentarioFooter = objeto.parentElement.children[1].children[2]
+    const divTags = objeto.parentElement.children[1].children[0]
     divComentarioFooter.classList.toggle('mostrarInfo')
+    divTags.classList.toggle('mostrarInfo')
 }
 
 function mostrarMenu() {
@@ -109,6 +111,11 @@ window.addEventListener('resize', function() {
     desativaMenu()
     this.document.querySelectorAll('#comentario-footer').forEach(div => {
         if (div.classList.contains('mostrarInfo')) {
+            div.classList.toggle('mostrarInfo')
+        }
+    })
+    this.document.querySelectorAll(".tags").forEach(div => {
+        if (div.classList.contains('mostrarInfo')){
             div.classList.toggle('mostrarInfo')
         }
     })
