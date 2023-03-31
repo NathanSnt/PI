@@ -82,7 +82,7 @@ export const home = async (req:Request, res:Response) => {
             }))
         
 
-            console.log(comentData)
+            
             if (estacao === null){
                 res.render('pages/not_found')
             }
@@ -114,7 +114,9 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
     let tipo = req.body.tipo
     let motivo = req.body.problema
     let descricao = req.body.descricaoProblema
+    let movimentacao = req.body.movimentacao_linha
     let data_hora = new Date()
+    
 
     switch (tipo) {
         case '1': 
@@ -123,7 +125,8 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                     data_hora,
                     tipo,
                     descricao,
-                    motivo
+                    motivo,
+                    movimentacao: movimentacao
                 })
                 await nova_reclamacao.save()
             }
@@ -147,7 +150,8 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                         tipo,
                         descricao,
                         motivo,
-                        cod_estacao: codigo_estacao
+                        cod_estacao: codigo_estacao,
+                        movimentacao: movimentacao
                     })
                     await nova_reclamacao.save()
                 }

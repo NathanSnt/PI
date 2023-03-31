@@ -125,6 +125,7 @@ create table tb_reclamacoes (
     numero_carro int,
 	cod_usu int,
 	cod_estacao int,
+    movimentacao int,
 	foreign key(cod_usu)references tb_usuarios(codigo),
 	foreign key(cod_estacao)references tb_estacoes(codigo),
 	primary key(codigo)

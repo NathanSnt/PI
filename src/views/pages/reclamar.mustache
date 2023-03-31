@@ -23,11 +23,21 @@
                 <option value="greve">Greve</option>
                 <option value="linha-paralizada">Linha paralizada</option>
                 <option value="trem-descarrilhado">Trem descarrilhado</option>
-                <option value="falta-segunraca">Falta de segurança</option>
+                <option value="falta-segunranca">Falta de segurança</option>
                 <option value="acidente">Acidente</option>
                 <option value="inversao-plataforma">Inversão de plataforma</option>
                 <option value="outro">Outro</option>
             </select>
+            <br><br>
+            <label for="movimentacao-linha">Nos conte sobre a movimentação da linha:</label>
+            <div id="radio-movimentacao">
+                <input type="radio"  id="situacao-cheio" name="movimentacao_linha" value="3" required>
+                <label for="situacao-cheio">Muito Cheio</label>
+                <input type="radio"  id="situacao-moderado" name="movimentacao_linha" value="2" required>
+                <label for="situacao-moderado">Moderado</label>
+                <input type="radio"  id="situacao-vazio" name="movimentacao_linha" value="1" required>
+                <label for="situacao-vazio">Vazio</label>
+            </div>
             <br><br>
             <label for="descricao-reclamacao">Fale um pouco mais sobre sua experiência:</label>
             <textarea class="descricao-reclamacao" name="descricaoProblema" placeholder="Digite aqui..." required></textarea>
@@ -79,6 +89,16 @@
                 <option value="falta-acessibilidade">Falta de acessiblidade</option>
                 <option value="outro">Outro</option>
             </select>
+            <br><br>
+            <label for="movimentacao-linha">Nos conte sobre a movimentação da linha:</label>
+            <div id="radio-movimentacao">
+                <input type="radio"  id="situacao-cheio" name="movimentacao_linha" value="3" required>
+                <label for="situacao-cheio">Muito Cheio</label>
+                <input type="radio"  id="situacao-moderado" name="movimentacao_linha" value="2" required>
+                <label for="situacao-moderado">Moderado</label>
+                <input type="radio"  id="situacao-vazio" name="movimentacao_linha" value="1" required>
+                <label for="situacao-vazio">Vazio</label>
+            </div>
             <br><br>
             <label>Fale um pouco mais sobre sua experiência:</label>
             <textarea name="descricaoProblema" placeholder="Digite aqui..." class="descricao-reclamacao" required></textarea>

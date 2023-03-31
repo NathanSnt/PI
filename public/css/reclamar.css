@@ -126,3 +126,7 @@ option{
         flex-direction: column;
     }
 }
+
+#radio-movimentacao input, label{
+    padding: 5px;
+}
