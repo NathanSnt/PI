@@ -1,8 +1,10 @@
 import {Router, Request, Response} from 'express'
+import { blob } from 'stream/consumers'
 import { sequelize } from '../conn/mysql'
 import { Estacao } from '../models/Estacao'
 import { Reclamacao } from '../models/Reclamacao'
 import { Usuario } from '../models/Usuario'
+const base64Img = require('base64-img')
 
 export const home = async (req:Request, res:Response) => {
     try {
@@ -60,13 +62,20 @@ export const home = async (req:Request, res:Response) => {
                 const estacao = await Estacao.findOne({where: {codigo: comentario?.cod_estacao}})
                 const nomeEstacao = estacao?.nome
 
+                // const binario = Buffer.from(usuario?.foto_perfil)
+                // const opcoes = {
+                //     string : true
+                // }
+                // const foto_perfil = base64Img.base64Sync(binario, opcoes)
+
                 const comentInfo = {
                     descricao: comentario?.descricao,
                     usuario: usuario?.nome,
                     tempo: tempo,
                     tipo: tipoReclamacao,
                     estacao: nomeEstacao,
-                    carro: comentario.numero_carro
+                    carro: comentario.numero_carro//,
+                    //foto_perfil: foto_perfil
                 }
 
                 return comentInfo

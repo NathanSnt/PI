@@ -20,6 +20,7 @@ function mudarCarrossel(estacao){
 function atualizaTamanhoFaixa(){
     const nav = document.querySelector('nav');
     const faixa = document.querySelector('#faixa');
+
     const alturaNav = nav.offsetHeight;
     const alturaFaixa = alturaNav * 0.95;
     const margem = alturaNav * 0.025;
@@ -27,6 +28,7 @@ function atualizaTamanhoFaixa(){
     faixa.style.height = `${alturaFaixa}px`;
     faixa.style.marginTop = `${margem}px`;
     faixa.style.marginBottom = `${margem}px`;
+    
 }
 
 // function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
