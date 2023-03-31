@@ -120,7 +120,7 @@ create table tb_reclamacoes (
 	codigo int not null auto_increment,
 	data_hora datetime not null default now(),
 	tipo int not null, -- 1 ao 3
-	descricao varchar(100),
+	descricao varchar(500),
 	motivo varchar(100),
     numero_carro int,
 	cod_usu int,
