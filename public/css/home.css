@@ -3,6 +3,7 @@
 #menu-estacoes {
     width: 20%;
     height: auto;
+    max-height: 1408.2px;
 }
 
 #estacao {
@@ -36,7 +37,7 @@
     background-color: #50c878;
     z-index: -1;
     position: absolute;
-    width: 2%;
+    width: 2%;    
     left: 1.85%;
 }
 
@@ -237,6 +238,11 @@
 }
 
 #comentario img{
+    width: 12.5%;
+    border-radius: 50%;
+}
+
+#foto-perfil {
     width: 12.5%;
     border-radius: 50%;
 }

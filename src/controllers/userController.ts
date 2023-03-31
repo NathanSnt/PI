@@ -7,6 +7,7 @@ export const cadastro = ((req: Request, res: Response) => {
 })
 
 export const cadastrar_usuario = ( async (req: Request, res: Response) => {
+    const foto_perfil = req.body.foto_perfil
     const nome = req.body.nome
     const email = req.body.email
     const salt = await bcrypt.genSalt()
@@ -21,6 +22,7 @@ export const cadastrar_usuario = ( async (req: Request, res: Response) => {
             senha, 
             email,
             cpf,
+            foto_perfil,
             data_cadastro
         })
         await novo_usuario.save()
