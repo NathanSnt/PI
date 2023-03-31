@@ -6,14 +6,75 @@ import { Usuario } from '../models/Usuario'
 
 export const home = async (req:Request, res:Response) => {
     try {
-        await sequelize.authenticate()
-        console.log("Funcionou!! ")
-    }
-    catch(error){
-        console.log("Error! ", error)
-    }
 
-    res.render('pages/home')
+        const comentarios = await Reclamacao.findAll({order: [['codigo', 'DESC']]});
+        if (comentarios.length === 0){
+            res.render('pages/home')
+        }
+        else {
+            const comentData = await Promise.all(comentarios.map(async (comentario) => {
+                const codUsu = comentario?.cod_usu ?? 1;
+                const dataHora = comentario?.data_hora ?? new Date().toString();
+            
+                const usuario = await Usuario.findOne({ where: { codigo: codUsu } });
+            
+            
+            
+                const dataAtual = new Date()
+                const dataRegistro = new Date(dataHora)
+                const diferencaMs = dataAtual.getTime() - dataRegistro.getTime()
+
+                const diferencaSegundos = Math.floor(diferencaMs / 1000)
+                const diferencaMinutos = Math.floor(diferencaSegundos / 60)
+                const diferencaHoras = Math.floor(diferencaMinutos / 60)
+                const diferencaDias = Math.floor(diferencaHoras / 24)
+
+                let tempo = '0'
+                if (diferencaDias < 1){
+                    if (diferencaHoras < 1){
+                        if (diferencaMinutos < 1){
+                            tempo = `${diferencaSegundos} segundos atrás`
+                        }
+                        else {
+                            tempo = `${diferencaMinutos} minutos atrás`
+                        }
+                    }
+                    else {
+                        tempo = `${diferencaHoras} horas atrás`
+                    }
+                }
+                else {
+                    tempo = `${diferencaDias} dias atrás`
+                }
+
+                const comentInfo = {
+                    descricao: comentario?.descricao,
+                    usuario: usuario?.nome,
+                    tempo: tempo
+                }
+
+                return comentInfo
+            }))
+        
+
+            console.log(comentData)
+            if (estacao === null){
+                res.render('pages/not_found')
+            }
+            else {
+                try {
+                    res.render('pages/home', {
+                        estacao,
+                        comentarios: comentData
+                    })
+                }catch (error) {
+                    console.log(error)
+                }
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 export const sobre = ((req: Request, res: Response) => {
@@ -111,7 +172,7 @@ export async function estacao(req: Request, res: Response) {
         const estacao = await Estacao.findOne({ where: { nome: nome_estacao } });
         const codigoEstacao = estacao?.codigo ?? 1;
       
-        const comentarios = await Reclamacao.findAll({ where: { cod_estacao: codigoEstacao } });
+        const comentarios = await Reclamacao.findAll({ where: { cod_estacao: codigoEstacao }, order: [['codigo', 'DESC']] });
         if (comentarios.length === 0){
             res.render('pages/estacao', {
                 estacao

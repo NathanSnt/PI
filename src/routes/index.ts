@@ -4,10 +4,7 @@ import * as pagesController from '../controllers/pagesController'
 
 const router = Router()
 
-router.get('/', (req:Request, res:Response) =>{
-    res.render('pages/home')
-})
-
+router.get('/',  pagesController.home)
 router.get('/home', pagesController.home)
 
 router.get('/cadastro', userController.cadastro)
