@@ -146,3 +146,13 @@ create table tb_comentarios (
     primary key (codigo),
     foreign key (cod_usuario) references tb_usuarios(codigo)
 );
+
+create table tb_funcionarios (
+    codigo int not null auto_increment,
+    nome varchar(50) not null,
+    usuario varchar(50) not null,
+    salt varchar(60) not null,
+	senha varchar(256) not null,
+    data_hora datetime not null default now(),
+    primary key(codigo)
+);
