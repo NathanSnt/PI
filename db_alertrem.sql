@@ -13,10 +13,18 @@ create table tb_usuarios (
 	primary key(codigo) 
 );
 
+insert into tb_usuarios values
+('Bruno José', '$2b$10$0SnT75mO/YByx.PxJuW8ku', '$2b$10$0SnT75mO/YByx.PxJuW8kum1cnxMHrc2FE8JA9/v1D9R/19ds3ebq', 'bruno.jose@mail.com', '111.111.111-11'),
+('João Lameiro', '$2b$10$O5f3QyjNR6ifod48Ih4Fr.', '$2b$10$O5f3QyjNR6ifod48Ih4Fr.5/z0FoMEvHNMPWjD6rwrnFtm1Q9QDLO', 'joao.lameiro@mail.com', '222.222.222-22'),
+('Leonardo Silva', '$2b$10$w9U/x7XVydy4RzVn1b2Zt.', '$2b$10$w9U/x7XVydy4RzVn1b2Zt.dAOumB5dyvMDB.4kPCqaop4EwIMQeVC', 'leonardo.silva@mail.com', '333.333.333-33'),
+('Gustavo Silva', '$2b$10$xFD0AUyAerdD3DP.F4cSOu', '$2b$10$xFD0AUyAerdD3DP.F4cSOuD0ntPeW05fIEC/GyLhCqFxMF6dZx54a', 'gustavo.silva@mail.com', '444.444.444-44'),
+('Gabriel Silva', '$2b$10$H6RrhnaGlNYxHTSeDecR9O', '$2b$10$H6RrhnaGlNYxHTSeDecR9O9mPsGZqOTC8ZCgdghRnoXtlVOEoU39i', 'gabriel.silva@mail.com', '555.555.555-55'),
+('Nathan Santos', '$2b$10$I5x1SWVst6OIFrRo.0vRN.', '$2b$10$I5x1SWVst6OIFrRo.0vRN.hj5NeZWFUiveK8j9mVPPqdNVIJ8saQS', 'nathan.santos@mail.com', '666.666.666-66');
+
 create table tb_estacoes (
     codigo int not null auto_increment,
     nome varchar(50) not null,
-    localizacao varchar(100) not null,
+    localizacao varchar(150) not null,
     banheiro varchar(50), -- Cada característica pode ter entre 4 valores (null, 'funcionando', 'em manutenção', 'quebrado')
     elevador varchar(50),
     terminal_interurbano varchar(50),
