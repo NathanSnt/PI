@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="css/estacao.css">
 
 <div id="info_estacao">
-        
+
     <div id="nome">
         <div id="titulo">
             <img src="/images/600px-Logo_ViaMobilidade_(branco).png" alt="logo">
@@ -9,7 +9,7 @@
         </div>
         <hr id="quebra">
     </div>
-    
+
     <div id="informacoes">
         <div id="sobre">
             <p>Localização: {{estacao.localizacao}}</p>
@@ -17,132 +17,134 @@
             <p>Saídas: </p>
             <p>Status de movimentação: muito cheio (atualizado a 30 min)</p>
         </div>
-        <form id="caixa-reclamar" action="">
-            <div id="foto-comentario">
-                <img src="images/user4.png" alt="">
-                <textarea name="reclamacao" id="reclamacao" cols="100" rows="2" placeholder="Diga algo."></textarea>
-            </div>
-            <button type="submit" value="enviar">Enviar</button>
-        </form>
-        <div id="comentario">
-            <img src="images/user1.png" alt="foto de perfil" id="foto-perfil">
-                <div id="caixa-comentario">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima asperiores perspiciatis facilis, quas cumque consequuntur omnis excepturi earum cupiditate obcaecati, corrupti doloribus atque non maiores? Quos voluptate laboriosam reprehenderit delectus!
-                    </p>
-                    <div id="comentario-footer">
-                        <div id="nome-usuario">
-                            <p>Nome do usuário</p>
-                        </div>
-                        <div id="data-post">
-                            <p>14/03/2023 17:24</p>
-                        </div>
-                        <div id="denunciar">
-                            <p><a href="#">Denunciar comentário</a></p>
-                        </div>
-                        <div id="botoes">
-                            <img id="bom" src="/images/green-face.svg" alt="">
-                            <img id="neutro" src="images/yellow-face.svg" alt="">
-                            <img id="ruim" src="images/red-face.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <img id="exclamation" src="images/exclamation.svg" alt="" style="display: none;" onclick="mostrarInfo(this)">
-        </div>
 
         <div id="caracteristicas">
             {{#estacao.banheiro}}
-                <img src="images/banheiro.png" alt="">
+            <img src="images/banheiro.png" alt="">
             {{/estacao.banheiro}}
-            
+
             {{#estacao.elevador}}
-                <img src="images/elevador.png" alt="">
+            <img src="images/elevador.png" alt="">
             {{/estacao.elevador}}
-            
+
             {{#estacao.terminal_interurbano}}
-                <img src="images/terminal-interurbano-de-onibus.png" alt="">
+            <img src="images/terminal-interurbano-de-onibus.png" alt="">
             {{/estacao.terminal_interurbano}}
-            
+
             {{#estacao.terminal_urbano}}
-                <img src="images/terminal-urbano-de-onibus.png" alt="">
+            <img src="images/terminal-urbano-de-onibus.png" alt="">
             {{/estacao.terminal_urbano}}
-            
+
             {{#estacao.transferencia_interna}}
-                <img src="images/transferencia-interna-gratuita.png" alt="">
+            <img src="images/transferencia-interna-gratuita.png" alt="">
             {{/estacao.transferencia_interna}}
-            
+
             {{#estacao.bicicletario}}
-                <img src="images/bicicletario.png" alt="">
+            <img src="images/bicicletario.png" alt="">
             {{/estacao.bicicletario}}
-            
+
             {{#estacao.banheiro_acessivel}}
-                <img src="images/banheiro-acessivel.png" alt="">
+            <img src="images/banheiro-acessivel.png" alt="">
             {{/estacao.banheiro_acessivel}}
-            
+
             {{#estacao.estacao_acessivel}}
-                <img src="images/estacao-acessivel.png" alt="">
+            <img src="images/estacao-acessivel.png" alt="">
             {{/estacao.estacao_acessivel}}
-            
+
             {{#estacao.rampa}}
-                <img src="images/rampa.png" alt="">
+            <img src="images/rampa.png" alt="">
             {{/estacao.rampa}}
-            
+
             {{#estacao.transposicao_plataformas}}
-                <img src="images/transposicao-de-plataformas.png" alt="">
+            <img src="images/transposicao-de-plataformas.png" alt="">
             {{/estacao.transposicao_plataformas}}
-            
+
             {{#estacao.escadas_rolantes}}
-                <img src="images/escadas-rolantes.png" alt="">
+            <img src="images/escadas-rolantes.png" alt="">
             {{/estacao.escadas_rolantes}}
-            
+
             {{#estacao.acesso_elevador}}
-                <img src="images/acesso-elevador.png" alt="">
+            <img src="images/acesso-elevador.png" alt="">
             {{/estacao.acesso_elevador}}
-            
+
             {{#estacao.lanchonete}}
-                <img src="images/lanchonete.png" alt="">
+            <img src="images/lanchonete.png" alt="">
             {{/estacao.lanchonete}}
-            
+
             {{#estacao.emporio}}
-                <img src="images/emporio.png" alt="">
+            <img src="images/emporio.png" alt="">
             {{/estacao.emporio}}
-            
+
             {{#estacao.caixa_eletronico}}
-                <img src="images/caixa-eletronico.png" alt="">
+            <img src="images/caixa-eletronico.png" alt="">
             {{/estacao.caixa_eletronico}}
-            
+
             {{#estacao.calcados}}
-                <img src="images/calcados.png" alt="">
+            <img src="images/calcados.png" alt="">
             {{/estacao.calcados}}
-            
+
             {{#estacao.telefone_p_surdos}}
-                <img src="images/telefone-para-surdos.png" alt="">
+            <img src="images/telefone-para-surdos.png" alt="">
             {{/estacao.telefone_p_surdos}}
-            
+
             {{#estacao.piso_tatil}}
-                <img src="images/piso-tatil.png" alt="">
+            <img src="images/piso-tatil.png" alt="">
             {{/estacao.piso_tatil}}
-            
+
             {{#estacao.tranferencia_gratuita}}
-                <img src="images/tranferencia-gratuita-cptm-metro.png" alt="">
+            <img src="images/tranferencia-gratuita-cptm-metro.png" alt="">
             {{/estacao.tranferencia_gratuita}}
-            
+
             {{#estacao.acessorios}}
-                <img src="images/acessorios.png" alt="">
+            <img src="images/acessorios.png" alt="">
             {{/estacao.acessorios}}
-            
+
             {{#estacao.farmacia}}
-                <img src="images/farmacia.png" alt="">
+            <img src="images/farmacia.png" alt="">
             {{/estacao.farmacia}}
-            
+
             {{#estacao.rota_acessivel}}
-                <img src="images/rota-acessivel.png" alt="">
+            <img src="images/rota-acessivel.png" alt="">
             {{/estacao.rota_acessivel}}
-            
+
             {{#estacao.achados_perdidos}}
-                <img src="images/achados-e-perdidos.png" alt="">
+            <img src="images/achados-e-perdidos.png" alt="">
             {{/estacao.achados_perdidos}}
         </div>
+
+        {{#comentarios}}
+        {{#comentarios.length}}
+        
+        <div id="comentario">
+            <img src="images/user1.png" alt="foto de perfil" id="foto-perfil">
+            <div id="caixa-comentario">
+                <p>
+                    {{descricao}}
+                </p>
+                <div id="comentario-footer">
+                    <div id="nome-usuario">
+                        <p>{{usuario}}</p>
+                    </div>
+                    <div id="data-post">
+                        <p>{{tempo}}</p>
+                    </div>
+                    <div id="denunciar">
+                        <p><a href="#">Denunciar comentário</a></p>
+                    </div>
+                    <div id="botoes">
+                        <img id="bom" src="/images/green-face.svg" alt="">
+                        <img id="neutro" src="images/yellow-face.svg" alt="">
+                        <img id="ruim" src="images/red-face.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <img id="exclamation" src="images/exclamation.svg" alt="" style="display: none;"
+                onclick="mostrarInfo(this)">
+        </div>
+        
+        
+        
+        {{/comentarios.length}}
+        {{/comentarios}}
     </div>
 </div>
-
