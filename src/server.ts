@@ -39,14 +39,14 @@ const server = express()
     })
 
 // Configuração do mustache
-server.set('view engine', 'mustache')
-server.set('views', path.join(__dirname, 'views'))
-server.engine('mustache', mustache())
+    server.set('view engine', 'mustache')
+    server.set('views', path.join(__dirname, 'views'))
+    server.engine('mustache', mustache())
 
 // Importando a pasta public
-server.use(express.static(path.join(__dirname, '../public')))
-server.use(express.json());
-server.use(express.urlencoded({extended:true}))
+    server.use(express.static(path.join(__dirname, '../public')))
+    server.use(express.json());
+    server.use(express.urlencoded({extended:true}))
 
 // Verificando se a requisição está sendo feita para a página raiz ou sendo feita através de 
 // uma requisição ajax.
