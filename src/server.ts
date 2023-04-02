@@ -1,17 +1,42 @@
-import express, { NextFunction } from 'express'
+import express from 'express'
+import session from 'express-session'
+import flash from 'connect-flash'
 import mainRoutes from './routes/index'
 import path from 'path'
 import mustache from 'mustache-express'
 import dotenv from 'dotenv'
+import passport from 'passport'
+import autenticacao from './configs/autenticacao'
 
+autenticacao(passport)
 dotenv.config()
 
 console.clear()
 const server = express()
 
-// Configuração de sessão
+// CONFIGURAÇÕES
+    // SESSÃO
+    server.use(session({
+        secret: "SenhaSuperSecretaAlerTrem",
+        resave: true,
+        saveUninitialized: true
+    }))
 
-  
+    // PASSPORT (AUTENTICAÇÃO)
+    server.use(passport.initialize())
+    server.use(passport.session())
+    
+    // FLASH
+    server.use(flash())
+    
+    // MIDDLEWARE
+    server.use((req, res, next) => {
+        res.locals.msg_sucesso = req.flash('msg_sucesso')
+        res.locals.msg_falhou = req.flash('msg_falhou')
+        res.locals.error = req.flash('error')
+        res.locals.user = req.user || null
+        next()
+    })
 
 // Configuração do mustache
 server.set('view engine', 'mustache')
