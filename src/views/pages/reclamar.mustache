@@ -1,4 +1,11 @@
 <link rel="stylesheet" href="css/reclamar.css">
+{{#erros}}
+    {{#erros.length}}
+    <div class="alerta">
+        <p>{{texto}}</p>
+    </div>
+    {{/erros.length}}
+{{/erros}}
 <div id="cardReclamacao">
     <h1>Reclamação sobre:</h1>
     <div id="botoesRadio">
