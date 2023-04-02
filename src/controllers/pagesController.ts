@@ -107,7 +107,7 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
     let descricao = req.body.descricaoProblema
     let movimentacao = req.body.movimentacao_linha
     let data_hora = new Date()
-
+    let usuario = res.locals.user.codigo
 
     switch (tipo) {
         case '1': 
@@ -117,7 +117,8 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                     tipo,
                     descricao,
                     motivo,
-                    movimentacao: movimentacao
+                    movimentacao: movimentacao,
+                    cod_usu: usuario
                 })
                 await nova_reclamacao.save()
             }
@@ -142,7 +143,8 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                         descricao,
                         motivo,
                         cod_estacao: codigo_estacao,
-                        movimentacao: movimentacao
+                        movimentacao: movimentacao,
+                        cod_usu: usuario
                     })
                     await nova_reclamacao.save()
                 }
@@ -165,7 +167,8 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                     tipo,
                     descricao,
                     motivo,
-                    numero_carro: numero_carro
+                    numero_carro: numero_carro,
+                    cod_usu: usuario
                 })
                 await nova_reclamacao.save()
             }
