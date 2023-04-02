@@ -1,7 +1,8 @@
-import {Router, Request, Response} from 'express'
+import {Router, Request, Response, NextFunction} from 'express'
 import { Usuario } from '../models/Usuario'
 import bcrypt from 'bcrypt'
 import upload from '../configs/configMulter'
+import passport from 'passport'
 
 export const cadastro = ((req: Request, res: Response) => {
     res.render('pages/cadastro')
@@ -47,17 +48,24 @@ export const login = ((req: Request, res: Response) => {
     res.render('pages/login')
 })
 
-export const pesquisa_usuario = async (req:Request, res: Response) => {
-    const email: string = req.body.email
+export const pesquisa_usuario = async (req:Request, res: Response, next: NextFunction) => {
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true
+    })(req, res, next)
+
+
+    // const email: string = req.body.email
     
-    const usuario = await Usuario.findOne({where: {email: email}})
+    // const usuario = await Usuario.findOne({where: {email: email}})
     
-    if (usuario) {
-        const hashSenha = await bcrypt.hash(req.body.senha, usuario.salt)
-        if (hashSenha === usuario.senha){ 
-            console.log(`Usuário ${usuario.nome} autenticado com sucesso!`)
-            res.redirect('/')
-        }
-    }
-    res.render("pages/not_found") // Aqui exibir erro de autenticação!
+    // if (usuario) {
+    //     const hashSenha = await bcrypt.hash(req.body.senha, usuario.salt)
+    //     if (hashSenha === usuario.senha){ 
+    //         console.log(`Usuário ${usuario.nome} autenticado com sucesso!`)
+    //         res.redirect('/')
+    //     }
+    // }
+    // res.render("pages/not_found") // Aqui exibir erro de autenticação!
 }
