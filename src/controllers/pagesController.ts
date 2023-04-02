@@ -16,35 +16,7 @@ export const home = async (req:Request, res:Response) => {
                 const dataHora = comentario?.data_hora ?? new Date().toString();
             
                 const usuario = await Usuario.findOne({ where: { codigo: codUsu } });
-            
-            
-            
-                const dataAtual = new Date()
-                const dataRegistro = new Date(dataHora)
-                const diferencaMs = dataAtual.getTime() - dataRegistro.getTime()
-
-                const diferencaSegundos = Math.floor(diferencaMs / 1000)
-                const diferencaMinutos = Math.floor(diferencaSegundos / 60)
-                const diferencaHoras = Math.floor(diferencaMinutos / 60)
-                const diferencaDias = Math.floor(diferencaHoras / 24)
-
-                let tempo = '0'
-                if (diferencaDias < 1){
-                    if (diferencaHoras < 1){
-                        if (diferencaMinutos < 1){
-                            tempo = `${diferencaSegundos} segundos atrás`
-                        }
-                        else {
-                            tempo = `${diferencaMinutos} minutos atrás`
-                        }
-                    }
-                    else {
-                        tempo = `${diferencaHoras} horas atrás`
-                    }
-                }
-                else {
-                    tempo = `${diferencaDias} dias atrás`
-                }
+                const tempo = calculaTempo(dataHora)
 
                 let tipoReclamacao = ''
                 if (comentario?.tipo == 1){
@@ -107,80 +79,89 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
     let descricao = req.body.descricaoProblema
     let movimentacao = req.body.movimentacao_linha
     let data_hora = new Date()
-    let usuario = res.locals.user.codigo
-
-    switch (tipo) {
-        case '1': 
-            try{
-                const nova_reclamacao = Reclamacao.build({
-                    data_hora,
-                    tipo,
-                    descricao,
-                    motivo,
-                    movimentacao: movimentacao,
-                    cod_usu: usuario
-                })
-                await nova_reclamacao.save()
-            }
-            catch (error){
-                console.log(error)
-                console.log(tipo)
-                console.log(motivo)
-                console.log(descricao)
-            }
-            res.redirect('/')
-            break
-
-        case '2':
-            try {
-                const estacao = await Estacao.findOne({where: {nome: req.body.nomeEstacao}})
-                if  (estacao !== null){
-                    const codigo_estacao = estacao.codigo
-                    console.log(codigo_estacao)
+    let erros: object[] = []
+    
+    if(req.isAuthenticated()){
+        let usuario = res.locals.user.codigo
+        switch (tipo) {
+            case '1': 
+                try{
                     const nova_reclamacao = Reclamacao.build({
                         data_hora,
                         tipo,
                         descricao,
                         motivo,
-                        cod_estacao: codigo_estacao,
                         movimentacao: movimentacao,
                         cod_usu: usuario
                     })
                     await nova_reclamacao.save()
                 }
-            }
-            catch (error) {
-                console.log(error)
-                console.log(tipo)
-                console.log(estacao)
-                console.log(motivo)
-                console.log(descricao)
-            }
-            res.redirect('/')
-            break
-
-        case '3':
-            let numero_carro = req.body.numeroCarro
-            try {
-                const nova_reclamacao = Reclamacao.build({
-                    data_hora,
-                    tipo,
-                    descricao,
-                    motivo,
-                    numero_carro: numero_carro,
-                    cod_usu: usuario
-                })
-                await nova_reclamacao.save()
-            }
-            catch (error) {
-                console.log(error)
-                console.log(tipo)
-                console.log(numero_carro)
-                console.log(motivo)
-                console.log(descricao)
-            }
-            res.redirect('/')
-            break
+                catch (error){
+                    console.log(error)
+                    console.log(tipo)
+                    console.log(motivo)
+                    console.log(descricao)
+                }
+                res.redirect('/')
+                break
+    
+            case '2':
+                try {
+                    const estacao = await Estacao.findOne({where: {nome: req.body.nomeEstacao}})
+                    if  (estacao !== null){
+                        const codigo_estacao = estacao.codigo
+                        console.log(codigo_estacao)
+                        const nova_reclamacao = Reclamacao.build({
+                            data_hora,
+                            tipo,
+                            descricao,
+                            motivo,
+                            cod_estacao: codigo_estacao,
+                            movimentacao: movimentacao,
+                            cod_usu: usuario
+                        })
+                        await nova_reclamacao.save()
+                    }
+                }
+                catch (error) {
+                    console.log(error)
+                    console.log(tipo)
+                    console.log(estacao)
+                    console.log(motivo)
+                    console.log(descricao)
+                }
+                res.redirect('/')
+                break
+    
+            case '3':
+                let numero_carro = req.body.numeroCarro
+                try {
+                    const nova_reclamacao = Reclamacao.build({
+                        data_hora,
+                        tipo,
+                        descricao,
+                        motivo,
+                        numero_carro: numero_carro,
+                        cod_usu: usuario
+                    })
+                    await nova_reclamacao.save()
+                }
+                catch (error) {
+                    console.log(error)
+                    console.log(tipo)
+                    console.log(numero_carro)
+                    console.log(motivo)
+                    console.log(descricao)
+                }
+                res.redirect('/')
+                break
+        }
+    }
+    else {
+        erros.push({texto: "Você precisa fazer login para conseguir enviar uma reclamação."})
+        res.render('pages/reclamar', {
+            erros
+        })
     }
 }
 
@@ -265,5 +246,32 @@ export async function estacao(req: Request, res: Response) {
         }
     } catch (error) {
         console.error(error);
+    }
+}
+
+function calculaTempo(dataHora: Date){
+    const dataAtual = new Date()
+    const diferencaMs = dataAtual.getTime() - dataHora.getTime()
+
+    const diferencaSegundos = Math.floor(diferencaMs / 1000)
+    const diferencaMinutos = Math.floor(diferencaSegundos / 60)
+    const diferencaHoras = Math.floor(diferencaMinutos / 60)
+    const diferencaDias = Math.floor(diferencaHoras / 24)
+
+    if (diferencaDias < 1){
+        if (diferencaHoras < 1){
+            if (diferencaMinutos < 1){
+                return `${diferencaSegundos} segundos atrás`
+            }
+            else {
+                return `${diferencaMinutos} minutos atrás`
+            }
+        }
+        else {
+            return `${diferencaHoras} horas atrás`
+        }
+    }
+    else {
+        return `${diferencaDias} dias atrás`
     }
 }
