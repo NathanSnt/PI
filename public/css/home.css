@@ -4,6 +4,7 @@
     width: 20%;
     height: auto;
     max-height: 1408.2px;
+    display: table;
 }
 
 #estacao {

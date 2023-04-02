@@ -1,10 +1,7 @@
 import {Router, Request, Response} from 'express'
-import { blob } from 'stream/consumers'
-import { sequelize } from '../conn/mysql'
 import { Estacao } from '../models/Estacao'
 import { Reclamacao } from '../models/Reclamacao'
 import { Usuario } from '../models/Usuario'
-const base64Img = require('base64-img')
 
 export const home = async (req:Request, res:Response) => {
     try {
@@ -62,20 +59,14 @@ export const home = async (req:Request, res:Response) => {
                 const estacao = await Estacao.findOne({where: {codigo: comentario?.cod_estacao}})
                 const nomeEstacao = estacao?.nome
 
-                // const binario = Buffer.from(usuario?.foto_perfil)
-                // const opcoes = {
-                //     string : true
-                // }
-                // const foto_perfil = base64Img.base64Sync(binario, opcoes)
-
                 const comentInfo = {
                     descricao: comentario?.descricao,
                     usuario: usuario?.nome,
                     tempo: tempo,
                     tipo: tipoReclamacao,
                     estacao: nomeEstacao,
-                    carro: comentario.numero_carro//,
-                    //foto_perfil: foto_perfil
+                    carro: comentario.numero_carro,
+                    foto_perfil: usuario?.foto_perfil
                 }
 
                 return comentInfo
@@ -116,7 +107,7 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
     let descricao = req.body.descricaoProblema
     let movimentacao = req.body.movimentacao_linha
     let data_hora = new Date()
-    
+
 
     switch (tipo) {
         case '1': 
@@ -246,7 +237,8 @@ export async function estacao(req: Request, res: Response) {
                 const comentInfo = {
                     descricao: comentario?.descricao,
                     usuario: usuario?.nome,
-                    tempo: tempo
+                    tempo: tempo,
+                    foto_perfil: usuario?.foto_perfil
                 }
 
                 return comentInfo

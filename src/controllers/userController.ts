@@ -1,33 +1,46 @@
 import {Router, Request, Response} from 'express'
 import { Usuario } from '../models/Usuario'
 import bcrypt from 'bcrypt'
+import upload from '../configs/configMulter'
 
 export const cadastro = ((req: Request, res: Response) => {
     res.render('pages/cadastro')
 })
+const uplodaMiddleWare = upload.single('foto_perfil')
+export const cadastrar_usuario = ((req: Request, res: Response) => {
+    uplodaMiddleWare(req, res, async (error: any) => {
+        try {
+            if (error) {
+                console.log(error)
+            }
+            else {
 
-export const cadastrar_usuario = ( async (req: Request, res: Response) => {
-    const foto_perfil = req.body.foto_perfil
-    const nome = req.body.nome
-    const email = req.body.email
-    const salt = await bcrypt.genSalt()
-    const senha = await bcrypt.hash(req.body.senha, salt)
-    const cpf = req.body.cpf
-    const data_cadastro = new Date()
-
-    if (nome && senha && email && cpf) {
-        const novo_usuario = Usuario.build({
-            nome,
-            salt,
-            senha, 
-            email,
-            cpf,
-            foto_perfil,
-            data_cadastro
-        })
-        await novo_usuario.save()
-    }
-    res.redirect('/')
+                const nome = req.body.nome
+                const email = req.body.email
+                const salt = await bcrypt.genSalt()
+                const senha = await bcrypt.hash(req.body.senha, salt)
+                const cpf = req.body.cpf
+                const data_cadastro = new Date()
+            
+                if (nome && senha && email && cpf) {
+                    const novo_usuario = Usuario.build({
+                        nome: nome,
+                        salt: salt,
+                        senha: senha, 
+                        email: email,
+                        cpf: cpf,
+                        foto_perfil: req.file?.filename,
+                        data_cadastro: data_cadastro
+                    })
+                    await novo_usuario.save()
+                }
+                res.redirect('/')
+            }
+        }
+        catch (error) {
+            console.log(`Erro ao salvar cadastro\n\n\n${error}\n\n\n`)
+        }
+    })
 })
 
 export const login = ((req: Request, res: Response) => {

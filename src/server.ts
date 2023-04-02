@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { NextFunction } from 'express'
 import mainRoutes from './routes/index'
 import path from 'path'
 import mustache from 'mustache-express'
@@ -8,6 +8,10 @@ dotenv.config()
 
 console.clear()
 const server = express()
+
+// Configuração de sessão
+
+  
 
 // Configuração do mustache
 server.set('view engine', 'mustache')
