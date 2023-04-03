@@ -37,12 +37,24 @@
                         <img class="menu-img" src="images/reclamar2.png" alt="">
                     </a>
                 </li>
+                {{#autenticado}}
                 <li>
+                    <p style="display: none;">Logado</p>
+                    <a onclick="mudarConteudo('login', '#conteudo', 'noticia')">
+                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="images/sair.png" alt="">
+                    </a>
+                </li>
+                {{/autenticado}}
+                {{^autenticado}}
+                <li>
+                    <p style="display: none;">Não logado</p>
                     <a onclick="mudarConteudo('login', '#conteudo', 'noticia')">
                         <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
                         <img class="menu-img" src="images/loginCadastro2.png" alt="">
                     </a>
                 </li>
+                {{/autenticado}}
             </ul>
         </div>
     

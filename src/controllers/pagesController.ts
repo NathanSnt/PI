@@ -19,6 +19,7 @@ export const home = async (req:Request, res:Response) => {
                 const estacao = await Estacao.findOne({where: {codigo: comentario?.cod_estacao}}) 
 
                 const comentInfo = {
+                    autenticado: req.isAuthenticated(),
                     descricao: comentario?.descricao,
                     usuario: usuario?.nome,
                     tempo: tempo,
