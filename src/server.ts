@@ -38,37 +38,42 @@ const server = express()
         next()
     })
 
-// Configuração do mustache
+    // Mustache
     server.set('view engine', 'mustache')
     server.set('views', path.join(__dirname, 'views'))
     server.engine('mustache', mustache())
 
-// Importando a pasta public
+    // Importando a pasta public
     server.use(express.static(path.join(__dirname, '../public')))
     server.use(express.json());
     server.use(express.urlencoded({extended:true}))
 
-// Verificando se a requisição está sendo feita para a página raiz ou sendo feita através de 
-// uma requisição ajax.
-// server.use((req, res, next) => {
-//     if (req.url === '/' 
-//     || (req.xhr && req.headers['x-requested-with'] === 'XMLHttpRequest')
-//     || ((req.method === 'POST' && req.url ==='/cadastro') || (req.method === 'POST' && req.url ==='/login'))) {
-//         next();
-//     } else {
-//         res.render('pages/not_found')
-//     }
-// });
+    // Bloqueando requisições feitas diretamente pela url
+    server.use((req, res, next) => {
+        if (
+           (req.url === '/')
+        || (req.url === '/reclamar')
+        || (req.url === '/login')
+        || (req.url === '/cadastro')
+        || (req.url === '/sobre')
+        || (req.url === '/mapa')
+        || (req.url.startsWith('/estacao'))
+        && (req.method === 'GET') 
+        && (req.xhr && req.headers['x-requested-with'] === 'XMLHttpRequest')){
+            next();
+        } else {
+            res.render('pages/not_found')
+        }
+    });
 
-server.use(mainRoutes)
+    // Rotas principais
+    server.use(mainRoutes)
 
-// Not Found
-server.use((req, res) => {
-    res.render('pages/not_found')
+    // Not Found
+    server.use((req, res) => {
+        res.render('pages/not_found')
+    })
+
+server.listen(process.env.PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${process.env.PORT}`)
 })
-
-// Habilitando criptografia (Usando o método POST)(COLOCAR ANTES DA DECLARAÇÃO DAS ROTAS!)
-//server.use(express.urlencoded({extended:true}))
-
-server.listen(process.env.PORT)
-console.log("Servidor online")
