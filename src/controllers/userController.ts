@@ -7,6 +7,7 @@ import passport from 'passport'
 export const cadastro = ((req: Request, res: Response) => {
     res.render('pages/cadastro')
 })
+
 const uplodaMiddleWare = upload.single('foto_perfil')
 export const cadastrar_usuario = ((req: Request, res: Response) => {
     uplodaMiddleWare(req, res, async (error: any) => {
@@ -54,18 +55,4 @@ export const pesquisa_usuario = async (req:Request, res: Response, next: NextFun
         failureRedirect: '/login',
         failureFlash: true
     })(req, res, next)
-
-
-    // const email: string = req.body.email
-    
-    // const usuario = await Usuario.findOne({where: {email: email}})
-    
-    // if (usuario) {
-    //     const hashSenha = await bcrypt.hash(req.body.senha, usuario.salt)
-    //     if (hashSenha === usuario.senha){ 
-    //         console.log(`Usuário ${usuario.nome} autenticado com sucesso!`)
-    //         res.redirect('/')
-    //     }
-    // }
-    // res.render("pages/not_found") // Aqui exibir erro de autenticação!
 }
