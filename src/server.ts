@@ -18,6 +18,8 @@ const server = express()
     // SESSÃO
     server.use(session({
         secret: "SenhaSuperSecretaAlerTrem",
+        cookie: {maxAge: 60000},// Sessão expira em 1 minuto
+        //cookie: {maxAge: 3600000},// Sessão expira em 1 hora
         resave: true,
         saveUninitialized: true
     }))
@@ -60,8 +62,12 @@ const server = express()
         || (req.url.startsWith('/estacao'))
         && (req.method === 'GET') 
         && (req.xhr && req.headers['x-requested-with'] === 'XMLHttpRequest')){
-            next();
-        } else {
+            next()
+        }
+        else if (req.url.startsWith('/denunciar')){
+            next()
+        }
+        else {
             res.render('pages/not_found')
         }
     });
