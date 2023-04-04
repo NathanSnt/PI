@@ -22,4 +22,5 @@ router.get('/mapa', pagesController.mapa)
 
 router.get('/estacao', pagesController.estacao)
 
+router.get('/denunciar/:cod_comentario', userController.denunciar)
 export default router 

@@ -165,3 +165,12 @@ create table tb_funcionarios (
     data_hora datetime not null default now(),
     primary key(codigo)
 );
+
+create table tb_denuncias (
+    codigo int not null auto_increment,
+    cod_reclamacao int not null,
+    cod_usuario int not null,
+    foreign key (cod_reclamacao) references tb_reclamacoes(codigo),
+    foreign key (cod_usuario) references tb_usuarios(codigo),
+    primary key (codigo)
+)

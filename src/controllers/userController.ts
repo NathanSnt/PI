@@ -3,6 +3,7 @@ import { Usuario } from '../models/Usuario'
 import bcrypt from 'bcrypt'
 import upload from '../configs/configMulter'
 import passport from 'passport'
+import { Denuncia } from '../models/Denuncia'
 
 export const cadastro = ((req: Request, res: Response) => {
     res.render('pages/cadastro')
@@ -55,4 +56,46 @@ export const pesquisa_usuario = async (req:Request, res: Response, next: NextFun
         failureRedirect: '/login',
         failureFlash: true
     })(req, res, next)
+}
+
+export const denunciar = async(req: Request, res: Response) => {
+    if (req.isAuthenticated())
+    {
+        try {
+            const cod_comentario = req.params.cod_comentario
+            const denunciante = res.locals.user.codigo
+            console.log(`Usuário com código ${denunciante} está denunciar o comentário com código ${cod_comentario}`)
+    
+            const denuncias = await Denuncia.findAll({where: {cod_usuario: denunciante, cod_reclamacao: cod_comentario}})
+            if (denuncias.length > 10){
+                try {
+                    Denuncia.destroy({where: {codigo: cod_comentario}})
+                    console.log(`Comentário com código ${cod_comentario} deletado.`)
+                }
+                catch (error) {
+                    console.log("Erro ao tentar excluir comentário que atingiu limite de denúncias.")
+                }
+            }
+    
+            if (denuncias.length == 0){
+                const nova_denuncia = Denuncia.build({
+                    cod_reclamacao: cod_comentario,
+                    cod_usuario: denunciante
+                })
+                nova_denuncia.save()
+                console.log(`Comentário com código ${cod_comentario} denúnciado.`)
+            }
+            else {
+                // Toast
+                console.log(`Não é possível denúnciar o mesmo comentário mais de uma vez!`)
+            }
+        }
+        catch (error) {
+            console.log(`Erro ao arquivar denúncia:\n\n${error}`)
+        }
+    }
+    else {
+        req.flash("Erro", 'Você precisa estar logado para conseguir denunciar comentários.')
+        console.log("Usuário não autenticado tentando denúnciar um comentário.")
+    }
 }
