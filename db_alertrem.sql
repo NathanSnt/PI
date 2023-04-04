@@ -8,18 +8,10 @@ create table tb_usuarios (
 	senha varchar(256) not null,
 	email varchar(100) not null,
 	cpf char(14) not null,
-    foto_perfil blob,
+    foto_perfil varchar(100),
 	data_cadastro date not null,
 	primary key(codigo) 
 );
-
-insert into tb_usuarios values
-('Bruno José', '$2b$10$0SnT75mO/YByx.PxJuW8ku', '$2b$10$0SnT75mO/YByx.PxJuW8kum1cnxMHrc2FE8JA9/v1D9R/19ds3ebq', 'bruno.jose@mail.com', '111.111.111-11'),
-('João Lameiro', '$2b$10$O5f3QyjNR6ifod48Ih4Fr.', '$2b$10$O5f3QyjNR6ifod48Ih4Fr.5/z0FoMEvHNMPWjD6rwrnFtm1Q9QDLO', 'joao.lameiro@mail.com', '222.222.222-22'),
-('Leonardo Silva', '$2b$10$w9U/x7XVydy4RzVn1b2Zt.', '$2b$10$w9U/x7XVydy4RzVn1b2Zt.dAOumB5dyvMDB.4kPCqaop4EwIMQeVC', 'leonardo.silva@mail.com', '333.333.333-33'),
-('Gustavo Silva', '$2b$10$xFD0AUyAerdD3DP.F4cSOu', '$2b$10$xFD0AUyAerdD3DP.F4cSOuD0ntPeW05fIEC/GyLhCqFxMF6dZx54a', 'gustavo.silva@mail.com', '444.444.444-44'),
-('Gabriel Silva', '$2b$10$H6RrhnaGlNYxHTSeDecR9O', '$2b$10$H6RrhnaGlNYxHTSeDecR9O9mPsGZqOTC8ZCgdghRnoXtlVOEoU39i', 'gabriel.silva@mail.com', '555.555.555-55'),
-('Nathan Santos', '$2b$10$I5x1SWVst6OIFrRo.0vRN.', '$2b$10$I5x1SWVst6OIFrRo.0vRN.hj5NeZWFUiveK8j9mVPPqdNVIJ8saQS', 'nathan.santos@mail.com', '666.666.666-66');
 
 create table tb_estacoes (
     codigo int not null auto_increment,
@@ -146,16 +138,6 @@ create table tb_avaliacoes (
 	primary key(codigo)
 );
 
-create table tb_comentarios (
-    codigo int not null auto_increment,
-    data_hora datetime not null default now(),
-    comentario varchar(500) not null,
-    avaliacao int not null default 0,
-    cod_usuario int not null,
-    primary key (codigo),
-    foreign key (cod_usuario) references tb_usuarios(codigo)
-);
-
 create table tb_funcionarios (
     codigo int not null auto_increment,
     nome varchar(50) not null,
@@ -173,4 +155,4 @@ create table tb_denuncias (
     foreign key (cod_reclamacao) references tb_reclamacoes(codigo),
     foreign key (cod_usuario) references tb_usuarios(codigo),
     primary key (codigo)
-)
+);
