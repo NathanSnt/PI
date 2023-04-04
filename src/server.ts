@@ -18,8 +18,8 @@ const server = express()
     // SESSÃO
     server.use(session({
         secret: "SenhaSuperSecretaAlerTrem",
-        cookie: {maxAge: 60000},// Sessão expira em 1 minuto
-        //cookie: {maxAge: 3600000},// Sessão expira em 1 hora
+        // cookie: {maxAge: 60000},// Sessão expira em 1 minuto
+        cookie: {maxAge: 3600000},// Sessão expira em 1 hora
         resave: true,
         saveUninitialized: true
     }))
