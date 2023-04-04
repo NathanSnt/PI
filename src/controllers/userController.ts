@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt'
 import upload from '../configs/configMulter'
 import passport from 'passport'
 import { Denuncia } from '../models/Denuncia'
+import { Reclamacao } from '../models/Reclamacao'
 
 export const cadastro = ((req: Request, res: Response) => {
     res.render('pages/cadastro')
@@ -69,7 +70,8 @@ export const denunciar = async(req: Request, res: Response) => {
             const denuncias = await Denuncia.findAll({where: {cod_usuario: denunciante, cod_reclamacao: cod_comentario}})
             if (denuncias.length > 10){
                 try {
-                    Denuncia.destroy({where: {codigo: cod_comentario}})
+                    Denuncia.destroy({where: {cod_reclamacao: cod_comentario}, force: true})
+                    Reclamacao.destroy({where: {codigo: cod_comentario}, force: true})
                     console.log(`Comentário com código ${cod_comentario} deletado.`)
                 }
                 catch (error) {
@@ -84,18 +86,22 @@ export const denunciar = async(req: Request, res: Response) => {
                 })
                 nova_denuncia.save()
                 console.log(`Comentário com código ${cod_comentario} denúnciado.`)
+                res.redirect('/')
             }
             else {
                 // Toast
                 console.log(`Não é possível denúnciar o mesmo comentário mais de uma vez!`)
+                res.redirect('/')
             }
         }
         catch (error) {
             console.log(`Erro ao arquivar denúncia:\n\n${error}`)
+            res.redirect('/')
         }
     }
     else {
         req.flash("Erro", 'Você precisa estar logado para conseguir denunciar comentários.')
         console.log("Usuário não autenticado tentando denúnciar um comentário.")
+        res.redirect('/')
     }
 }

@@ -57,5 +57,7 @@ export const Reclamacao = sequelize.define<ReclamacaoInstance>("Reclamacao,", {
     }
 }, {
     tableName: "tb_reclamacoes",
-    timestamps: false
+    timestamps: false,
+    paranoid: true,
+    deletedAt: 'horarioDeletado'
 })
