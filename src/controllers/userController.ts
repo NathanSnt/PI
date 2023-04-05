@@ -65,34 +65,46 @@ export const denunciar = async(req: Request, res: Response) => {
         try {
             const cod_comentario = req.params.cod_comentario
             const denunciante = res.locals.user.codigo
-            console.log(`Usuário com código ${denunciante} está denunciar o comentário com código ${cod_comentario}`)
+            console.log(`Usuário com código ${denunciante} está tentando denunciar o comentário com código ${cod_comentario}`)
     
-            const denuncias = await Denuncia.findAll({where: {cod_usuario: denunciante, cod_reclamacao: cod_comentario}})
-            if (denuncias.length > 10){
-                try {
-                    Denuncia.destroy({where: {cod_reclamacao: cod_comentario}, force: true})
-                    Reclamacao.destroy({where: {codigo: cod_comentario}, force: true})
-                    console.log(`Comentário com código ${cod_comentario} deletado.`)
-                }
-                catch (error) {
-                    console.log("Erro ao tentar excluir comentário que atingiu limite de denúncias.")
-                }
-            }
-    
+            const denuncias = await Denuncia.findAll({where: {cod_reclamacao: cod_comentario}})
+            
+            // Impede um usuário de denúnciar o mesmo comentário mais de uma vez.
             if (denuncias.length == 0){
                 const nova_denuncia = Denuncia.build({
                     cod_reclamacao: cod_comentario,
                     cod_usuario: denunciante
                 })
-                nova_denuncia.save()
-                console.log(`Comentário com código ${cod_comentario} denúnciado.`)
-                res.redirect('/')
+                await nova_denuncia.save()
+                console.log(`Comentário com código ${cod_comentario} denúnciado. ${denuncias.length} denúncias.`)
             }
             else {
                 // Toast
                 console.log(`Não é possível denúnciar o mesmo comentário mais de uma vez!`)
                 res.redirect('/')
             }
+
+            // Quando o número de denúncias chaga à 10, o comentário é deletado.
+            if (denuncias.length >= 10){
+                try {
+                    await Denuncia.destroy({where: {cod_reclamacao: cod_comentario}, force: true}).then(() => {
+                        console.log('\n\nDenúncias deletadas')
+                    }).catch(() => {
+                        console.log('\n\nErro ao deletar denúncias')
+                    })
+                    await Reclamacao.destroy({where: {codigo: cod_comentario}, force: true}).then(() => {
+                        console.log("Reclamação deletada\n\n")
+                    }).catch(() => {
+                        console.log('Erro ao deletar reclamação\n\n')
+                    })
+                    console.log(`Comentário com código ${cod_comentario} deletado.`)
+                }
+                catch (error) {
+                    console.log("Erro ao tentar excluir comentário que atingiu limite de denúncias.\n\n\n\n")
+                    console.log(error)
+                }
+            }
+            res.redirect('/')
         }
         catch (error) {
             console.log(`Erro ao arquivar denúncia:\n\n${error}`)
