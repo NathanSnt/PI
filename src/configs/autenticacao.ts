@@ -11,8 +11,8 @@ export default (passport: any) => {
                 if (!usuario){
                     return done(null, false, {message: "Esta conta não existe!"})
                 }
-                const senhaBate = await bcrypt.compare(await bcrypt.hash(senha, usuario.salt), usuario.senha)
-                if (!senhaBate){
+                const hashSenha = await bcrypt.hash(senha,usuario.salt)
+                if (hashSenha === usuario.senha){
                     return done(null, usuario)
                 }
                 else {
