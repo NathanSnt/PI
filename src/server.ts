@@ -59,6 +59,7 @@ const server = express()
         || (req.url === '/cadastro')
         || (req.url === '/sobre')
         || (req.url === '/mapa')
+        || (req.url.startsWith('/usuario'))
         || (req.url.startsWith('/estacao'))
         && (req.method === 'GET') 
         && (req.xhr && req.headers['x-requested-with'] === 'XMLHttpRequest')){

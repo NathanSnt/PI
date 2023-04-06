@@ -1,5 +1,66 @@
 <link rel="stylesheet" href="css/home.css">
-{{>partials/header}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/header.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>AlerTrem</title>
+</head>
+<body>
+
+    <header>
+        <div id="lista">
+            <ul>
+                <li>
+                    <a href="/">
+                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="images/home2.png" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a onclick="mudarConteudo('mapa', '#conteudo', 'noticia')">
+                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="images/mapa2.png" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a onclick="mudarConteudo('sobre', '#conteudo', 'noticia')">
+                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="images/sobreNos2.png" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a onclick="mudarConteudo('reclamar', '#conteudo', 'noticia')">
+                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="images/reclamar2.png" alt="">
+                    </a>
+                </li>
+                {{#autenticado}}
+                <li>
+                    <a onclick="mudarConteudo('usuario/{{cod_usuario}}', '#conteudo', 'noticia')">
+                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="images/perfil.png" alt="">
+                    </a>
+                </li>
+                {{/autenticado}}
+                {{^autenticado}}
+                <li>
+                    <a onclick="mudarConteudo('login', '#conteudo', 'noticia')">
+                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="images/loginCadastro2.png" alt="">
+                    </a>
+                </li>
+                {{/autenticado}}
+            </ul>
+        </div>
+    
+        <div id="faixa-esmeralda"></div>
+    </header>
+
 
 
 <div class="content">
@@ -197,9 +258,8 @@
 
             {{#comentarios}}
             {{#comentarios.length}}
-
             <div id="comentario">
-                <img src="images/users/{{foto_perfil}}" alt="foto de perfil" id="foto-perfil">
+                <img src="images/users/{{foto_perfil}}" alt="foto de perfil" id="foto-perfil" onclick="mudarConteudo('usuario/{{cod_usuario}}', '#conteudo', 'noticia')">
                 <div id="caixa-comentario">
                     <div class="tags">
                         <div class="tag">{{tipo}}</div>

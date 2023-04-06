@@ -5,6 +5,8 @@ import { Usuario } from '../models/Usuario'
 
 export const home = async (req:Request, res:Response) => {
     try {
+        const autenticado = req.isAuthenticated()
+        const cod_usuario = autenticado? res.locals.user.codigo : null
         const comentarios = await Reclamacao.findAll({order: [['codigo', 'DESC']]})
         if (comentarios.length === 0){
             res.render('pages/home')
@@ -19,8 +21,8 @@ export const home = async (req:Request, res:Response) => {
                 const estacao = await Estacao.findOne({where: {codigo: comentario?.cod_estacao}}) 
 
                 const comentInfo = {
+                    cod_usuario: usuario?.codigo,
                     codigo: comentario.codigo,
-                    autenticado: req.isAuthenticated(),
                     descricao: comentario?.descricao,
                     usuario: usuario?.nome,
                     tempo: tempo,
@@ -34,6 +36,8 @@ export const home = async (req:Request, res:Response) => {
             }))
 
             res.render('pages/home', {
+                cod_usuario: cod_usuario,
+                autenticado,
                 comentarios: comentData
             })
         }
@@ -176,6 +180,28 @@ export async function estacao(req: Request, res: Response) {
         }
     } catch (error) {
         console.log(`Erro ao renderizar página sobre estação:\n${error}`)
+    }
+}
+
+export async function usuario(req: Request, res: Response) {
+    try {
+        const codigo = req.params.cod_usuario
+        console.log(`Buscando dados do usuário com código ${codigo}`)
+        const usuario = await Usuario.findOne({where: {codigo: codigo}})
+        const reclamacoes = await Reclamacao.findAll({where: {cod_usu: usuario?.codigo}})
+
+        try {
+            res.render('pages/usuario', {
+                reclamacoes,
+                usuario
+            })
+        }
+        catch (error) {
+            console.log(`Erro ao renderizer a página do usuário ${usuario?.nome}.\n\n${error}`)
+        }
+    }
+    catch (error) {
+        console.log(`Erro ao buscar dados do usuario.\n\n${error}`)
     }
 }
 
