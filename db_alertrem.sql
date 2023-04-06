@@ -1,4 +1,4 @@
-create database if not exists db_alertrem;
+create database db_alertrem;
 use db_alertrem;
 
 create table tb_usuarios (
@@ -17,96 +17,56 @@ create table tb_estacoes (
     codigo int not null auto_increment,
     nome varchar(50) not null,
     localizacao varchar(150) not null,
-    banheiro varchar(50), -- Cada característica pode ter entre 4 valores (null, 'funcionando', 'em manutenção', 'quebrado')
-    elevador varchar(50),
-    terminal_interurbano varchar(50),
-    terminal_urbano varchar(50),
-    transferencia_interna varchar(50),
-    bicicletario varchar(50),
-    banheiro_acessivel varchar(50),
-    estacao_acessivel varchar(50),
-    rampa varchar(50),
-    transposicao_plataformas varchar(50),
-    escadas_rolantes varchar(50),
-    acesso_elevador varchar(50),
-    lanchonete varchar(50),
-    emporio varchar(50),
-    caixa_eletronico varchar(50),
-    calcados varchar(50),
-    telefone_p_surdos varchar(50),
-    piso_tatil varchar(50),
-    transferencia_gratuita varchar(50),
-    acessorios varchar(50),
-    farmacia varchar(50),
-    rota_acessivel varchar(50),
-    achados_perdidos varchar(50),
 
     primary key (codigo)
 );
 
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, elevador, terminal_interurbano, terminal_urbano, transferencia_interna, bicicletario, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes, acesso_elevador, lanchonete, emporio, caixa_eletronico, calcados) values
-('osasco', 'Praça Antonio Menck, s/nº (Centro)/ Rua Erasmo Braga, s/nº (Bonfim) – Osasco 06093-090', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, elevador, transferencia_interna, estacao_acessivel, rampa, transposicao_plataformas, telefone_p_surdos, acesso_elevador) values
-('presidente altino', 'Rua Abílio Mendes, 08 - Presidente Altino - Osasco', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, bicicletario, piso_tatil, estacao_acessivel, transposicao_plataformas, telefone_p_surdos, acesso_elevador) values
-('ceasa', 'Avenida das Nações Unidas, 1.390 - Vila Leopoldina - São Paulo 05311-000 ', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, bicicletario, piso_tatil, estacao_acessivel, transposicao_plataformas, telefone_p_surdos, acesso_elevador, lanchonete) values
-('vila lobos jaguare', 'Avenida das Nações Unidas, 2.100 - Jaguaré - São Paulo 05477-000 ', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, bicicletario, piso_tatil, estacao_acessivel, transposicao_plataformas, acesso_elevador, lanchonete) values
-('cidade universitaria', 'Avenida das Nações Unidas, 6.202 - Jardim Universidade Pinheiros - São Paulo 05477-000 ', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, terminal_interurbano, terminal_urbano, transferencia_gratuita, bicicletario, piso_tatil, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes, acesso_elevador, lanchonete, emporio, acessorios, caixa_eletronico, farmacia) values
-('pinheiros', 'Rua Capri, 145 - Pinheiros - São Paulo 05477-000 ', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, piso_tatil, estacao_acessivel, transposicao_plataformas, telefone_p_surdos, escadas_rolantes, acesso_elevador) values
-('hebraica reboucas', 'Rua Ofélia, 255 - Pinheiros - São Paulo 05423-110', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, piso_tatil, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes) values
-('cidade jardim', 'Rua Prof. Artur Ramos, 787 (Jardim Paulistano) / Rua Hungria, s/nº (Jardim Europa) – São Paulo 05477-000', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, bicicletario, piso_tatil, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes, acesso_elevador) values
-('vila olimpia', 'Avenida das Nações Unidas, 10.900 (Brooklin Paulista) / Rua Beira Rio, s/nº (Vila Olímpia) – São Paulo 04578-000', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, terminal_urbano, transferencia_interna, piso_tatil, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes, acesso_elevador) values
-('berrini', 'Berrini Rua Guilherme Barbosa de Melo, nº 117 / Rua Joel Carlos Borges, 179 – Cidade Monções – São Paulo 04578-000', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, transferencia_gratuita, piso_tatil, estacao_acessivel, transposicao_plataformas, escadas_rolantes, acesso_elevador) values
-('morumbi', 'Avenida das Nações Unidas, 14.171 - Vila Gertrudes - São Paulo 04578-000', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, piso_tatil, estacao_acessivel, transposicao_plataformas, escadas_rolantes, acesso_elevador) values
-('granja julieta', 'Rua Alexandre Dumas, 4.403 - Chácara Santo Antonio - São Paulo 04717-004 ', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, elevador, bicicletario, piso_tatil, rampa, escadas_rolantes, rota_acessivel, acesso_elevador) values
-('joao dias', 'Avenida das Nações Unidas, 18667 - Santo Amaro - 04730-90', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, transferencia_gratuita, piso_tatil, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes, acesso_elevador, farmacia) values
-('santo amaro', 'Avenida das Nações Unidas, s/nº - Jardim Promissão - São Paulo 04795-100 ', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, piso_tatil, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes, acesso_elevador, lanchonete) values
-('socorro', 'Av. das Nações Unidas, s/nº (Jurubatuba)/ Rua Florenville s/nº (Santo Amaro) – São Paulo 04696-010', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, terminal_urbano, bicicletario, estacao_acessivel, rampa, transposicao_plataformas, acesso_elevador) values
-('jurubatuba', 'Av. Octales M. Ferreira, 391 - Jurubatuba - São Paulo 04696-010', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, bicicletario, piso_tatil, estacao_acessivel, rampa, transposicao_plataformas, escadas_rolantes, acesso_elevador) values
-('autodromo', 'Rua Plínio Schmidt, nº 307 - Jardim Marcel -São Paulo 4815130 ', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, bicicletario, piso_tatil, estacao_acessivel, transposicao_plataformas, escadas_rolantes, acesso_elevador, emporio) values
-('primavera interlagos', 'Rua Jequirituba, 83 (Jardim Colonial)/ Rua Alexandre Gandini, 71( Parque Santana) - São Paulo 04822-000 ', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, terminal_urbano, bicicletario, piso_tatil, estacao_acessivel, transposicao_plataformas, escadas_rolantes, acesso_elevador, lanchonete, emporio, acessorios, farmacia, calcados) values
-('grajau', 'Rua Giovanni Bononcini, 77 - Parque Brasil - São Paulo 04822-000 ', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
-insert into tb_estacoes (nome, localizacao, banheiro, banheiro_acessivel, elevador, achados_perdidos, bicicletario, piso_tatil, rampa, escadas_rolantes, rota_acessivel, acesso_elevador) values
-('mendes vila natal', 'Estrada dos Mendes, s/n - Jardim Icarai – Grajaú - 04860-140', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando', 'funcionando');
-
 insert into tb_estacoes (nome, localizacao) values
+('osasco', 'Praça Antonio Menck, s/nº (Centro)/ Rua Erasmo Braga, s/nº (Bonfim) – Osasco 06093-090'),
+('presidente altino', 'Rua Abílio Mendes, 08 - Presidente Altino - Osasco'),
+('ceasa', 'Avenida das Nações Unidas, 1.390 - Vila Leopoldina - São Paulo 05311-000 '),
+('vila lobos jaguare', 'Avenida das Nações Unidas, 2.100 - Jaguaré - São Paulo 05477-000 '),
+('cidade universitaria', 'Avenida das Nações Unidas, 6.202 - Jardim Universidade Pinheiros - São Paulo 05477-000 '),
+('pinheiros', 'Rua Capri, 145 - Pinheiros - São Paulo 05477-000 '),
+('hebraica reboucas', 'Rua Ofélia, 255 - Pinheiros - São Paulo 05423-110'),
+('cidade jardim', 'Rua Prof. Artur Ramos, 787 (Jardim Paulistano) / Rua Hungria, s/nº (Jardim Europa) – São Paulo 05477-000'),
+('vila olimpia', 'Avenida das Nações Unidas, 10.900 (Brooklin Paulista) / Rua Beira Rio, s/nº (Vila Olímpia) – São Paulo 04578-000'),
+('berrini', 'Berrini Rua Guilherme Barbosa de Melo, nº 117 / Rua Joel Carlos Borges, 179 – Cidade Monções – São Paulo 04578-000'),
+('morumbi', 'Avenida das Nações Unidas, 14.171 - Vila Gertrudes - São Paulo 04578-000'),
+('granja julieta', 'Rua Alexandre Dumas, 4.403 - Chácara Santo Antonio - São Paulo 04717-004 '),
+('joao dias', 'Avenida das Nações Unidas, 18667 - Santo Amaro - 04730-90'),
+('santo amaro', 'Avenida das Nações Unidas, s/nº - Jardim Promissão - São Paulo 04795-100 '),
+('socorro', 'Av. das Nações Unidas, s/nº (Jurubatuba)/ Rua Florenville s/nº (Santo Amaro) – São Paulo 04696-010'),
+('jurubatuba', 'Av. Octales M. Ferreira, 391 - Jurubatuba - São Paulo 04696-010'),
+('autodromo', 'Rua Plínio Schmidt, nº 307 - Jardim Marcel -São Paulo 4815130 '),
+('primavera interlagos', 'Rua Jequirituba, 83 (Jardim Colonial)/ Rua Alexandre Gandini, 71( Parque Santana) - São Paulo 04822-000 '),
+('grajau', 'Rua Giovanni Bononcini, 77 - Parque Brasil - São Paulo 04822-000 '),
+('mendes vila natal', 'Estrada dos Mendes, s/n - Jardim Icarai – Grajaú - 04860-140'),
 ('varginha', 'Sem endereço ainda');
 
+create table tb_valores (
+    codigo int not null auto_increment,
+    valor varchar(50) not null,
+
+    primary key (codigo)
+);
+
+insert into tb_valores (valor) values
+("Não Tem"),
+("Funcionando"),
+("Quebrado"),
+("Manuteção");
+
+create table tb_caracteristicas(
+    codigo int not null auto_increment,
+    tipo varchar(100) not null,
+    cod_valor int not null,
+    cod_estacao int not null,
+
+    primary key (codigo),
+    foreign key (cod_valor) references tb_valores (codigo),
+    foreign key (cod_estacao) references tb_estacoes (codigo)
+);
 
 create table tb_reclamacoes (
 	codigo int not null auto_increment,
@@ -118,6 +78,7 @@ create table tb_reclamacoes (
 	cod_usu int,
 	cod_estacao int,
     movimentacao int,
+
 	foreign key(cod_usu)references tb_usuarios(codigo),
 	foreign key(cod_estacao)references tb_estacoes(codigo),
 	primary key(codigo)
@@ -127,6 +88,7 @@ create table tb_status (
 	codigo int not null auto_increment,
 	descricao varchar(100) not null,
 	data_hora datetime not null default now(),
+
 	primary key(codigo)
 );
 
@@ -134,6 +96,7 @@ create table tb_avaliacoes (
 	codigo int not null auto_increment,
 	avaliacao int not null,
 	cod_usu int not null,
+
 	foreign key(cod_usu)references tb_usuarios(codigo),
 	primary key(codigo)
 );
@@ -145,6 +108,7 @@ create table tb_funcionarios (
     salt varchar(60) not null,
 	senha varchar(256) not null,
     data_hora datetime not null default now(),
+
     primary key(codigo)
 );
 
@@ -152,6 +116,7 @@ create table tb_denuncias (
     codigo int not null auto_increment,
     cod_reclamacao int not null,
     cod_usuario int not null,
+
     foreign key (cod_reclamacao) references tb_reclamacoes(codigo),
     foreign key (cod_usuario) references tb_usuarios(codigo),
     primary key (codigo)
