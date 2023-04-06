@@ -68,24 +68,29 @@ export const denunciar = async(req: Request, res: Response) => {
             console.log(`Usuário com código ${denunciante} está tentando denunciar o comentário com código ${cod_comentario}`)
     
             const denuncias = await Denuncia.findAll({where: {cod_reclamacao: cod_comentario}})
+            const denunciaUsuario = await Denuncia.findAll({where: {cod_reclamacao: cod_comentario, cod_usuario: denunciante}})
             
             // Impede um usuário de denúnciar o mesmo comentário mais de uma vez.
-            if (denuncias.length == 0){
-                const nova_denuncia = Denuncia.build({
-                    cod_reclamacao: cod_comentario,
-                    cod_usuario: denunciante
-                })
-                await nova_denuncia.save()
-                console.log(`Comentário com código ${cod_comentario} denúnciado. ${denuncias.length} denúncias.`)
+            if (denunciaUsuario.length == 0){
+                try {
+                    const nova_denuncia = Denuncia.build({
+                        cod_reclamacao: cod_comentario,
+                        cod_usuario: denunciante
+                    })
+                    await nova_denuncia.save()
+                }
+                catch (error){
+                    console.log(`Erro ao arquivar denúncia!\n\n${error}`)
+                }
+                console.log(`Comentário com código ${cod_comentario} denúnciado. ${denuncias.length+1} denúncias.`)
             }
             else {
                 // Toast
                 console.log(`Não é possível denúnciar o mesmo comentário mais de uma vez!`)
-                res.redirect('/')
             }
 
             // Quando o número de denúncias chaga à 10, o comentário é deletado.
-            if (denuncias.length >= 10){
+            if (denuncias.length >= 9){
                 try {
                     await Denuncia.destroy({where: {cod_reclamacao: cod_comentario}, force: true}).then(() => {
                         console.log('\n\nDenúncias deletadas')
@@ -108,7 +113,6 @@ export const denunciar = async(req: Request, res: Response) => {
         }
         catch (error) {
             console.log(`Erro ao arquivar denúncia:\n\n${error}`)
-            res.redirect('/')
         }
     }
     else {
