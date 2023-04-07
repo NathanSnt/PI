@@ -121,3 +121,4 @@ create table tb_denuncias (
     foreign key (cod_usuario) references tb_usuarios(codigo),
     primary key (codigo)
 );
+-- TESTE
