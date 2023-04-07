@@ -10,6 +10,7 @@ create table tb_usuarios (
 	cpf char(14) not null,
     foto_perfil varchar(100),
 	data_cadastro date not null,
+
 	primary key(codigo) 
 );
 
@@ -44,14 +45,14 @@ insert into tb_estacoes (nome, localizacao) values
 ('mendes vila natal', 'Estrada dos Mendes, s/n - Jardim Icarai – Grajaú - 04860-140'),
 ('varginha', 'Sem endereço ainda');
 
-create table tb_valores (
+create table tb_estados_operacionais (
     codigo int not null auto_increment,
-    valor varchar(50) not null,
+    estado varchar(50) not null,
 
     primary key (codigo)
 );
 
-insert into tb_valores (valor) values
+insert into tb_estados_operacionais (estado) values
 ("Não Tem"),
 ("Funcionando"),
 ("Quebrado"),
@@ -60,11 +61,11 @@ insert into tb_valores (valor) values
 create table tb_caracteristicas(
     codigo int not null auto_increment,
     tipo varchar(100) not null,
-    cod_valor int not null,
+    cod_estado int not null,
     cod_estacao int not null,
 
     primary key (codigo),
-    foreign key (cod_valor) references tb_valores (codigo),
+    foreign key (cod_estado) references tb_estados_operacionais (codigo),
     foreign key (cod_estacao) references tb_estacoes (codigo)
 );
 
@@ -81,23 +82,6 @@ create table tb_reclamacoes (
 
 	foreign key(cod_usu)references tb_usuarios(codigo),
 	foreign key(cod_estacao)references tb_estacoes(codigo),
-	primary key(codigo)
-);
-
-create table tb_status (
-	codigo int not null auto_increment,
-	descricao varchar(100) not null,
-	data_hora datetime not null default now(),
-
-	primary key(codigo)
-);
-
-create table tb_avaliacoes (
-	codigo int not null auto_increment,
-	avaliacao int not null,
-	cod_usu int not null,
-
-	foreign key(cod_usu)references tb_usuarios(codigo),
 	primary key(codigo)
 );
 
@@ -121,3 +105,4 @@ create table tb_denuncias (
     foreign key (cod_usuario) references tb_usuarios(codigo),
     primary key (codigo)
 );
+-- TESTE
