@@ -8,7 +8,7 @@ export interface UsuarioInstance extends Model{
     senha:string
     email:string
     cpf:string
-    foto_perfil: Blob
+    foto_perfil: String
     data_cadastro:Date
 }
 
@@ -41,7 +41,7 @@ export const Usuario = sequelize.define<UsuarioInstance>("Usuario,",{
         allowNull: false
     },
     foto_perfil: {
-        type: DataTypes.BLOB
+        type: DataTypes.STRING
     },
     data_cadastro: {
         type:DataTypes.DATE,
