@@ -51,6 +51,13 @@ export const login = ((req: Request, res: Response) => {
     res.render('pages/login')
 })
 
+export const logout = ((req: Request, res: Response) => {
+    req.session.destroy((error) => {
+        console.log("Usuário fez logout.")
+        res.redirect('/')
+    });
+})
+
 export const pesquisa_usuario = async (req:Request, res: Response, next: NextFunction) => {
     passport.authenticate('local', {
         successRedirect: '/',

@@ -13,6 +13,8 @@ router.post('/cadastro', userController.cadastrar_usuario)
 router.get('/login', userController.login)
 router.post('/login', userController.pesquisa_usuario)
 
+router.get('/logout', userController.logout)
+
 router.get('/sobre', pagesController.sobre)
 
 router.get('/reclamar', pagesController.reclamar)
