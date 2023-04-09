@@ -2,6 +2,7 @@ import {Router, Request, Response} from 'express'
 import { Estacao } from '../models/Estacao'
 import { Reclamacao } from '../models/Reclamacao'
 import { Usuario } from '../models/Usuario'
+import { Caracteristica } from '../models/Caracteristica'
 
 export const home = async (req:Request, res:Response) => {
     try {
@@ -146,10 +147,31 @@ export async function estacao(req: Request, res: Response) {
 
     try {
         const estacao = await Estacao.findOne({ where: { nome: nome_estacao } });
-      
+        const caracteristica = await Caracteristica.findAll({where: {cod_estacao: estacao?.codigo}})
+        let caracteristicas = {}
+        caracteristica.forEach(element => {
+
+            let tipo = `${element?.tipo}`
+            let valor
+            if (element.cod_estado == 1) {valor = "Não Tem"}
+            else if (element.cod_estado == 2) {valor = "Funcionando"}
+            else if (element.cod_estado == 3) {valor = "Quebrado"}
+            else {valor = "Em Manutenção"}
+
+            Object.defineProperty(caracteristicas, tipo, {
+                value: valor,
+                writable: true,
+                enumerable: true,
+                configurable: true
+            })
+        })
+
+        console.log(caracteristicas)
+
         const comentarios = await Reclamacao.findAll({ where: { cod_estacao: estacao?.codigo }, order: [['codigo', 'DESC']] });
         if (comentarios.length === 0){
             res.render('pages/estacao', {
+                caracteristicas,
                 estacao
             })
         }
@@ -174,6 +196,7 @@ export async function estacao(req: Request, res: Response) {
             else {
                 res.render('pages/estacao', {
                     estacao,
+                    caracteristicas: caracteristicas,
                     comentarios: comentData
                 })
             }
