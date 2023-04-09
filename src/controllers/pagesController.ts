@@ -208,6 +208,10 @@ export async function estacao(req: Request, res: Response) {
 
 export async function usuario(req: Request, res: Response) {
     try {
+        let visitante = null
+        if (req.isAuthenticated()){
+            visitante = res.locals.user.codigo
+        }
         const codigo = req.params.cod_usuario
         console.log(`Buscando dados do usuário com código ${codigo}`)
         const usuario = await Usuario.findOne({where: {codigo: codigo}})
@@ -215,6 +219,7 @@ export async function usuario(req: Request, res: Response) {
 
         try {
             res.render('pages/usuario', {
+                perfil: visitante == codigo,
                 reclamacoes,
                 usuario
             })
