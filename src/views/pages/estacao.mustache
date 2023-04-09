@@ -19,97 +19,170 @@
         </div>
 
         <div id="caracteristicas">
-            {{#estacao.banheiro}}
-            <img src="images/banheiro.png" alt="">
-            {{/estacao.banheiro}}
+            {{#caracteristicas}}
 
-            {{#estacao.elevador}}
-            <img src="images/elevador.png" alt="">
-            {{/estacao.elevador}}
+            {{#caracteristicas.Banheiro}}
+            <div class="caracteristica">
+                <img src="images/banheiro.png" title="Banheiro">
+                <p>{{caracteristicas.Banheiro}}</p>
+            </div>
+            {{/caracteristicas.Banheiro}}
 
-            {{#estacao.terminal_interurbano}}
-            <img src="images/terminal-interurbano-de-onibus.png" alt="">
-            {{/estacao.terminal_interurbano}}
+            {{#caracteristicas.Elevador}}
+            <div class="caracteristica">
+                <img src="images/elevador.png" title="Elevador">
+                <p>{{caracteristicas.Elevador}}</p>
+            </div>
+            {{/caracteristicas.Elevador}}
 
-            {{#estacao.terminal_urbano}}
-            <img src="images/terminal-urbano-de-onibus.png" alt="">
-            {{/estacao.terminal_urbano}}
+            {{#caracteristicas.Terminal_Interurbano_de_Onibus}}
+            <div class="caracteristica">
+                <img src="images/terminal-interurbano-de-onibus.png" title="Terminal Interurbano de Ônibus">
+                <p>{{caracteristicas.Terminal_Interurbano_de_Onibus}}</p>
+            </div>
+            {{/caracteristicas.Terminal_Interurbano_de_Onibus}}
 
-            {{#estacao.transferencia_interna}}
-            <img src="images/transferencia-interna-gratuita.png" alt="">
-            {{/estacao.transferencia_interna}}
+            {{#caracteristicas.Terminal_Urbano_de_Onibus}}
+            <div class="caracteristica">
+                <img src="images/terminal-urbano-de-onibus.png" title="Terminal Urbano de Ônibus">
+                <p>{{caracteristicas.Terminal_Urbano_de_Onibus}}</p>
+            </div>
+            {{/caracteristicas.Terminal_Urbano_de_Onibus}}
 
-            {{#estacao.bicicletario}}
-            <img src="images/bicicletario.png" alt="">
-            {{/estacao.bicicletario}}
+            {{#caracteristicas.Transferencia_interna_gratuita}}
+            <div class="caracteristica">
+                <img src="images/transferencia-interna-gratuita.png" title="Transferência interna gratuita">
+                <p>{{caracteristicas.Transferencia_interna_gratuita}}</p>
+            </div>
+            {{/caracteristicas.Transferencia_interna_gratuita}}
 
-            {{#estacao.banheiro_acessivel}}
-            <img src="images/banheiro-acessivel.png" alt="">
-            {{/estacao.banheiro_acessivel}}
+            {{#caracteristicas.Bicicletario}}
+            <div class="caracteristica">
+                <img src="images/bicicletario.png" title="Bicicletário">
+                <p>{{caracteristicas.Bicicletario}}</p>
+            </div>
+            {{/caracteristicas.Bicicletario}}
 
-            {{#estacao.estacao_acessivel}}
-            <img src="images/estacao-acessivel.png" alt="">
-            {{/estacao.estacao_acessivel}}
+            {{#caracteristicas.Banheiro_Acessivel}}
+            <div class="caracteristica">
+                <img src="images/banheiro-acessivel.png" title="Banheiro Acessível">
+                <p>{{caracteristicas.Banheiro_Acessivel}}</p>
+            </div>
+            {{/caracteristicas.Banheiro_Acessivel}}
 
-            {{#estacao.rampa}}
-            <img src="images/rampa.png" alt="">
-            {{/estacao.rampa}}
+            {{#caracteristicas.Estacao_Acessivel}}
+            <div class="caracteristica">
+                <img src="images/estacao-acessivel.png" title="Estação Acessível">
+                <p>{{caracteristicas.Estacao_Acessivel}}</p>
+            </div>
+            {{/caracteristicas.Estacao_Acessivel}}
 
-            {{#estacao.transposicao_plataformas}}
-            <img src="images/transposicao-de-plataformas.png" alt="">
-            {{/estacao.transposicao_plataformas}}
+            {{#caracteristicas.Rampa}}
+            <div class="caracteristica">
+                <img src="images/rampa.png" title="Rampa">
+                <p>{{caracteristicas.Rampa}}</p>
+            </div>
+            {{/caracteristicas.Rampa}}
 
-            {{#estacao.escadas_rolantes}}
-            <img src="images/escadas-rolantes.png" alt="">
-            {{/estacao.escadas_rolantes}}
+            {{#caracteristicas.Transposicao_de_Plataformas}}
+            <div class="caracteristica">
+                <img src="images/transposicao-de-plataformas.png" title="Transposição entre plataformas">
+                <p>{{caracteristicas.Transposicao_de_Plataformas}}</p>
+            </div>
+            {{/caracteristicas.Transposicao_de_Plataformas}}
 
-            {{#estacao.acesso_elevador}}
-            <img src="images/acesso-elevador.png" alt="">
-            {{/estacao.acesso_elevador}}
+            {{#caracteristicas.Escadas_rolantes}}
+            <div class="caracteristica">
+                <img src="images/escadas-rolantes.png" title="Escadas rolantes">
+                <p>{{caracteristicas.Escadas_rolantes}}</p>
+            </div>
+            {{/caracteristicas.Escadas_rolantes}}
 
-            {{#estacao.lanchonete}}
-            <img src="images/lanchonete.png" alt="">
-            {{/estacao.lanchonete}}
+            {{#caracteristicas.Acesso_elevador}}
+            <div class="caracteristica">
+                <img src="images/acesso-elevador.png" title="Elevador Acessível">
+                <p>{{caracteristicas.Acesso_elevador}}</p>
+            </div>
+            {{/caracteristicas.Acesso_elevador}}
 
-            {{#estacao.emporio}}
-            <img src="images/emporio.png" alt="">
-            {{/estacao.emporio}}
+            {{#caracteristicas.Lanchonete}}
+            <div class="caracteristica">
+                <img src="images/lanchonete.png" title="Lanchonete">
+                <p>{{caracteristicas.Lanchonete}}</p>
+            </div>
+            {{/caracteristicas.Lanchonete}}
 
-            {{#estacao.caixa_eletronico}}
-            <img src="images/caixa-eletronico.png" alt="">
-            {{/estacao.caixa_eletronico}}
+            {{#caracteristicas.Emporio}}
+            <div class="caracteristica">
+                <img src="images/emporio.png" title="Empório">
+                <p>{{caracteristicas.Emporio}}</p>
+            </div>
+            {{/caracteristicas.Emporio}}
 
-            {{#estacao.calcados}}
-            <img src="images/calcados.png" alt="">
-            {{/estacao.calcados}}
+            {{#caracteristicas.Caixa_eletronico}}
+            <div class="caracteristica">
+                <img src="images/caixa-eletronico.png" title="Caixa Eletrônico">
+                <p>{{caracteristicas.Caixa_eletronico}}</p>
+            </div>
+            {{/caracteristicas.Caixa_eletronico}}
 
-            {{#estacao.telefone_p_surdos}}
-            <img src="images/telefone-para-surdos.png" alt="">
-            {{/estacao.telefone_p_surdos}}
+            {{#caracteristicas.Calcados}}
+            <div class="caracteristica">
+                <img src="images/calcados.png" title="Calçados">
+                <p>{{caracteristicas.Calcados}}</p>
+            </div>
+            {{/caracteristicas.Calcados}}
 
-            {{#estacao.piso_tatil}}
-            <img src="images/piso-tatil.png" alt="">
-            {{/estacao.piso_tatil}}
+            {{#caracteristicas.Telefone_para_surdos}}
+            <div class="caracteristica">
+                <img src="images/telefone-para-surdos.png" title="Telefone para surdos">
+                <p>{{caracteristicas.Telefone_para_surdos}}</p>
+            </div>
+            {{/caracteristicas.Telefone_para_surdos}}
 
-            {{#estacao.tranferencia_gratuita}}
-            <img src="images/tranferencia-gratuita-cptm-metro.png" alt="">
-            {{/estacao.tranferencia_gratuita}}
+            {{#caracteristicas.Piso_Tatil}}
+            <div class="caracteristica">
+                <img src="images/piso-tatil.png" title="Piso Tátil">
+                <p>{{caracteristicas.Piso_Tatil}}</p>
+            </div>
+            {{/caracteristicas.Piso_Tatil}}
 
-            {{#estacao.acessorios}}
-            <img src="images/acessorios.png" alt="">
-            {{/estacao.acessorios}}
+            {{#caracteristicas.Transferencia_gratuita_cptm_metro}}
+            <div class="caracteristica">
+                <img src="images/tranferencia-gratuita-cptm-metro.png" title="Transferência gratuita entre CPTM e METRÔ">
+                <p>{{caracteristicas.Transferencia_gratuita_cptm_metro}}</p>
+            </div>
+            {{/caracteristicas.Transferencia_gratuita_cptm_metro}}
 
-            {{#estacao.farmacia}}
-            <img src="images/farmacia.png" alt="">
-            {{/estacao.farmacia}}
+            {{#caracteristicas.Acessorios}}
+            <div class="caracteristica">
+                <img src="images/acessorios.png" title="Acessórios">
+                <p>{{caracteristicas.Acessorios}}</p>
+            </div>
+            {{/caracteristicas.Acessorios}}
 
-            {{#estacao.rota_acessivel}}
-            <img src="images/rota-acessivel.png" alt="">
-            {{/estacao.rota_acessivel}}
+            {{#caracteristicas.Farmacia}}
+            <div class="caracteristica">
+                <img src="images/farmacia.png" title="Farmácia">
+                <p>{{caracteristicas.Farmacia}}</p>
+            </div>
+            {{/caracteristicas.Farmacia}}
 
-            {{#estacao.achados_perdidos}}
-            <img src="images/achados-e-perdidos.png" alt="">
-            {{/estacao.achados_perdidos}}
+            {{#caracteristicas.Rota_acessivel}}
+            <div class="caracteristica">
+                <img src="images/rota-acessivel.png" title="Rota Acessível">
+                <p>{{caracteristicas.Rota_acessivel}}</p>
+            </div>
+            {{/caracteristicas.Rota_acessivel}}
+
+            {{#caracteristicas.Achados_e_perdidos}}
+            <div class="caracteristica">
+                <img src="images/achados-e-perdidos.png" title="Achados e Perdidos">
+                <p>{{caracteristicas.Achados_e_perdidos}}</p>
+            </div>
+            {{/caracteristicas.Achados_e_perdidos}}
+            
+            {{/caracteristicas}}
         </div>
 
         {{#comentarios}}

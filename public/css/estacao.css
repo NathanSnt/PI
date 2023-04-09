@@ -95,13 +95,20 @@
 #caracteristicas {
     display: flex;
     flex-wrap: wrap;
-    margin: 5% 0px;
 }
 
 #caracteristicas img{
-    width: 10%;
+    width: 100%;
     height: auto;
     margin: 2.5%;
+}
+.caracteristica {
+    border: solid black 1px;
+    border-radius: 15px;
+    width: 15%;
+    padding: 2.5%;
+    margin: 1%;
+    text-align: center;
 }
 
 @media screen and (max-width: 1440px) {
