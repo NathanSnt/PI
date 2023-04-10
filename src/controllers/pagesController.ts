@@ -3,6 +3,7 @@ import { Estacao } from '../models/Estacao'
 import { Reclamacao } from '../models/Reclamacao'
 import { Usuario } from '../models/Usuario'
 import { Caracteristica } from '../models/Caracteristica'
+import { Status } from '../models/Status'
 
 export const home = async (req:Request, res:Response) => {
     try {
@@ -68,14 +69,17 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
         switch (tipo) {
             case '1': 
                 try{
+                    const novo_status = Status.build({
+                        status_movimentacao: movimentacao
+                    })
                     const nova_reclamacao = Reclamacao.build({
                         data_hora: hora_atual,
                         tipo: tipo,
                         descricao: descricao,
                         motivo: motivo,
-                        movimentacao: movimentacao,
                         cod_usu: usuario
                     })
+                    await novo_status.save()
                     await nova_reclamacao.save()
                 }
                 catch (error){
@@ -90,16 +94,28 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                     const estacao = await Estacao.findOne({where: {nome: req.body.nomeEstacao}})
                     if  (estacao !== null){
                         const codigo_estacao = estacao.codigo
+                        const novo_status = Status.build({
+                            status_movimentacao: movimentacao,
+                            cod_estacao: codigo_estacao
+                        })
                         const nova_reclamacao = Reclamacao.build({
                             data_hora: hora_atual,
                             tipo: tipo,
                             descricao: descricao,
                             motivo: motivo,
                             cod_estacao: codigo_estacao,
-                            movimentacao: movimentacao,
                             cod_usu: usuario
                         })
-                        await nova_reclamacao.save()
+                        await novo_status.save().then( () => {
+                            console.log("Status salvo com sucesso!")
+                        }).catch((erro) => {
+                            console.log(`Erro ao salvar status\n${erro}\n`)
+                        })
+                        await nova_reclamacao.save().then( () => {
+                            console.log("Reclamação salva com sucesso!")
+                        }).catch(() => {
+                            console.log("Erro ao salvar reclamação")
+                        })
                     }
                 }
                 catch (error) {

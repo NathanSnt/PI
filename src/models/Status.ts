@@ -28,12 +28,12 @@ export const Status = sequelize.define<StatusInstance>('Status,', {
         }
     },
     data_hora: {
-        type: DataTypes.DATE,
-        allowNull: false
+        type: DataTypes.DATE
     },
     expiracao: {
         type: DataTypes.DATE
     }
 }, {
-    tableName: 'tb_status'
+    tableName: 'tb_status',
+    timestamps: false
 })
