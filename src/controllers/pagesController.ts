@@ -3,15 +3,23 @@ import { Estacao } from '../models/Estacao'
 import { Reclamacao } from '../models/Reclamacao'
 import { Usuario } from '../models/Usuario'
 import { Caracteristica } from '../models/Caracteristica'
-import { Status } from '../models/Status'
+import { Status, StatusInstance } from '../models/Status'
+import { Op } from 'sequelize'
+
 
 export const home = async (req:Request, res:Response) => {
     try {
         const autenticado = req.isAuthenticated()
         const cod_usuario = autenticado? res.locals.user.codigo : null
         const comentarios = await Reclamacao.findAll({order: [['codigo', 'DESC']]})
+
+        const status_estacao = await Status.findAll({where: {cod_estacao: null, expiracao: {[Op.gt]: new Date()} }})
+        const status = calculaStatus(status_estacao, false)
+
         if (comentarios.length === 0){
-            res.render('pages/home')
+            res.render('pages/home', {
+                status
+            })
         }
         else {
             const comentData = await Promise.all(comentarios.map(async (comentario) => { 
@@ -38,6 +46,7 @@ export const home = async (req:Request, res:Response) => {
             }))
 
             res.render('pages/home', {
+                status,
                 cod_usuario: cod_usuario,
                 autenticado,
                 comentarios: comentData
@@ -181,12 +190,15 @@ export async function estacao(req: Request, res: Response) {
                 configurable: true
             })
         })
-
         console.log(caracteristicas)
 
+        const status_estacao = await Status.findAll({where: {cod_estacao: estacao?.codigo, expiracao: {[Op.gt]: new Date()} }})
+        const status = calculaStatus(status_estacao, true)
+        
         const comentarios = await Reclamacao.findAll({ where: { cod_estacao: estacao?.codigo }, order: [['codigo', 'DESC']] });
         if (comentarios.length === 0){
             res.render('pages/estacao', {
+                status,
                 caracteristicas,
                 estacao
             })
@@ -211,6 +223,7 @@ export async function estacao(req: Request, res: Response) {
             }
             else {
                 res.render('pages/estacao', {
+                    status,
                     estacao,
                     caracteristicas: caracteristicas,
                     comentarios: comentData
@@ -273,5 +286,27 @@ function calculaTempo(dataHora: Date){
     }
     else {
         return `${diferencaDias} dias atrás`
+    }
+}
+
+function calculaStatus(status_estacao: StatusInstance[], estacao: Boolean){
+    let vazio=0, moderado=0, cheio=0
+    
+    status_estacao.forEach(status => {
+        status?.status_movimentacao == "Vazio"? vazio++:vazio+=0
+        status?.status_movimentacao == "Moderado"? moderado++:moderado+=0
+        status?.status_movimentacao == "Muito Cheio"? cheio++:cheio+=0
+    })
+
+    console.log(`Reports = ${status_estacao.length}\nVazio = ${vazio}\nModerado = ${moderado}\ncheio = ${cheio}`)
+    
+    if (moderado >= cheio && moderado > 10){
+        return estacao? "Moderado" : {estado: "Moderado", imagem :"neutro.png"}
+    }
+    else if (cheio > moderado && cheio > 10){
+        return estacao? "Muito Cheio" : {estado: "Ruim", imagem: "triste.png"}
+    }
+    else {
+        return estacao? "Vazio" : {estado: "Bom", imagem: "feliz.png"}
     }
 }
