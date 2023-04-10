@@ -78,7 +78,6 @@ create table tb_reclamacoes (
     numero_carro int,
 	cod_usu int,
 	cod_estacao int,
-    movimentacao int,
 
 	foreign key(cod_usu)references tb_usuarios(codigo),
 	foreign key(cod_estacao)references tb_estacoes(codigo),
@@ -105,4 +104,21 @@ create table tb_denuncias (
     foreign key (cod_usuario) references tb_usuarios(codigo),
     primary key (codigo)
 );
--- TESTE
+
+create table tb_status (
+    codigo int not null auto_increment,
+    status_movimentacao varchar(50) not null,
+    cod_estacao int,
+    data_hora timestamp not null default current_timestamp,
+    expiracao timestamp ,
+
+    foreign key (cod_estacao) references tb_estacoes(codigo),
+    primary key (codigo)
+);
+
+create trigger set_expiracao
+before insert on tb_status
+for each row
+set new.expiracao = now() + interval 30 minute;
+
+-- SELECT * FROM tb_status WHERE expiracao > NOW();
