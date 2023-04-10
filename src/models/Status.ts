@@ -3,8 +3,10 @@ import {sequelize} from '../configs/mysql'
 
 export interface StatusInstance extends Model {
     codigo: number
-    descricao: string
+    status_movimentacao: string
+    cod_estacao: number
     data_hora: Date
+    expiracao: Date
 }
 
 export const Status = sequelize.define<StatusInstance>('Status,', {
@@ -14,15 +16,24 @@ export const Status = sequelize.define<StatusInstance>('Status,', {
         primaryKey: true,
         allowNull: false
     },
-    descricao: {
+    status_movimentacao: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    cod_estacao : {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'Estacao',
+            key: 'codigo'
+        }
     },
     data_hora: {
         type: DataTypes.DATE,
         allowNull: false
+    },
+    expiracao: {
+        type: DataTypes.DATE
     }
 }, {
-    tableName: 'tb_status',
-    timestamps: false
+    tableName: 'tb_status'
 })

@@ -10,7 +10,6 @@ export interface ReclamacaoInstance extends Model {
     numero_carro: number
     cod_usu: number
     cod_estacao: number
-    movimentacao: number
 }
 
 export const Reclamacao = sequelize.define<ReclamacaoInstance>("Reclamacao,", {
@@ -51,9 +50,6 @@ export const Reclamacao = sequelize.define<ReclamacaoInstance>("Reclamacao,", {
             model: 'Estacao',
             key: 'codigo'
         }
-    },
-    movimentacao: {
-        type: DataTypes.INTEGER
     }
 }, {
     tableName: "tb_reclamacoes",
