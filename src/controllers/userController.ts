@@ -14,30 +14,32 @@ const uplodaMiddleWare = upload.single('foto_perfil')
 export const cadastrar_usuario = ((req: Request, res: Response) => {
     uplodaMiddleWare(req, res, async (error: any) => {
         try {
-            if (error) {
-                console.log(error)
+            const nome = req.body.nome
+            const email = req.body.email
+            const salt = await bcrypt.genSalt()
+            const senha = await bcrypt.hash(req.body.senha, salt)
+            const cpf = req.body.cpf
+            const data_cadastro = new Date()
+        
+            if (!emailExisteNoBanco(email)
+            && !cpfExisteNoBanco(cpf)
+            && cpfValido(cpf)
+            && tamanhoMinimoSenha(req.body.senha)
+            && !caracteresEspeciaisNoNome(nome) ) {
+                const novo_usuario = Usuario.build({
+                    nome: nome,
+                    salt: salt,
+                    senha: senha, 
+                    email: email,
+                    cpf: cpf,
+                    foto_perfil: req.file?.filename,
+                    data_cadastro: data_cadastro
+                })
+                await novo_usuario.save()
+                res.redirect('/')
             }
             else {
-
-                const nome = req.body.nome
-                const email = req.body.email
-                const salt = await bcrypt.genSalt()
-                const senha = await bcrypt.hash(req.body.senha, salt)
-                const cpf = req.body.cpf
-                const data_cadastro = new Date()
-            
-                if (nome && senha && email && cpf) {
-                    const novo_usuario = Usuario.build({
-                        nome: nome,
-                        salt: salt,
-                        senha: senha, 
-                        email: email,
-                        cpf: cpf,
-                        foto_perfil: req.file?.filename,
-                        data_cadastro: data_cadastro
-                    })
-                    await novo_usuario.save()
-                }
+                // Mensagem de erro, dados inválidos ou já existente no banco.
                 res.redirect('/')
             }
         }
@@ -127,4 +129,78 @@ export const denunciar = async(req: Request, res: Response) => {
         console.log("Usuário não autenticado tentando denúnciar um comentário.")
         res.redirect('/')
     }
+}
+
+async function emailExisteNoBanco (email: string){
+    const usuario = await Usuario.findAll({where: {email: email}})
+    if (usuario?.length != 0) {
+        return true
+    }
+    return false
+}
+
+async function cpfExisteNoBanco (cpf: string) {
+    const usuario = await Usuario.findAll({where: {cpf: cpf}})
+    if (usuario?.length != 0){
+        return true
+    }
+    return false
+}
+
+function tamanhoMinimoSenha(senha: string): boolean{
+    if (senha.length < 8){
+        return false
+    }
+    return true
+}
+
+function caracteresEspeciaisNoNome(nome: string): boolean{
+    const caracteres = "! @ # $ % ¨ & * ( ) _ - + = § ´ ` [ { } ] : ; ? / ° , . < > \' \\ '".split(" ")
+    caracteres.forEach(caractere => {
+        if (nome.indexOf(caractere) != -1){
+            return true
+        }
+    })
+    return false
+}
+
+function cpfValido(cpf: string): boolean{
+    cpf = cpf.replace(/[\s.-]*/igm, '')
+
+    let igual = true
+    for (let i = 0; i<11 && igual; i++){
+        if (cpf[i] != cpf[0]){
+            igual = false
+        }
+    }
+
+    if (igual || cpf === "12345678909"){
+        return false
+    }
+
+    var soma = 0
+    var resto
+    for (var i = 1; i <= 9; i++) {
+        soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
+    }
+    resto = (soma * 10) % 11
+    if ((resto == 10) || (resto == 11)){
+        resto = 0 
+    }  
+    if (resto != parseInt(cpf.substring(9, 10)) ){
+        return false
+    } 
+
+    soma = 0
+    for (var i = 1; i <= 10; i++) {
+        soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
+    }
+    resto = (soma * 10) % 11
+    if ((resto == 10) || (resto == 11)){
+        resto = 0
+    }
+    if (resto != parseInt(cpf.substring(10, 11) ) ) {
+        return false
+    }
+    return true
 }
