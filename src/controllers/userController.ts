@@ -21,11 +21,17 @@ export const cadastrar_usuario = ((req: Request, res: Response) => {
         const cpf = req.body.cpf
         const data_cadastro = new Date()
         
-        if (!emailExisteNoBanco(email)
-        && !cpfExisteNoBanco(cpf)
-        && cpfValido(cpf)
-        && tamanhoMinimoSenha(req.body.senha)
-        && !caracteresEspeciaisNoNome(nome) ) {
+        const emailExiste: boolean = !emailExisteNoBanco(email)
+        const cpfExiste: boolean = !cpfExisteNoBanco(cpf)
+        const isCpfValido: boolean = cpfValido(cpf)
+        const tamanhoSenha: boolean = tamanhoMinimoSenha(req.body.senha)
+        const nomeValido: boolean = !caracteresEspeciaisNoNome(nome)
+
+        if (emailExiste
+        && cpfExiste
+        && isCpfValido
+        && tamanhoSenha
+        && nomeValido ) {
             const novo_usuario = Usuario.build({
                 nome: nome,
                 salt: salt,
@@ -126,14 +132,15 @@ function tamanhoMinimoSenha(senha: string): boolean{
 
 function caracteresEspeciaisNoNome(nome: string): boolean{
     const caracteres = "! @ # $ % ¨ & * ( ) _ - + = § ´ ` [ { } ] : ; ? / ° , . < > \' \\ '".split(" ")
+    let invalido = false
     caracteres.forEach(caractere => {
         if (nome.indexOf(caractere) != -1){
             console.log("Nome proibido")
-            return true
+            invalido = true
         }
     })
     console.log("nome OK")
-    return false
+    return invalido
 }
 
 function cpfValido(cpf: string): boolean{
