@@ -1,30 +1,71 @@
-<div style="font-size: 20px;">
-    {{#perfil}}
-    <button><a href="/logout">Sair</a></button>
-    <br><br>
-    {{/perfil}}
-    Foto de Perfil: 
-    <br>
-    <img src="images/users/{{usuario.foto_perfil}}" alt="Foto de perfil" width="10%">
-    <br>
-    Nome de usuário: {{usuario.nome}}
-    <br>
-    Criado em: {{usuario.data_cadastro}}
-    <br>
-    Email: {{usuario.email}}
-    <br><br><br>
-    
-    <h3>Comentários</h3>
-    
-    <br><br><br>
-    {{#reclamacoes}}
-    {{#reclamacoes.length}}
-    <div>
-            <p>ID: {{codigo}}</p>
-            <p>TEXTO: {{descricao}}</p>
-            <p>POSTADO: {{data_hora}}</p>
+
+<link rel="stylesheet" href="/css/usuario.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+<div class="container">
+    <div class="caracteristica">
+        <div class="wrapper">
+            <div class="header">Meu Perfil </div>
+
+
+            <div class="screen">
+                <div class="parte-foto">
+                    <img class="profile-picture" src="images/users/{{usuario.foto_perfil}}" />
+                    <div class="profile-owner">{{usuario.nome}}</div>
+                </div>
+                <div class="profile-description">
+
+                    <strong class="informacoes"> Informações </strong>
+
+                    <div class=" alinhando">
+                        <h4>
+                            Criado em: {{usuario.data_cadastro}}
+                            <img src="/src/img/schedule.png" alt="">
+                        </h4>
+                    </div>
+
+                    <br>
+                    <div class=" alinhando">
+                        <h4>
+                            Denúncias feitas: {{qtdReclamacoes}}
+                            <img src="/src/img/alerta.png" alt="">
+                        </h4>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-        <br><hr><br>
-    {{/reclamacoes.length}}
-    {{/reclamacoes}}
+    </div>
+
+</div>
+
+<div class="comentarios">
+    <!-- Contenedor Principal -->
+    <div class="comments-container">
+        <h1>Comentários</h1>
+
+        <ul id="comments-list" class="comments-list">
+            {{#reclamacoes}}
+            {{#reclamacoes.length}}
+            <li>
+                <div class="comment-main-level">
+                    <!-- Avatar -->
+                    <div class="comment-avatar"><img src="images/users/{{usuario.foto_perfil}}" alt=""></div>
+                    <!-- Contenedor del Comentario -->
+                    <div class="comment-box">
+                        <div class="comment-head">
+                            <h6 class="comment-name by-author">{{usuario.nome}}</h6>
+                            <span>Publicado há {{data_hora}}</span>
+                        </div>
+                        <div class="comment-content">
+                            {{descricao}}
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/reclamacoes.length}}
+            {{/reclamacoes}}
+        </ul>
+    </div>
 </div>

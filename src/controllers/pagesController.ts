@@ -189,10 +189,12 @@ export async function usuario(req: Request, res: Response) {
         console.log(`Buscando dados do usuário com código ${codigo}`)
         const usuario = await Usuario.findOne({where: {codigo: codigo}})
         const reclamacoes = await Reclamacao.findAll({where: {cod_usu: usuario?.codigo}})
+        const qtdReclamacoes = reclamacoes.length
 
         try {
             res.render('pages/usuario', {
                 perfil: visitante == codigo,
+                qtdReclamacoes,
                 reclamacoes,
                 usuario
             })
