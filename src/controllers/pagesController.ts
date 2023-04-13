@@ -112,7 +112,12 @@ export async function estacao(req: Request, res: Response) {
 
     try {
         const estacao = await Estacao.findOne({ where: { nome: nome_estacao } });
-        const caracteristica = await Caracteristica.findAll({where: {cod_estacao: estacao?.codigo}})
+        const [caracteristica, status_estacao, comentarios] = await Promise.all([
+            Caracteristica.findAll({where: {cod_estacao: estacao?.codigo}}),
+            Status.findAll({where: {cod_estacao: estacao?.codigo, expiracao: {[Op.gt]: new Date()} }}),
+            Reclamacao.findAll({ where: { cod_estacao: estacao?.codigo }, order: [['codigo', 'DESC']] })
+        ]);
+        
         let caracteristicas = {}
         caracteristica.forEach(element => {
 
@@ -131,10 +136,8 @@ export async function estacao(req: Request, res: Response) {
             })
         })
 
-        const status_estacao = await Status.findAll({where: {cod_estacao: estacao?.codigo, expiracao: {[Op.gt]: new Date()} }})
         const status = calculaStatus(status_estacao, true)
         
-        const comentarios = await Reclamacao.findAll({ where: { cod_estacao: estacao?.codigo }, order: [['codigo', 'DESC']] });
         if (comentarios.length === 0){
             res.render('pages/estacao', {
                 status,
