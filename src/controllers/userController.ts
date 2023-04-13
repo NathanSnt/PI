@@ -98,23 +98,29 @@ export const denunciar = async(req: Request, res: Response) => {
 async function emailExisteNoBanco (email: string){
     const usuario = await Usuario.findAll({where: {email: email}})
     if (usuario?.length != 0) {
+        console.log("Email já usado")
         return true
     }
+    console.log("Email disponível")
     return false
 }
 
 async function cpfExisteNoBanco (cpf: string) {
     const usuario = await Usuario.findAll({where: {cpf: cpf}})
     if (usuario?.length != 0){
+        console.log("CPF já usado")
         return true
     }
+    console.log("CPF disponivel")
     return false
 }
 
 function tamanhoMinimoSenha(senha: string): boolean{
     if (senha.length < 8){
+        console.log("Senha falhou")
         return false
     }
+    console.log("Senha OK")
     return true
 }
 
@@ -122,9 +128,11 @@ function caracteresEspeciaisNoNome(nome: string): boolean{
     const caracteres = "! @ # $ % ¨ & * ( ) _ - + = § ´ ` [ { } ] : ; ? / ° , . < > \' \\ '".split(" ")
     caracteres.forEach(caractere => {
         if (nome.indexOf(caractere) != -1){
+            console.log("Nome proibido")
             return true
         }
     })
+    console.log("nome OK")
     return false
 }
 
@@ -139,6 +147,7 @@ function cpfValido(cpf: string): boolean{
     }
 
     if (igual || cpf === "12345678909"){
+        console.log("CPF inválido")
         return false
     }
 
@@ -152,6 +161,7 @@ function cpfValido(cpf: string): boolean{
         resto = 0 
     }  
     if (resto != parseInt(cpf.substring(9, 10)) ){
+        console.log("CPF inválido")
         return false
     } 
 
@@ -164,8 +174,10 @@ function cpfValido(cpf: string): boolean{
         resto = 0
     }
     if (resto != parseInt(cpf.substring(10, 11) ) ) {
+        console.log("CPF inválido")
         return false
     }
+    console.log("CPF válido")
     return true
 }
 
