@@ -75,13 +75,14 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
     
     if(req.isAuthenticated()){
         let usuario = res.locals.user.codigo
-        switch (tipo) {
-            case '1': 
-                try{
+        try{
+
+            switch (tipo) {
+                case '1': 
                     const novo_status = Status.build({
                         status_movimentacao: movimentacao
                     })
-                    const nova_reclamacao = Reclamacao.build({
+                    let nova_reclamacao = Reclamacao.build({
                         data_hora: hora_atual,
                         tipo: tipo,
                         descricao: descricao,
@@ -90,16 +91,11 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                     })
                     await novo_status.save()
                     await nova_reclamacao.save()
-                }
-                catch (error){
-                    console.log(`Erro ao arquivar reclamação:\n${error}`)
-                }
-                // Exibir mensagem de sucesso
-                res.redirect('/')
-                break
-    
-            case '2':
-                try {
+                    // Exibir mensagem de sucesso
+                    res.redirect('/')
+                    break
+        
+                case '2':
                     const estacao = await Estacao.findOne({where: {nome: req.body.nomeEstacao}})
                     if  (estacao !== null){
                         const codigo_estacao = estacao.codigo
@@ -115,29 +111,17 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                             cod_estacao: codigo_estacao,
                             cod_usu: usuario
                         })
-                        await novo_status.save().then( () => {
-                            console.log("Status salvo com sucesso!")
-                        }).catch((erro) => {
-                            console.log(`Erro ao salvar status\n${erro}\n`)
-                        })
-                        await nova_reclamacao.save().then( () => {
-                            console.log("Reclamação salva com sucesso!")
-                        }).catch(() => {
-                            console.log("Erro ao salvar reclamação")
-                        })
+                        await novo_status.save()
+                        await nova_reclamacao.save()
                     }
-                }
-                catch (error) {
-                    console.log(`Erro ao arquivar reclamação:\n${error}`)
-                }
-                // Exibir mensagem de sucesso
-                res.redirect('/')
-                break
-    
-            case '3':
-                let numero_carro = req.body.numeroCarro
-                try {
-                    const nova_reclamacao = Reclamacao.build({
+                    // Exibir mensagem de sucesso
+                    res.redirect('/')
+                    break
+        
+                case '3':
+                    let numero_carro = req.body.numeroCarro
+
+                    nova_reclamacao = Reclamacao.build({
                         data_hora: hora_atual,
                         tipo: tipo,
                         descricao: descricao,
@@ -146,13 +130,14 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                         cod_usu: usuario
                     })
                     await nova_reclamacao.save()
-                }
-                catch (error) {
-                    console.log(`Erro ao arquivar reclamação:\n${error}`)
-                }
-                // Exibir mensagem de sucesso
-                res.redirect('/')
-                break
+
+                    // Exibir mensagem de sucesso
+                    res.redirect('/')
+                    break
+            }
+        }
+        catch (error) {
+            console.log(`Erro ao arquivar reclamação:\n${error}`)
         }
     }
     else {

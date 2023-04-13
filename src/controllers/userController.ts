@@ -26,12 +26,12 @@ export const cadastrar_usuario = ((req: Request, res: Response) => {
         const isCpfValido: boolean = cpfValido(cpf)
         const tamanhoSenha: boolean = tamanhoMinimoSenha(req.body.senha)
         const nomeValido: boolean = !caracteresEspeciaisNoNome(nome)
-
+        
         if (emailExiste
-        && cpfExiste
-        && isCpfValido
-        && tamanhoSenha
-        && nomeValido ) {
+            && cpfExiste
+            && isCpfValido
+            && tamanhoSenha
+            && nomeValido ) {
             const novo_usuario = Usuario.build({
                 nome: nome,
                 salt: salt,
@@ -135,11 +135,10 @@ function caracteresEspeciaisNoNome(nome: string): boolean{
     let invalido = false
     caracteres.forEach(caractere => {
         if (nome.indexOf(caractere) != -1){
-            console.log("Nome proibido")
             invalido = true
         }
     })
-    console.log("nome OK")
+    console.log(invalido? "Nome proibido" : "Nome OK")
     return invalido
 }
 
