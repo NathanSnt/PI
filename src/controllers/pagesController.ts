@@ -67,74 +67,29 @@ export const reclamar = ((req: Request, res: Response) => {
 
 export const arquivar_reclamacao = async (req: Request, res: Response) => {
     let tipo = req.body.tipo
-    let motivo = req.body.problema
-    let descricao = req.body.descricaoProblema
-    let movimentacao = req.body.movimentacao_linha
-    let hora_atual = new Date()
-    let erros: object[] = []
+    let erros: Object[] = []
     
     if(req.isAuthenticated()){
         let usuario = res.locals.user.codigo
         try{
 
             switch (tipo) {
-                case '1': 
-                    const novo_status = Status.build({
-                        status_movimentacao: movimentacao
-                    })
-                    let nova_reclamacao = Reclamacao.build({
-                        data_hora: hora_atual,
-                        tipo: tipo,
-                        descricao: descricao,
-                        motivo: motivo,
-                        cod_usu: usuario
-                    })
-                    await novo_status.save()
-                    await nova_reclamacao.save()
+                case '1':
                     // Exibir mensagem de sucesso
-                    res.redirect('/')
+                    arquivarReclamacaoTipo1(req, usuario)
                     break
         
                 case '2':
-                    const estacao = await Estacao.findOne({where: {nome: req.body.nomeEstacao}})
-                    if  (estacao !== null){
-                        const codigo_estacao = estacao.codigo
-                        const novo_status = Status.build({
-                            status_movimentacao: movimentacao,
-                            cod_estacao: codigo_estacao
-                        })
-                        const nova_reclamacao = Reclamacao.build({
-                            data_hora: hora_atual,
-                            tipo: tipo,
-                            descricao: descricao,
-                            motivo: motivo,
-                            cod_estacao: codigo_estacao,
-                            cod_usu: usuario
-                        })
-                        await novo_status.save()
-                        await nova_reclamacao.save()
-                    }
                     // Exibir mensagem de sucesso
-                    res.redirect('/')
+                    arquivarReclamacaoTipo2(req, usuario)
                     break
         
                 case '3':
-                    let numero_carro = req.body.numeroCarro
-
-                    nova_reclamacao = Reclamacao.build({
-                        data_hora: hora_atual,
-                        tipo: tipo,
-                        descricao: descricao,
-                        motivo: motivo,
-                        numero_carro: numero_carro,
-                        cod_usu: usuario
-                    })
-                    await nova_reclamacao.save()
-
+                    arquivarReclamacaoTipo3(req, usuario)
                     // Exibir mensagem de sucesso
-                    res.redirect('/')
                     break
             }
+            res.redirect('/')
         }
         catch (error) {
             console.log(`Erro ao arquivar reclamação:\n${error}`)
@@ -175,7 +130,6 @@ export async function estacao(req: Request, res: Response) {
                 configurable: true
             })
         })
-        console.log(caracteristicas)
 
         const status_estacao = await Status.findAll({where: {cod_estacao: estacao?.codigo, expiracao: {[Op.gt]: new Date()} }})
         const status = calculaStatus(status_estacao, true)
@@ -294,4 +248,60 @@ function calculaStatus(status_estacao: StatusInstance[], estacao: Boolean){
     else {
         return estacao? "Vazio" : {estado: "Bom", imagem: "feliz.png"}
     }
+}
+
+async function arquivarReclamacaoTipo1(req: Request, usuario: string){
+    const movimentacao = req.body.movimentacao_linha
+    const hora_atual = new Date()
+
+    const novo_status = Status.build({
+        status_movimentacao: movimentacao
+    })
+    const nova_reclamacao = Reclamacao.build({
+        data_hora: hora_atual,
+        tipo: '1',
+        descricao: req.body.descricaoProblema,
+        motivo: req.body.problema,
+        cod_usu: usuario
+    })
+    await novo_status.save()
+    await nova_reclamacao.save()
+}
+
+async function arquivarReclamacaoTipo2(req: Request, usuario: string){
+    const movimentacao = req.body.movimentacao_linha
+    const hora_atual = new Date()
+
+    const estacao = await Estacao.findOne({where: {nome: req.body.nomeEstacao}})
+    if  (estacao !== null){
+        const codigo_estacao = estacao.codigo
+        const novo_status = Status.build({
+            status_movimentacao: movimentacao,
+            cod_estacao: codigo_estacao
+        })
+        const nova_reclamacao = Reclamacao.build({
+            data_hora: hora_atual,
+            tipo: '2',
+            descricao: req.body.descricaoProblema,
+            motivo: req.body.problema,
+            cod_estacao: codigo_estacao,
+            cod_usu: usuario
+        })
+        await novo_status.save()
+        await nova_reclamacao.save()
+    }
+}
+
+async function arquivarReclamacaoTipo3(req: Request, usuario: string){
+    const hora_atual = new Date()
+
+    const nova_reclamacao = Reclamacao.build({
+        data_hora: hora_atual,
+        tipo: '3',
+        descricao: req.body.descricaoProblema,
+        motivo: req.body.problema,
+        numero_carro: req.body.numeroCarro,
+        cod_usu: usuario
+    })
+    await nova_reclamacao.save()
 }
