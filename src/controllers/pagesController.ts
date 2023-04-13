@@ -10,7 +10,9 @@ import { Op } from 'sequelize'
 export const home = async (req:Request, res:Response) => {
     const autenticado = req.isAuthenticated()
     const cod_usuario = autenticado? res.locals.user.codigo : null
-    const comentarios = await Reclamacao.findAll({order: [['codigo', 'DESC']]})
+    const dataAtual = new Date()
+    const dataHora30MinAtras = new Date(dataAtual.getTime() - 30 * 60000)
+    const comentarios = await Reclamacao.findAll({where: {data_hora: {[Op.gt]: dataHora30MinAtras }},order: [['codigo', 'DESC']], })
     
     const status_estacao = await Status.findAll({where: {cod_estacao: null, expiracao: {[Op.gt]: new Date()} }})
     const status = calculaStatus(status_estacao, false)
