@@ -30,7 +30,7 @@ header {
     max-width: 100%;
 }
 
-li {
+#lista ul li {
     position: relative;
     cursor: pointer;
     max-width: 150px;
