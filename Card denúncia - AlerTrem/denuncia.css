@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+*{
+    box-sizing: border-box;
+}
+
+
+
+
+#card-denuncia{
+    background-color: #eee;
+    width: 300px;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#titulo{
+    width: 300px;
+    height: 30px;
+    background-color: #58c078;
+    color: white;
+    border-radius: 5px 5px 0px 0px;
+    text-align: center;
+
+}
+
+#titulo h4{
+    padding: 5px;
+    font-family: 'Raleway', sans-serif;
+    margin: 0px;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.botao{
+
+    background-color: #58c078;
+        
+    color: white;
+        
+    border-radius: 20px;
+        
+    border: 2px solid #58c078;
+    margin: 10px;
+    position: relative;
+    left: 95px;
+}
+    
+    
+    
+    
+.botao:hover{
+    
+    background-color: #eee;
+    
+    border: 2px solid #58c078;
+    
+    color: #58c078;
+    
+}
+
+.radios{
+    margin-right: 5px;
+}
+
+label{
+    margin-right: 5px;
+}
+
+#outro-motivo-text{
+    height: 50px;
+    margin-top: 5px;
+    margin-left: 25px;
+    display: none;
+    width: 250px;
+    resize: none;
+}
+
+
+.outro-motivo{
+    position: relative;
+    left: 100px;
+}
+
+.motivos{
+    margin: 2px;
+    width: 100%;
+}
+
+#outros-motivos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.botoes-margin{
+    margin-left: 9px;
+}
+
+.exibir{
+    display: block !important;
+}
