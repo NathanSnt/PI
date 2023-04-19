@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="/css/denuncia.css">
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="icon" type="images/png" href="/images/icone.png">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>AlerTrem</title>
@@ -281,7 +283,7 @@
                             <p>{{tempo}}</p>
                         </div>
                         <div id="denunciar">
-                            <p><a href="/denunciar/{{codigo}}">Denunciar comentário</a></p>
+                            <p><a onclick="mostraCardDenuncia(this.closest('#comentario'))" >Denunciar comentário</a></p>
                         </div>
                         <div id="botoes">
                             <img id="bom" src="/images/green-face.svg" alt="">
@@ -290,8 +292,52 @@
                         </div>
                     </div>
                 </div>
-                <img id="exclamation" src="images/exclamation.svg" alt="" style="display: none;"
-                    onclick="mostrarInfo(this)">
+                <img id="exclamation" src="images/exclamation.svg" alt="" style="display: none;" onclick="mostrarInfo(this)">
+
+                <div id="card" style="display: none;">
+                    <form id="card-denuncia" action="/denunciar/{{codigo}}" method="POST">
+                        <div id="titulo-card"><h4>Denúncia de comentário</h4></div>
+                        <br>
+                        <div id="container">
+                            <p>Motivo da denúncia:</p>
+                            <div class="motivos">
+                                <label id="lbl">
+                                    <input type="radio" class="radios botoes-margin" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-conteudo" value="Conteúdo impróprio"> 
+                                    Conteúdo impróprio
+                                </label>
+                                <label id="lbl">
+                                    <input type="radio" class="radios" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-spam" value="Spam">
+                                    Spam
+                                </label>
+                            </div>
+                            
+                            <div class="motivos">
+                                
+                                <label id="lbl">
+                                    <input type="radio" class="radios botoes-margin" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-noticia" value="Notícia falsa">
+                                    Notícia falsa
+                                </label> 
+                                <label id="lbl">
+                                    <input type="radio" class="radios" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-discurso" value="Discurso de ódio">
+                                    Discurso de ódio
+                                </label>
+                            </div>
+                
+                            <div class="motivos" id="outro">
+                                <div class="outro-motivo">                                    
+                                    <label id="lbl">
+                                        <input type="radio" class="radios" id="radio-outro" name="botoes" onclick="exibe(this.closest('#card'))" value="Outro">
+                                        Outro
+                                    </label>
+                                </div>
+                                <textarea id="outro-motivo-text" class="" ></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <button id="botao-denuncia" class="botao" type="submit">Denunciar</button>
+                    </form>
+                
+                </div>
             </div>
 
 

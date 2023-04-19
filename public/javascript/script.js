@@ -82,6 +82,26 @@ function desativaMenu() {
     divConteudo.style.setProperty('display', 'block', 'important')
 }
 
+function mostraCardDenuncia(div){
+    var comentario = div.closest('#comentario');
+    var card = comentario.querySelector('#card');
+    card.classList.toggle('card-denuncia');
+}
+
+function exibe(elemento){
+    //document.getElementById("outro-motivo-text").classList.add("exibir")
+    var comentario = elemento.closest('#card');
+    var card = comentario.querySelector('#outro-motivo-text');
+    card.classList.add('exibir');
+}
+
+function esconde(elemento){
+    //document.getElementById("outro-motivo-text").classList.remove("exibir")
+    var comentario = elemento.closest('#card');
+    var card = comentario.querySelector('#outro-motivo-text');
+    card.classList.remove('exibir');
+}
+
 window.addEventListener('load', function() {
     atualizaTamanhoFaixa()
 })
