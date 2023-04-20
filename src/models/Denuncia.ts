@@ -3,6 +3,7 @@ import {sequelize} from '../configs/mysql'
 
 export interface DenunciaInstance extends Model {
     codigo: number
+    motivo: string
     cod_reclamacao: number
     cod_usuario: number
 }
@@ -12,6 +13,10 @@ export const Denuncia = sequelize.define<DenunciaInstance>('Denuncia, ', {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false
+    },
+    motivo:{
+        type: DataTypes.STRING,
         allowNull: false
     },
     cod_reclamacao: {
