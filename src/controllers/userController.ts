@@ -80,13 +80,19 @@ export const denunciar = async(req: Request, res: Response) => {
     else {
         const cod_comentario = req.params.cod_comentario
         const denunciante = res.locals.user.codigo
+        let motivo = req.body.botoes
+        if(motivo  === "Outro"){
+
+            motivo = req.body.outro_motivo
+        }
+        console.log(motivo)
         
         const denuncias = await Denuncia.findAll({where: {cod_reclamacao: cod_comentario}})
         const denunciaUsuario = await Denuncia.findAll({where: {cod_reclamacao: cod_comentario, cod_usuario: denunciante}})
         
         // Impede um usuário de denúnciar o mesmo comentário mais de uma vez.
         if (denunciaUsuario.length == 0){
-            arquivarDenuncia(cod_comentario, denunciante)
+            arquivarDenuncia(cod_comentario, denunciante,motivo)
         }
         else {
             // Toast
@@ -187,11 +193,13 @@ function cpfValido(cpf: string): boolean{
     return true
 }
 
-async function arquivarDenuncia(cod_reclamacao: string, cod_denunciante: string){
+async function arquivarDenuncia(cod_reclamacao: string, cod_denunciante: string, motivo: string){
     try {
         const nova_denuncia = Denuncia.build({
             cod_reclamacao: cod_reclamacao,
-            cod_usuario: cod_denunciante
+            cod_usuario: cod_denunciante,
+            motivo: motivo
+
         })
         await nova_denuncia.save()
     }
