@@ -37,6 +37,7 @@
     color: white;
     border-radius: 20px;
     border: 1px solid #58c078;
+    position: static;
 }
 
 .botao:hover{
