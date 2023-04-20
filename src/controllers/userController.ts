@@ -1,5 +1,5 @@
 import {Router, Request, Response, NextFunction} from 'express'
-import { Usuario } from '../models/Usuario'
+import { Usuario, UsuarioInstance } from '../models/Usuario'
 import bcrypt from 'bcrypt'
 import upload from '../configs/configMulter'
 import passport from 'passport'
@@ -20,9 +20,9 @@ export const cadastrar_usuario = ((req: Request, res: Response) => {
         const senha = await bcrypt.hash(req.body.senha, salt)
         const cpf = req.body.cpf
         const data_cadastro = new Date()
-        
-        const emailExiste: boolean = !emailExisteNoBanco(email)
-        const cpfExiste: boolean = !cpfExisteNoBanco(cpf)
+
+        const emailExiste: boolean = !await emailExisteNoBanco(email)
+        const cpfExiste: boolean = !await cpfExisteNoBanco(cpf)
         const isCpfValido: boolean = cpfValido(cpf)
         const tamanhoSenha: boolean = tamanhoMinimoSenha(req.body.senha)
         const nomeValido: boolean = !caracteresEspeciaisNoNome(nome)
@@ -103,22 +103,22 @@ export const denunciar = async(req: Request, res: Response) => {
 
 async function emailExisteNoBanco (email: string){
     const usuario = await Usuario.findAll({where: {email: email}})
-    if (usuario?.length != 0) {
-        console.log("Email já usado")
-        return true
+    if (usuario.length === 0) {
+        console.log("Email disponível")
+        return false
     }
-    console.log("Email disponível")
-    return false
+    console.log("Email já usado")
+    return true
 }
 
 async function cpfExisteNoBanco (cpf: string) {
     const usuario = await Usuario.findAll({where: {cpf: cpf}})
-    if (usuario?.length != 0){
-        console.log("CPF já usado")
-        return true
+    if (usuario.length === 0){
+        console.log("CPF disponivel")
+        return false
     }
-    console.log("CPF disponivel")
-    return false
+    console.log("CPF já usado")
+    return true
 }
 
 function tamanhoMinimoSenha(senha: string): boolean{
@@ -138,7 +138,7 @@ function caracteresEspeciaisNoNome(nome: string): boolean{
             invalido = true
         }
     })
-    console.log(invalido? "Nome proibido" : "Nome OK")
+    console.log(invalido? "Nome inválido" : "Nome OK")
     return invalido
 }
 
