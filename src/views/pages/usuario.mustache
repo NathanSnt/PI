@@ -1,28 +1,36 @@
-<div style="font-size: 20px;">
-    <button><a href="/logout">Sair</a></button>
-    <br><br>
-    Foto de Perfil: 
-    <br>
-    <img src="images/users/{{usuario.foto_perfil}}" alt="Foto de perfil" width="10%">
-    <br>
-    Nome de usuário: {{usuario.nome}}
-    <br>
-    Criado em: {{usuario.data_cadastro}}
-    <br>
-    Email: {{usuario.email}}
-    <br><br><br>
-    
-    <h3>Comentários</h3>
-    
-    <br><br><br>
-    {{#reclamacoes}}
-    {{#reclamacoes.length}}
-    <div>
-            <p>ID: {{codigo}}</p>
-            <p>TEXTO: {{descricao}}</p>
-            <p>POSTADO: {{data_hora}}</p>
-        </div>
-        <br><hr><br>
-    {{/reclamacoes.length}}
-    {{/reclamacoes}}
+{{>partials/header}}
+<div id="conteudo">
+
+    <div style="font-size: 20px;">
+        <button><a href="/logout">Sair</a></button>
+        <br><br>
+        Foto de Perfil: 
+        <br>
+        <img src="/images/users/{{usuario.foto_perfil}}" alt="Foto de perfil" width="10%">
+        <br>
+        Nome de usuário: {{usuario.nome}}
+        <br>
+        Criado em: {{usuario.data_cadastro}}
+        <br>
+        Email: {{usuario.email}}
+        <br><br><br>
+        
+        <h3>Comentários</h3>
+        
+        <br><br><br>
+        {{#reclamacoes}}
+        {{#reclamacoes.length}}
+        <div>
+                <p>ID: {{codigo}}</p>
+                <p>TEXTO: {{descricao}}</p>
+                <p>POSTADO: {{data_hora}}</p>
+            </div>
+            <br><hr><br>
+        {{/reclamacoes.length}}
+        {{/reclamacoes}}
+    </div>
 </div>
+</div>
+</div>
+
+{{>partials/footer}}

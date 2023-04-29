@@ -61,7 +61,6 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
     let descricao = req.body.descricaoProblema
     let movimentacao = req.body.movimentacao_linha
     let hora_atual = new Date()
-    let erros: object[] = []
     
     if(req.isAuthenticated()){
         let usuario = res.locals.user.codigo
@@ -82,7 +81,10 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                     console.log(`Erro ao arquivar reclamação:\n${error}`)
                 }
                 // Exibir mensagem de sucesso
-                res.redirect('/')
+                res.render('pages/home', {
+                    toast: "Reclamação arquivada com sucesso!",
+                    sucesso: true
+                })
                 break
     
             case '2':
@@ -106,7 +108,10 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                     console.log(`Erro ao arquivar reclamação:\n${error}`)
                 }
                 // Exibir mensagem de sucesso
-                res.redirect('/')
+                res.render('pages/home', {
+                    toast: "Reclamação arquivada com sucesso!",
+                    sucesso: true
+                })
                 break
     
             case '3':
@@ -126,14 +131,17 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
                     console.log(`Erro ao arquivar reclamação:\n${error}`)
                 }
                 // Exibir mensagem de sucesso
-                res.redirect('/')
+                res.render('pages/home', {
+                    toast: "Reclamação arquivada com sucesso!",
+                    sucesso: true
+                })
                 break
         }
     }
     else {
-        erros.push({texto: "Você precisa fazer login para conseguir enviar uma reclamação."})
         res.render('pages/reclamar', {
-            erros
+            toast: "Você precisa fazer login para conseguir enviar uma reclamação.",
+            sucesso: false
         })
     }
 }
@@ -144,7 +152,7 @@ export const mapa = ((req: Request, res: Response) => {
 
 export async function estacao(req: Request, res: Response) {
     let nome_estacao: string = req.query.estacao as string
-
+    
     try {
         const estacao = await Estacao.findOne({ where: { nome: nome_estacao } });
         const caracteristica = await Caracteristica.findAll({where: {cod_estacao: estacao?.codigo}})

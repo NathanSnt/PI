@@ -51,28 +51,28 @@ const server = express()
     server.use(express.urlencoded({extended:true}))
 
     // Bloqueando requisições feitas diretamente pela url
-    server.use((req, res, next) => {
-        if (
-           (req.url === '/')
-        || (req.url === '/reclamar')
-        || (req.url === '/login')
-        || (req.url === '/cadastro')
-        || (req.url === '/sobre')
-        || (req.url === '/mapa')
-        || (req.url === '/logout')
-        || (req.url.startsWith('/usuario'))
-        || (req.url.startsWith('/estacao'))
-        && (req.method === 'GET') 
-        && (req.xhr && req.headers['x-requested-with'] === 'XMLHttpRequest')){
-            next()
-        }
-        else if (req.url.startsWith('/denunciar')){
-            next()
-        }
-        else {
-            res.render('pages/not_found')
-        }
-    });
+    // server.use((req, res, next) => {
+    //     if (
+    //        (req.url === '/')
+    //     || (req.url === '/reclamar')
+    //     || (req.url === '/login')
+    //     || (req.url === '/cadastro')
+    //     || (req.url === '/sobre')
+    //     || (req.url === '/mapa')
+    //     || (req.url === '/logout')
+    //     || (req.url.startsWith('/usuario'))
+    //     || (req.url.startsWith('/estacao'))
+    //     && (req.method === 'GET') 
+    //     && (req.xhr && req.headers['x-requested-with'] === 'XMLHttpRequest')){
+    //         next()
+    //     }
+    //     else if (req.url.startsWith('/denunciar')){
+    //         next()
+    //     }
+    //     else {
+    //         res.render('pages/not_found')
+    //     }
+    // });
 
     // Rotas principais
     server.use(mainRoutes)

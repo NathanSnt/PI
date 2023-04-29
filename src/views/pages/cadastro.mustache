@@ -1,44 +1,63 @@
-<link rel="stylesheet" href="css/login_cadastro.css">
+<link rel="stylesheet" href="/css/login_cadastro.css">
+{{>partials/header}}
+<div id="conteudo">
 
-<form enctype="multipart/form-data" action="/cadastro" method="POST" class="containerLoginCadastro">
+    {{#toast}}
+        {{^sucesso}}
+        <div class="alerta falha">
+            <p>{{toast}}</p>
+        </div>
+        {{/sucesso}}
 
-    <div id="botoes-login-cadastro">
-        <div class="btn-cadrastro" onclick="mudarConteudo('login', '#conteudo', 'noticia')">
-            <input type="radio" name="login-cadastro"  id="entrar" value="entrar">
-            <label for="entrar" class="cursor">Entrar</label>
+        {{#sucesso}}
+        <div class="alerta sucesso">
+            <p>{{toast}}</p>
+        </div>
+        {{/sucesso}}
+    {{/toast}}
+
+    <form enctype="multipart/form-data" action="/cadastro" method="POST" class="containerLoginCadastro">
+    
+        <div id="botoes-login-cadastro">
+            <a class="btn-cadrastro" href="/login">
+                <label for="entrar" class="cursor">Entrar</label>
+            </a>
+        
+            <a class="btn-cadrastro" href="/cadastro">
+                <label for="cadastrar" class="cursor">Cadastrar</label>
+            </a>
         </div>
     
-        <div class="btn-cadrastro" onclick="mudarConteudo('cadastro', '#conteudo', 'noticia')">
-            <input type="radio" name="login-cadastro"  id="cadastrar" value="cadastrar" checked>
-            <label for="cadastrar" class="cursor">Cadastrar</label>
+        <div class="left-cadrastro">
+            <div class="card-cadrastro">
+                <h1>Cadastrar</h1>
+                <div class="textfield">
+                    <label for="foto_perfil">Foto de perfil</label>
+                    <input type="file" name="foto_perfil">
+                </div>
+                <div class="textfield">
+                    <label for="usuario">Nome</label>
+                    <input type="text" name="nome" placeholder="Nome">
+                </div>
+                <div class="textfield">
+                    <label for="usuario">E-mail</label>
+                    <input type="email" name="email" placeholder="E-mail">
+                </div>
+                <div class="textfield">
+                    <label for="usuario">CPF</label>
+                    <input type="text" name="cpf" placeholder="CPF">
+                </div>
+                <div class="textfield">
+                    <label for="Senha">Senha</label>
+                    <input type="password" name="senha" placeholder="Senha">
+                </div>
+                
+                <button type="submit" class="btn-cadrastro">Cadastrar</button>
+            </div>
         </div>
-    </div>
+    </form>
+</div>
+</div>
+</div>
 
-    <div class="left-cadrastro">
-        <div class="card-cadrastro">
-            <h1>Cadastrar</h1>
-            <div class="textfield">
-                <label for="foto_perfil">Foto de perfil</label>
-                <input type="file" name="foto_perfil">
-            </div>
-            <div class="textfield">
-                <label for="usuario">Nome</label>
-                <input type="text" name="nome" placeholder="Nome">
-            </div>
-            <div class="textfield">
-                <label for="usuario">E-mail</label>
-                <input type="email" name="email" placeholder="E-mail">
-            </div>
-            <div class="textfield">
-                <label for="usuario">CPF</label>
-                <input type="text" name="cpf" placeholder="CPF">
-            </div>
-            <div class="textfield">
-                <label for="Senha">Senha</label>
-                <input type="password" name="senha" placeholder="Senha">
-            </div>
-            
-            <button type="submit" class="btn-cadrastro">Cadastrar</button>
-        </div>
-    </div>
-</form>
+{{>partials/footer}}

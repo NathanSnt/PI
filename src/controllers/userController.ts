@@ -38,7 +38,10 @@ export const cadastrar_usuario = ((req: Request, res: Response) => {
                     })
                     await novo_usuario.save()
                 }
-                res.redirect('/')
+                res.render('pages/login', {
+                    toast: "Usuário cadastrado com sucesso!",
+                    sucesso: true
+                })
             }
         }
         catch (error) {
@@ -53,8 +56,10 @@ export const login = ((req: Request, res: Response) => {
 
 export const logout = ((req: Request, res: Response) => {
     req.session.destroy((error) => {
-        console.log("Usuário fez logout.")
-        res.redirect('/')
+        res.render('pages/home', {
+            toast: "Saiu com sucesso",
+            sucesso: true
+        })
     });
 })
 
