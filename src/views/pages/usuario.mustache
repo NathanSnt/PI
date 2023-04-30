@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/usuario.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-
+{{>partials/header}}
 <div id="conteudo">
 
     {{#toast}}
@@ -20,7 +20,14 @@
     <div class="container">
         <div class="caracteristica">
             <div class="wrapper">
-                <div class="header">Meu Perfil </div>
+                <div class="header">
+                    Meu Perfil 
+                    {{#perfil}}
+                    <button id="btn_sair">
+                        <a href="/logout">Sair</a>
+                    </button>
+                    {{/perfil}}
+                </div>
     
     
                 <div class="screen">

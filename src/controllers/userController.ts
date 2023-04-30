@@ -60,25 +60,33 @@ export const login = ((req: Request, res: Response) => {
     res.render('pages/login')
 })
 
+export const login_notfy = ((req: Request, res: Response) => {
+    const sucesso = req.params.sucesso === "true"? true : false
+    res.render('pages/login', {
+        toast: req.params.toast,
+        sucesso: sucesso
+    })
+})
+
 export const logout = ((req: Request, res: Response) => {
     req.session.destroy((error) => {
-        res.render('pages/home', {
-            toast: "Saiu com sucesso",
-            sucesso: true
-        })
+        res.redirect('/home/Saiu com sucesso/true')
     });
 })
 
 export const pesquisa_usuario = async (req:Request, res: Response, next: NextFunction) => {
     passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login', // Talvez adicionar uma rota dinâmica para conseguir passsar o toast como parâmetro.
+        successRedirect: '/home/Autenticado com sucesso!/true',
+        failureRedirect: '/login/Usuário ou senha inválidos./false',
         failureFlash: true
     })(req, res, next)
 }
 
 export const denunciar = async(req: Request, res: Response) => {
-    if (!req.isAuthenticated())
+    const autenticado = req.isAuthenticated()
+    const cod_usuario = autenticado? res.locals.user.codigo : null
+
+    if (!autenticado)
     {
         res.render("pages/home", {
             toast: "Você precisa estar autenticado para conseguir denunciar comentários.",
@@ -102,6 +110,8 @@ export const denunciar = async(req: Request, res: Response) => {
         }
         else {
             res.render("pages/home", {
+                autenticado,
+                cod_usuario,
                 toast: "Não é possível denúnciar o mesmo comentário mais de uma vez!",
                 sucesso: false
             })
@@ -112,6 +122,8 @@ export const denunciar = async(req: Request, res: Response) => {
             deletarReclamacao(cod_comentario)
         }
         res.render("pages/home", {
+            autenticado,
+            cod_usuario,
             toast: "Comentário denunciado com sucesso!",
             sucesso: true
         })
