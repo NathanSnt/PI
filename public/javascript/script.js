@@ -102,8 +102,21 @@ function esconde(elemento){
     card.classList.remove('exibir');
 }
 
+function alerta() {
+    this.document.querySelector(".alerta").classList.toggle('show')
+}
+
 window.addEventListener('load', function() {
     atualizaTamanhoFaixa()
+    $('html, body').animate({
+        scrollTop: $('#conteudo').offset().top
+    })
+
+    // Exibindo Toast
+    alerta()
+    this.setTimeout(() =>{
+        alerta()
+    } , 5000)
 })
 window.addEventListener('resize', function() {
     atualizaTamanhoFaixa()

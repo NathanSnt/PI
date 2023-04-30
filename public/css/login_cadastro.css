@@ -101,6 +101,6 @@
     width: 65%;
 }
 
-#botoes-login-cadastro input{
-    display: none;
+#botoes-login-cadastro a{
+    text-decoration: none;
 }

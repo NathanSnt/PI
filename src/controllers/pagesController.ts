@@ -69,7 +69,6 @@ export const reclamar = ((req: Request, res: Response) => {
 
 export const arquivar_reclamacao = async (req: Request, res: Response) => {
     let tipo = req.body.tipo
-    let erros: Object[] = []
     
     if(req.isAuthenticated()){
         let usuario = res.locals.user.codigo
@@ -77,30 +76,30 @@ export const arquivar_reclamacao = async (req: Request, res: Response) => {
 
             switch (tipo) {
                 case '1':
-                    // Exibir mensagem de sucesso
                     arquivarReclamacaoTipo1(req, usuario)
                     break
         
                 case '2':
-                    // Exibir mensagem de sucesso
                     arquivarReclamacaoTipo2(req, usuario)
                     break
         
                 case '3':
                     arquivarReclamacaoTipo3(req, usuario)
-                    // Exibir mensagem de sucesso
                     break
             }
-            res.redirect('/')
+            res.render('pages/home', {
+                toast: "Reclamação enviada!",
+                sucesso: true
+            })
         }
         catch (error) {
             console.log(`Erro ao arquivar reclamação:\n${error}`)
         }
     }
     else {
-        erros.push({texto: "Você precisa fazer login para conseguir enviar uma reclamação."})
         res.render('pages/reclamar', {
-            erros
+            toast: "Você precisa fazer login para conseguir enviar uma reclamação.",
+            sucesso: false
         })
     }
 }
@@ -186,7 +185,6 @@ export async function usuario(req: Request, res: Response) {
             visitante = res.locals.user.codigo
         }
         const codigo = req.params.cod_usuario
-        console.log(`Buscando dados do usuário com código ${codigo}`)
         const usuario = await Usuario.findOne({where: {codigo: codigo}})
         const reclamacoes = await Reclamacao.findAll({where: {cod_usu: usuario?.codigo}})
         const qtdReclamacoes = reclamacoes.length
