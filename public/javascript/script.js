@@ -103,7 +103,8 @@ function esconde(elemento){
 }
 
 function alerta() {
-    this.document.querySelector(".alerta").classList.toggle('show')
+    const alerta = document.querySelector(".alerta");
+    alerta.style.opacity = "0";
 }
 
 window.addEventListener('load', function() {
@@ -113,10 +114,9 @@ window.addEventListener('load', function() {
     })
 
     // Exibindo Toast
-    alerta()
     this.setTimeout(() =>{
         alerta()
-    } , 5000)
+    }, 3500)
 })
 window.addEventListener('resize', function() {
     atualizaTamanhoFaixa()
