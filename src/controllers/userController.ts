@@ -88,10 +88,7 @@ export const denunciar = async(req: Request, res: Response) => {
 
     if (!autenticado)
     {
-        res.render("pages/home", {
-            toast: "Você precisa estar autenticado para conseguir denunciar comentários.",
-            sucesso: false
-        })
+        res.redirect("/home/Você precisa estar autenticado para conseguir denunciar comentários./false")
     }
     else {
         const cod_comentario = req.params.cod_comentario

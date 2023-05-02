@@ -5,12 +5,13 @@ import * as pagesController from '../controllers/pagesController'
 const router = Router()
 
 router.get('/',  pagesController.home)
-router.get('/home', pagesController.home)
+router.get('/home/:toast/:sucesso', pagesController.home)
 
 router.get('/cadastro', userController.cadastro)
 router.post('/cadastro', userController.cadastrar_usuario)
 
 router.get('/login', userController.login)
+router.get('/login/:toast/:sucesso', userController.login_notfy)
 router.post('/login', userController.pesquisa_usuario)
 
 router.get('/logout', userController.logout)
