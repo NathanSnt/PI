@@ -84,7 +84,6 @@ export const pesquisa_usuario = async (req:Request, res: Response, next: NextFun
 
 export const denunciar = async(req: Request, res: Response) => {
     const autenticado = req.isAuthenticated()
-    const cod_usuario = autenticado? res.locals.user.codigo : null
 
     if (!autenticado)
     {
@@ -104,26 +103,17 @@ export const denunciar = async(req: Request, res: Response) => {
         // Impede um usuário de denúnciar o mesmo comentário mais de uma vez.
         if (denunciaUsuario.length == 0){
             arquivarDenuncia(cod_comentario, denunciante,motivo)
+            
+            // Quando o número de denúncias chaga à 10, a reclamação é deletado.
+            if (denuncias.length >= 9){
+                deletarReclamacao(cod_comentario)
+            }
+            res.redirect("/home/Comentário denunciado com sucesso!/true")
         }
         else {
-            res.render("pages/home", {
-                autenticado,
-                cod_usuario,
-                toast: "Não é possível denúnciar o mesmo comentário mais de uma vez!",
-                sucesso: false
-            })
+            res.redirect("/home/Não é possível denúnciar o mesmo comentário mais de uma vez!/false")
         }
     
-        // Quando o número de denúncias chaga à 10, a reclamação é deletado.
-        if (denuncias.length >= 9){
-            deletarReclamacao(cod_comentario)
-        }
-        res.render("pages/home", {
-            autenticado,
-            cod_usuario,
-            toast: "Comentário denunciado com sucesso!",
-            sucesso: true
-        })
     }
 }
 

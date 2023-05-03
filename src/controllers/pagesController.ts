@@ -22,6 +22,7 @@ export const home = async (req:Request, res:Response) => {
         if (comentarios.length === 0){
             res.render('pages/home', {
                 status,
+                cod_usuario,
                 autenticado,
                 toast: req.params.toast,
                 sucesso: sucesso
