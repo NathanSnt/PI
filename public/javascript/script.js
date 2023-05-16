@@ -33,9 +33,9 @@ function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
         },
         success: function(data) {
             $(divId).html(data)
-            $('html, body').animate({
-                scrollTop: $('#conteudo').offset().top
-            })
+            // $('html, body').animate({
+            //     scrollTop: $('#conteudo').offset().top
+            // })
             mudarCarrossel(carrossel)
         }
     })
@@ -109,9 +109,9 @@ function alerta() {
 
 window.addEventListener('load', function() {
     atualizaTamanhoFaixa()
-    $('html, body').animate({
-        scrollTop: $('#conteudo').offset().top
-    })
+    // $('html, body').animate({
+    //     scrollTop: $('#conteudo').offset().top
+    // })
 
     // Exibindo Toast
     this.setTimeout(() =>{
