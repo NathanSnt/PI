@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="/css/home.css">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="icon" type="images/png" href="/images/icone.png">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>AlerTrem</title>
+</head>
+<body>
+
+    <header>
+        <div id="lista">
+            <ul>
+                <li onclick="mudarCarrossel('noticia')">
+                    <a href="/">
+                        <img src="/images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="/images/home2.png" alt="">
+                    </a>
+                </li>
+                <li onclick="mudarCarrossel('noticia')">
+                    <a href="/mapa">
+                        <img src="/images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="/images/mapa2.png" alt="">
+                    </a>
+                </li>
+                <li onclick="mudarCarrossel('noticia')">
+                    <a href="/sobre">
+                        <img src="/images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="/images/sobreNos2.png" alt="">
+                    </a>
+                </li>
+                <li onclick="mudarCarrossel('noticia')">
+                    <a href="/reclamar">
+                        <img src="/images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="/images/reclamar2.png" alt="">
+                    </a>
+                </li>
+                {{#autenticado}}
+                <li onclick="mudarCarrossel('noticia')">
+                    <a href="/usuario/{{cod_usuario}}">
+                        <img src="/images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="/images/perfil.png" alt="">
+                    </a>
+                </li>
+                {{/autenticado}}
+                {{^autenticado}}
+                <li onclick="mudarCarrossel('noticia')">
+                    <a href="/login">
+                        <img src="/images/bola-verde.jpg" class="bola-verde" alt="bola verde">
+                        <img class="menu-img" src="/images/loginCadastro2.png" alt="">
+                    </a>
+                </li>
+                {{/autenticado}}
+            </ul>
+        </div>
+    
+        <div id="faixa-esmeralda"></div>
+    </header>
+{{>partials/menu_lateral}}
