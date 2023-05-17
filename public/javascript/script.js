@@ -102,6 +102,21 @@ function esconde(elemento){
     card.classList.remove('exibir');
 }
 
+
+function exibeCaixa(select, texto){
+
+    var selecao = document.getElementById(select);
+    var caixaDeTexto = document.getElementById(texto);
+    if(selecao.options[selecao.selectedIndex].text === "Outro"){
+        
+        caixaDeTexto.classList.add("caixaOutro");
+    }
+    else{
+        caixaDeTexto.classList.remove("caixaOutro");  
+    }
+
+}
+
 window.addEventListener('load', function() {
     atualizaTamanhoFaixa()
 })

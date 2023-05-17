@@ -23,7 +23,7 @@
 
         <div id="formLinha">
             <label for="motivo-reclamacao">Motivo da reclamação:</label>
-            <select class="motivo-reclamacao" name="problema" required>
+            <select class="motivo-reclamacao  opcoesReclamacao" name="problema" required onchange="exibeCaixa('select1','problemaOutro1')" id="select1">
                 <option value="" disabled selected>Selecione</option>
                 <option value="velocidade-reduzida">Velocidade reduzida</option>
                 <option value="somente-um-lado-da-via-funcionando">Somente um lado da via funcionando</option>
@@ -33,7 +33,8 @@
                 <option value="falta-segunranca">Falta de segurança</option>
                 <option value="acidente">Acidente</option>
                 <option value="inversao-plataforma">Inversão de plataforma</option>
-                <option value="outro">Outro</option>
+                <option value="Outro">Outro</option>
+                <textarea name="outroProblema" rows="1" class="descricao-outro" id="problemaOutro1" maxlength="25" placeholder="Digite aqui..."></textarea>
             </select>
             <br><br>
             <label for="movimentacao-linha">Nos conte sobre a movimentação da linha:</label>
@@ -84,17 +85,18 @@
             </select>
             <br>
             <label>Selecione o problema:</label>
-            <select name="problema" class="motivo-reclamacao" required>
+            <select name="problema" class="motivo-reclamacao  opcoesReclamacao" required onchange="exibeCaixa('select2','problemaOutro2')" id="select2">
                 <option value="" disabled selected>Selecione</option>
                 <option value="elevador-quebrado">Elevador quebrado</option>
-                <option value="escada-rolante-quebrada">Escada rolante quebrada</option>
+                <option value="escada-rolante-quebrada">Escada rolante quebrada</option>    
                 <option value="estacao-fechada">Estação fechada</option>
                 <option value="estacao-sem-guardas">Estação sem guardas</option>
                 <option value="estacao-alagada">Estação alagada</option>
                 <option value="acidente">Acidente</option>
                 <option value="briga">Briga</option>
                 <option value="falta-acessibilidade">Falta de acessiblidade</option>
-                <option value="outro">Outro</option>
+                <option value="Outro">Outro</option>
+                <textarea name="outroProblema" rows="1" class="descricao-outro" id="problemaOutro2" maxlength="25" placeholder="Digite aqui..."></textarea>
             </select>
             <br><br>
             <label for="movimentacao-linha">Nos conte sobre a movimentação da linha:</label>
@@ -121,13 +123,14 @@
             <label>Número do carro:</label>
             <div id="problemaCarro">
                 <input name="numeroCarro" type="number" placeholder="Número do carro" class="motivo-reclamacao" id="numeroCarro" required>
-                <select name="problema" class="motivo-reclamacao"  required>
+                <select name="problema" class="motivo-reclamacao opcoesReclamacao"  required onchange="exibeCaixa('select3','problemaOutro3')" id="select3">
                     <option value="" disabled selected>Selecione</option>
                     <option value="porta-quebrada">Porta quebrada</option>
                     <option value="ar-desligado">Ar Condicionado desligado</option>
                     <option value="sujeira">Trem muito sujo</option>
                     <option value="janela-quebrada">Janela quebrada</option>
                     <option value="Outro">Outro</option>
+                    <textarea name="outroProblema" rows="1" class="descricao-outro" id="problemaOutro3" maxlength="25" placeholder="Digite aqui..."></textarea>
                 </select>
             </div>
             <br><br>
