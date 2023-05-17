@@ -1,352 +1,120 @@
-<link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="/css/denuncia.css">
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="icon" type="images/png" href="/images/icone.png">
+{{>partials/header}}
+
+<div id="conteudo">
+    {{#toast}}
+        {{^sucesso}}
+        <div class="alerta falha">
+            <p>{{toast}}</p>
+        </div>
+        {{/sucesso}}
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>AlerTrem</title>
-</head>
-<body>
-
-    <header>
-        <div id="lista">
-            <ul>
-                <li>
-                    <a href="/">
-                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
-                        <img class="menu-img" src="images/home2.png" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a onclick="mudarConteudo('mapa', '#conteudo', 'noticia')">
-                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
-                        <img class="menu-img" src="images/mapa2.png" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a onclick="mudarConteudo('sobre', '#conteudo', 'noticia')">
-                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
-                        <img class="menu-img" src="images/sobreNos2.png" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a onclick="mudarConteudo('reclamar', '#conteudo', 'noticia')">
-                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
-                        <img class="menu-img" src="images/reclamar2.png" alt="">
-                    </a>
-                </li>
-                {{#autenticado}}
-                <li>
-                    <a onclick="mudarConteudo('usuario/{{cod_usuario}}', '#conteudo', 'noticia')">
-                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
-                        <img class="menu-img" src="images/perfil.png" alt="">
-                    </a>
-                </li>
-                {{/autenticado}}
-                {{^autenticado}}
-                <li>
-                    <a onclick="mudarConteudo('login', '#conteudo', 'noticia')">
-                        <img src="images/bola-verde.jpg" class="bola-verde" alt="bola verde">
-                        <img class="menu-img" src="images/loginCadastro2.png" alt="">
-                    </a>
-                </li>
-                {{/autenticado}}
-            </ul>
+        {{#sucesso}}
+        <div class="alerta sucesso">
+            <p>{{toast}}</p>
         </div>
-    
-        <div id="faixa-esmeralda"></div>
-    </header>
-
-
-
-<div class="content">
-
-    <div class="slides">
-        <input type="radio" name="radio" id="slide1" checked>
-        <input type="radio" name="radio" id="slide2">
-        <input type="radio" name="radio" id="slide3">
-        <input type="radio" name="radio" id="slide4">
-        <input type="radio" name="radio" id="slide5">
-
-        <div class="slide s1">
-            <img id="carrossel1" src="images/noticia1.png" alt="">
+        {{/sucesso}}
+    {{/toast}}
+    <div id="status">
+        <div id="imagem">
+            <img src="/images/{{status.imagem}}" alt="">
         </div>
-
-        <div class="slide">
-            <img id="carrossel2" src="images/noticia2.png" alt="">
-        </div>
-
-        <div class="slide">
-            <img id="carrossel3" src="images/noticia3.png" alt="">
-        </div>
-
-        <div class="slide">
-            <img id="carrossel4" src="images/noticia4.png" alt="">
-        </div>
-
-        <div class="slide">
-            <img id="carrossel5" src="images/noticia5.png" alt="">
+        <div id="statush1">
+            <h1>Status da linha: {{status.estado}}.</h1>
         </div>
     </div>
+    <div id="informacoes">
 
-    <div class="navigation">
+        {{#comentarios}}
+        {{#comentarios.length}}
+        <div id="comentario">
+            <a href="/usuario/{{cod_usuario}}"><img src="/images/users/{{foto_perfil}}" alt="foto de perfil" id="foto-perfil"></a>
+            <div id="caixa-comentario">
+                <div class="tags">
+                    <div class="tag">{{tipo}}</div>
+                    {{#estacao}}
+                    <div class="tag">{{estacao}}</div>
+                    {{/estacao}}
+                    {{#carro}}
+                    <div class="tag">{{carro}}</div>
+                    {{/carro}}
+                </div>
+                <p>
+                    {{descricao}}
+                </p>
+                <div id="comentario-footer">
+                    <div id="nome-usuario">
+                        <p>{{usuario}}</p>
+                    </div>
+                    <div id="data-post">
+                        <p>{{tempo}}</p>
+                    </div>
+                    <div id="denunciar">
+                        <p><a onclick="mostraCardDenuncia(this.closest('#comentario'))" >Denunciar comentário</a></p>
+                    </div>
+                    <div id="botoes">
+                        <img id="bom" src="/images/green-face.svg" alt="">
+                        <img id="neutro" src="/images/yellow-face.svg" alt="">
+                        <img id="ruim" src="/images/red-face.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <img id="exclamation" src="/images/exclamation.svg" alt="" style="display: none;" onclick="mostrarInfo(this)">
 
-        <label class="bar" for="slide1"></label>
-        <label class="bar" for="slide2"></label>
-        <label class="bar" for="slide3"></label>
-        <label class="bar" for="slide4"></label>
-        <label class="bar" for="slide5"></label>
+            <div id="card" style="display: none;">
+                <form id="card-denuncia" action="/denunciar/{{codigo}}" method="POST">
+                    <div id="titulo-card"><h4>Denúncia de comentário</h4></div>
+                    <br>
+                    <div id="container">
+                        <p>Motivo da denúncia:</p>
+                        <div class="motivos">
+                            <label id="lbl">
+                                <input type="radio" class="radios botoes-margin" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-conteudo" value="Conteúdo impróprio"> 
+                                Conteúdo impróprio
+                            </label>
+                            <label id="lbl">
+                                <input type="radio" class="radios" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-spam" value="Spam">
+                                Spam
+                            </label>
+                        </div>
+                        
+                        <div class="motivos">
+                            
+                            <label id="lbl">
+                                <input type="radio" class="radios botoes-margin" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-noticia" value="Notícia falsa">
+                                Notícia falsa
+                            </label> 
+                            <label id="lbl">
+                                <input type="radio" class="radios" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-discurso" value="Discurso de ódio">
+                                Discurso de ódio
+                            </label>
+                        </div>
+            
+                        <div class="motivos" id="outro">
+                            <div class="outro-motivo">                                    
+                                <label id="lbl">
+                                    <input type="radio" class="radios" id="radio-outro" name="botoes" onclick="exibe(this.closest('#card'))" value="Outro">
+                                    Outro
+                                </label>
+                            </div>
+                            <textarea id="outro-motivo-text" class="" name="outro_motivo"></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <button id="botao-denuncia" class="botao" type="submit">Denunciar</button>
+                </form>
+            
+            </div>
+        </div>
+
+
+
+        {{/comentarios.length}}
+        {{/comentarios}}
+
     </div>
 </div>
-
-<div id="principal">
-
-    <div id="menu-hamburger" style="display: none;" onclick="mostrarMenu()">
-        <div id="linha1"></div>
-        <div id="linha2"></div>
-        <div id="linha3"></div>
-    </div>
-    <nav id="menu-estacoes">
-
-        <div id="faixa"></div>
-
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'osasco', 'osasco'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Osasco</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'altino', 'presidente altino'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Presidente Altino</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'ceasa', 'ceasa'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Ceasa</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'lobos', 'vila lobos jaguare'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Vila Lobos jaguaré</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#"
-                onclick="mudarConteudo('estacao', '#conteudo', 'universitaria', 'cidade universitaria'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Cidade Universitária</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'pinheiros', 'pinheiros'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Pinheiros</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#"
-                onclick="mudarConteudo('estacao', '#conteudo', 'hebraica', 'hebraica reboucas'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Hebraica Rebouças</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'jardim', 'cidade jardim'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Cidade Jardim</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'olimpia', 'vila olimpia'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Vila Olímpia</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'berrini', 'berrini'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Berrini</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'morumbi', 'morumbi'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Morumbi</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'julieta', 'granja julieta'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Granja Julieta</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'dias', 'joao dias'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>João Dias</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'amaro', 'santo amaro'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Santo Amaro</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'socorro', 'socorro'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Socorro</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'jurubatuba', 'jurubatuba'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Jurubatuba</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'autodromo', 'autodromo'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Autódromo</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#"
-                onclick="mudarConteudo('estacao', '#conteudo', 'primavera', 'primavera interlagos'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Primavera Interlagos</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'grajau', 'grajau'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Grajaú</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'mendes', 'mendes vila natal'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Mendes Vila Natal</p>
-            </a>
-        </div>
-        <div id="estacao">
-            <a href="#" onclick="mudarConteudo('estacao', '#conteudo', 'varginha', 'varginha'), desativaMenu()">
-                <img src="images/bola-estacao.png" alt="simbolo da estação">
-                <p>Varginha</p>
-            </a>
-        </div>
-    </nav>
-
-    <div id="conteudo">
-        <div id="status">
-            <div id="imagem">
-                <img src="images/{{status.imagem}}" alt="">
-            </div>
-            <div id="statush1">
-                <h1>Status da linha: {{status.estado}}.</h1>
-            </div>
-        </div>
-        <div id="informacoes">
-
-            {{#comentarios}}
-            {{#comentarios.length}}
-            <div id="comentario">
-                <img src="images/users/{{foto_perfil}}" alt="foto de perfil" id="foto-perfil" onclick="mudarConteudo('usuario/{{cod_usuario}}', '#conteudo', 'noticia')">
-                <div id="caixa-comentario">
-                    <div class="tags">
-                        <div class="tag">{{tipo}}</div>
-                        {{#estacao}}
-                        <div class="tag">{{estacao}}</div>
-                        {{/estacao}}
-                        {{#carro}}
-                        <div class="tag">{{carro}}</div>
-                        {{/carro}}
-                    </div>
-                    <p>
-                        {{descricao}}
-                    </p>
-                    <div id="comentario-footer">
-                        <div id="nome-usuario">
-                            <p>{{usuario}}</p>
-                        </div>
-                        <div id="data-post">
-                            <p>{{tempo}}</p>
-                        </div>
-                        <div id="denunciar">
-                            <p><a onclick="mostraCardDenuncia(this.closest('#comentario'))" >Denunciar comentário</a></p>
-                        </div>
-                        <div id="botoes">
-                            <img id="bom" src="/images/green-face.svg" alt="">
-                            <img id="neutro" src="images/yellow-face.svg" alt="">
-                            <img id="ruim" src="images/red-face.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <img id="exclamation" src="images/exclamation.svg" alt="" style="display: none;" onclick="mostrarInfo(this)">
-
-                <div id="card" style="display: none;">
-                    <form id="card-denuncia" action="/denunciar/{{codigo}}" method="POST">
-                        <div id="titulo-card"><h4>Denúncia de comentário</h4></div>
-                        <br>
-                        <div id="container">
-                            <p>Motivo da denúncia:</p>
-                            <div class="motivos">
-                                <label id="lbl">
-                                    <input type="radio" class="radios botoes-margin" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-conteudo" value="Conteúdo impróprio"> 
-                                    Conteúdo impróprio
-                                </label>
-                                <label id="lbl">
-                                    <input type="radio" class="radios" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-spam" value="Spam">
-                                    Spam
-                                </label>
-                            </div>
-                            
-                            <div class="motivos">
-                                
-                                <label id="lbl">
-                                    <input type="radio" class="radios botoes-margin" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-noticia" value="Notícia falsa">
-                                    Notícia falsa
-                                </label> 
-                                <label id="lbl">
-                                    <input type="radio" class="radios" name="botoes" onclick="esconde(this.closest('#card'))" id="radio-discurso" value="Discurso de ódio">
-                                    Discurso de ódio
-                                </label>
-                            </div>
-                
-                            <div class="motivos" id="outro">
-                                <div class="outro-motivo">                                    
-                                    <label id="lbl">
-                                        <input type="radio" class="radios" id="radio-outro" name="botoes" onclick="exibe(this.closest('#card'))" value="Outro">
-                                        Outro
-                                    </label>
-                                </div>
-                                <textarea id="outro-motivo-text" class="" name="outro_motivo"></textarea>
-                            </div>
-                        </div>
-                        <br>
-                        <button id="botao-denuncia" class="botao" type="submit">Denunciar</button>
-                    </form>
-                
-                </div>
-            </div>
-
-
-
-            {{/comentarios.length}}
-            {{/comentarios}}
-
-        </div>
-    </div>
+</div>
 </div>
 
 {{>partials/footer}}

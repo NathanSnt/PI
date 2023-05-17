@@ -275,6 +275,8 @@
   }
   
   .header {
+    display: flex;
+    justify-content: space-evenly;
     background: #58c078;
     color: #fff;
     height: 50px;
@@ -350,3 +352,8 @@
   .parte-foto {
     padding-left: 5%;
   }
+
+#btn_sair {
+  width: 10%;
+  background-color: lightgreen;
+}

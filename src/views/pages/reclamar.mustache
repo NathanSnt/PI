@@ -1,148 +1,161 @@
-<link rel="stylesheet" href="css/reclamar.css">
-{{#erros}}
-    {{#erros.length}}
-    <div class="alerta">
-        <p>{{texto}}</p>
-    </div>
-    {{/erros.length}}
-{{/erros}}
-<div id="cardReclamacao">
-    <h1>Reclamação sobre:</h1>
-    <div id="botoesRadio">
-        <input type="radio" id="radio-linha" name="reclamacao" value="linha-geral" checked>
-        <label id="radioLinha" class="selecionado" for="radio-linha">Linha em geral</label>
+<link rel="stylesheet" href="/css/reclamar.css">
+{{>partials/header2}}
+<div id="conteudo">
 
-        <input type="radio" id="radio-estacao" name="reclamacao" value="estacao-especifica">
-        <label id="radioEstacao" for="radio-estacao">Estação específica</label>
+    {{#toast}}
+        {{^sucesso}}
+        <div class="alerta falha">
+            <p>{{toast}}</p>
+        </div>
+        {{/sucesso}}
 
-        <input type="radio" id="radio-carro" name="reclamacao" value="carro-especifico">
-        <label id="radioCarro" for="radio-carro">Carro específico</label>
-    </div>
+        {{#sucesso}}
+        <div class="alerta sucesso">
+            <p>{{toast}}</p>
+        </div>
+        {{/sucesso}}
+    {{/toast}}
 
-    <form action="/reclamar" method="POST" id="linha-geral">
+    <div id="cardReclamacao">
+        <h1>Reclamação sobre:</h1>
+        <div id="botoesRadio">
+            <input type="radio" id="radio-linha" name="reclamacao" value="linha-geral" checked>
+            <label id="radioLinha" class="selecionado" for="radio-linha">Linha em geral</label>
 
-        <div id="formLinha">
-            <label for="motivo-reclamacao">Motivo da reclamação:</label>
-            <select class="motivo-reclamacao  opcoesReclamacao" name="problema" required onchange="exibeCaixa('select1','problemaOutro1')" id="select1">
-                <option value="" disabled selected>Selecione</option>
-                <option value="velocidade-reduzida">Velocidade reduzida</option>
-                <option value="somente-um-lado-da-via-funcionando">Somente um lado da via funcionando</option>
-                <option value="greve">Greve</option>
-                <option value="linha-paralizada">Linha paralizada</option>
-                <option value="trem-descarrilhado">Trem descarrilhado</option>
-                <option value="falta-segunranca">Falta de segurança</option>
-                <option value="acidente">Acidente</option>
-                <option value="inversao-plataforma">Inversão de plataforma</option>
-                <option value="Outro">Outro</option>
-                <textarea name="outroProblema" rows="1" class="descricao-outro" id="problemaOutro1" maxlength="25" placeholder="Digite aqui..."></textarea>
-            </select>
-            <br><br>
-            <label for="movimentacao-linha">Nos conte sobre a movimentação da linha:</label>
-            <div id="radio-movimentacao">
-                <input type="radio"  id="situacao-cheio" name="movimentacao_linha" value="Muito Cheio" required>
-                <label for="situacao-cheio">Muito Cheio</label>
-                <input type="radio"  id="situacao-moderado" name="movimentacao_linha" value="Moderado" required>
-                <label for="situacao-moderado">Moderado</label>
-                <input type="radio"  id="situacao-vazio" name="movimentacao_linha" value="Vazio" required>
-                <label for="situacao-vazio">Vazio</label>
-            </div>
-            <br><br>
-            <label for="descricao-reclamacao">Fale um pouco mais sobre sua experiência:</label>
-            <textarea class="descricao-reclamacao" name="descricaoProblema" placeholder="Digite aqui..." required></textarea>
-            <br><br>
-            <input type="radio" name="tipo" value="1" checked style="display: none !important">
-            <button type="submit" value="Enviar" class="botao">Enviar</button>
+            <input type="radio" id="radio-estacao" name="reclamacao" value="estacao-especifica">
+            <label id="radioEstacao" for="radio-estacao">Estação específica</label>
+
+            <input type="radio" id="radio-carro" name="reclamacao" value="carro-especifico">
+            <label id="radioCarro" for="radio-carro">Carro específico</label>
         </div>
 
-    </form>
-    <form action="/reclamar" method="POST" id="estacao-especifica" style="display:none">
+        <form action="/reclamar" method="POST" id="linha-geral">
 
-        <div id="formEstacao">
-            <label>Selecione a estação:</label>
-            <select name="nomeEstacao" class="motivo-reclamacao" required>
-                <option value="" disabled selected>Selecione</option>
-                <option value="osasco">Osasco</option>
-                <option value="presidente altino">Presidente Altino</option>
-                <option value="ceasa">Ceasa</option>
-                <option value="vila lobos jaguare">Vila Lobos-Jaguaré</option>
-                <option value="cidade universitaria">Cidade Universitária</option>
-                <option value="pinheiros">Pinheiros</option>
-                <option value="hebraica reboucas">Hebraica Rebouças</option>
-                <option value="cidade jardim">Cidade Jardim</option>
-                <option value="vila olimpia">Vila Olímpia</option>
-                <option value="berrini">Berrini</option>
-                <option value="morumbi">Morumbi</option>
-                <option value="granja julieta">Granja Julieta</option>
-                <option value="joao dias">joão Dias</option>
-                <option value="santo amaro">Santo Amaro</option>
-                <option value="socorro">Socorro</option>
-                <option value="jurubatuba">Jurubatuba</option>
-                <option value="autodromo">Autódromo</option>
-                <option value="primavera interlagos">Primavera Interlagos</option>
-                <option value="grajau">Grajaú</option>
-                <option value="mendes vila natal">Mendes Vila Natal</option>
-                <option value="varginha">Varginha</option>
-            </select>
-            <br>
-            <label>Selecione o problema:</label>
-            <select name="problema" class="motivo-reclamacao  opcoesReclamacao" required onchange="exibeCaixa('select2','problemaOutro2')" id="select2">
-                <option value="" disabled selected>Selecione</option>
-                <option value="elevador-quebrado">Elevador quebrado</option>
-                <option value="escada-rolante-quebrada">Escada rolante quebrada</option>    
-                <option value="estacao-fechada">Estação fechada</option>
-                <option value="estacao-sem-guardas">Estação sem guardas</option>
-                <option value="estacao-alagada">Estação alagada</option>
-                <option value="acidente">Acidente</option>
-                <option value="briga">Briga</option>
-                <option value="falta-acessibilidade">Falta de acessiblidade</option>
-                <option value="Outro">Outro</option>
-                <textarea name="outroProblema" rows="1" class="descricao-outro" id="problemaOutro2" maxlength="25" placeholder="Digite aqui..."></textarea>
-            </select>
-            <br><br>
-            <label for="movimentacao-linha">Nos conte sobre a movimentação da linha:</label>
-            <div id="radio-movimentacao">
-                <input type="radio"  id="situacao-cheio" name="movimentacao_linha" value="Muito Cheio" required>
-                <label for="situacao-cheio">Muito Cheio</label>
-                <input type="radio"  id="situacao-moderado" name="movimentacao_linha" value="Moderado" required>
-                <label for="situacao-moderado">Moderado</label>
-                <input type="radio"  id="situacao-vazio" name="movimentacao_linha" value="Vazio" required>
-                <label for="situacao-vazio">Vazio</label>
-            </div>
-            <br><br>
-            <label>Fale um pouco mais sobre sua experiência:</label>
-            <textarea name="descricaoProblema" placeholder="Digite aqui..." class="descricao-reclamacao" required></textarea>
-            <br><br>
-            <input type="radio" name="tipo" value="2" checked style="display: none !important">
-            <button type="submit" value="Enviar" class="botao">Enviar</button>
-        </div>
-
-    </form>
-    <form action="/reclamar" method="POST" id="carro-especifico" style='display: none;'>
-
-        <div id="formCarro">
-            <label>Número do carro:</label>
-            <div id="problemaCarro">
-                <input name="numeroCarro" type="number" placeholder="Número do carro" class="motivo-reclamacao" id="numeroCarro" required>
-                <select name="problema" class="motivo-reclamacao opcoesReclamacao"  required onchange="exibeCaixa('select3','problemaOutro3')" id="select3">
+            <div id="formLinha">
+                <label for="motivo-reclamacao">Motivo da reclamação:</label>
+                <select class="motivo-reclamacao  opcoesReclamacao" name="problema" required onchange="exibeCaixa('select1','problemaOutro1')" id="select1">
                     <option value="" disabled selected>Selecione</option>
-                    <option value="porta-quebrada">Porta quebrada</option>
-                    <option value="ar-desligado">Ar Condicionado desligado</option>
-                    <option value="sujeira">Trem muito sujo</option>
-                    <option value="janela-quebrada">Janela quebrada</option>
+                    <option value="velocidade-reduzida">Velocidade reduzida</option>
+                    <option value="somente-um-lado-da-via-funcionando">Somente um lado da via funcionando</option>
+                    <option value="greve">Greve</option>
+                    <option value="linha-paralizada">Linha paralizada</option>
+                    <option value="trem-descarrilhado">Trem descarrilhado</option>
+                    <option value="falta-segunranca">Falta de segurança</option>
+                    <option value="acidente">Acidente</option>
+                    <option value="inversao-plataforma">Inversão de plataforma</option>
                     <option value="Outro">Outro</option>
-                    <textarea name="outroProblema" rows="1" class="descricao-outro" id="problemaOutro3" maxlength="25" placeholder="Digite aqui..."></textarea>
+                <textarea name="outroProblema" rows="1" class="descricao-outro" id="problemaOutro1" maxlength="25" placeholder="Digite aqui..."></textarea>
                 </select>
+                <br><br>
+                <label for="movimentacao-linha">Nos conte sobre a movimentação da linha:</label>
+                <div id="radio-movimentacao">
+                    <input type="radio"  id="situacao-cheio" name="movimentacao_linha" value="Muito Cheio" required>
+                    <label for="situacao-cheio">Muito Cheio</label>
+                    <input type="radio"  id="situacao-moderado" name="movimentacao_linha" value="Moderado" required>
+                    <label for="situacao-moderado">Moderado</label>
+                    <input type="radio"  id="situacao-vazio" name="movimentacao_linha" value="Vazio" required>
+                    <label for="situacao-vazio">Vazio</label>
+                </div>
+                <br><br>
+                <label for="descricao-reclamacao">Fale um pouco mais sobre sua experiência:</label>
+                <textarea class="descricao-reclamacao" name="descricaoProblema" placeholder="Digite aqui..." required></textarea>
+                <br><br>
+                <input type="radio" name="tipo" value="1" checked style="display: none !important">
+                <button type="submit" value="Enviar" class="botao">Enviar</button>
             </div>
-            <br><br>
-            <label for="descricao-reclamacao">Fale um pouco mais sobre sua experiência:</label>
-            <textarea name="descricaoProblema" placeholder="Digite aqui..." class="descricao-reclamacao" required></textarea>
-            <br><br>
-            <input type="radio" name="tipo" value="3" checked style="display: none !important">
-            <button type="submit" value="Enviar" class="botao">Enviar</button>
-        </div>
 
-    </form>
+        </form>
+        <form action="/reclamar" method="POST" id="estacao-especifica" style="display:none">
+
+            <div id="formEstacao">
+                <label>Selecione a estação:</label>
+                <select name="nomeEstacao" class="motivo-reclamacao" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="osasco">Osasco</option>
+                    <option value="presidente altino">Presidente Altino</option>
+                    <option value="ceasa">Ceasa</option>
+                    <option value="vila lobos jaguare">Vila Lobos-Jaguaré</option>
+                    <option value="cidade universitaria">Cidade Universitária</option>
+                    <option value="pinheiros">Pinheiros</option>
+                    <option value="hebraica reboucas">Hebraica Rebouças</option>
+                    <option value="cidade jardim">Cidade Jardim</option>
+                    <option value="vila olimpia">Vila Olímpia</option>
+                    <option value="berrini">Berrini</option>
+                    <option value="morumbi">Morumbi</option>
+                    <option value="granja julieta">Granja Julieta</option>
+                    <option value="joao dias">joão Dias</option>
+                    <option value="santo amaro">Santo Amaro</option>
+                    <option value="socorro">Socorro</option>
+                    <option value="jurubatuba">Jurubatuba</option>
+                    <option value="autodromo">Autódromo</option>
+                    <option value="primavera interlagos">Primavera Interlagos</option>
+                    <option value="grajau">Grajaú</option>
+                    <option value="mendes vila natal">Mendes Vila Natal</option>
+                    <option value="varginha">Varginha</option>
+                </select>
+                <br>
+                <label>Selecione o problema:</label>
+                <select name="problema" class="motivo-reclamacao  opcoesReclamacao" required onchange="exibeCaixa('select2','problemaOutro2')" id="select2">
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="elevador-quebrado">Elevador quebrado</option>
+                    <option value="escada-rolante-quebrada">Escada rolante quebrada</option>    
+                    <option value="estacao-fechada">Estação fechada</option>
+                    <option value="estacao-sem-guardas">Estação sem guardas</option>
+                    <option value="estacao-alagada">Estação alagada</option>
+                    <option value="acidente">Acidente</option>
+                    <option value="briga">Briga</option>
+                    <option value="falta-acessibilidade">Falta de acessiblidade</option>
+                    <option value="Outro">Outro</option>
+                <textarea name="outroProblema" rows="1" class="descricao-outro" id="problemaOutro2" maxlength="25" placeholder="Digite aqui..."></textarea>
+                </select>
+                <br><br>
+                <label for="movimentacao-linha">Nos conte sobre a movimentação da linha:</label>
+                <div id="radio-movimentacao">
+                    <input type="radio"  id="situacao-cheio2" name="movimentacao_linha" value="Muito Cheio" required>
+                    <label for="situacao-cheio2">Muito Cheio</label>
+                    <input type="radio"  id="situacao-moderado2" name="movimentacao_linha" value="Moderado" required>
+                    <label for="situacao-moderado2">Moderado</label>
+                    <input type="radio"  id="situacao-vazio2" name="movimentacao_linha" value="Vazio" required>
+                    <label for="situacao-vazio2">Vazio</label>
+                </div>
+                <br><br>
+                <label>Fale um pouco mais sobre sua experiência:</label>
+                <textarea name="descricaoProblema" placeholder="Digite aqui..." class="descricao-reclamacao" required></textarea>
+                <br><br>
+                <input type="radio" name="tipo" value="2" checked style="display: none !important">
+                <button type="submit" value="Enviar" class="botao">Enviar</button>
+            </div>
+
+        </form>
+        <form action="/reclamar" method="POST" id="carro-especifico" style='display: none;'>
+
+            <div id="formCarro">
+                <label>Número do carro:</label>
+                <div id="problemaCarro">
+                    <input name="numeroCarro" type="number" placeholder="Número do carro" class="motivo-reclamacao" id="numeroCarro" required>
+                    <select name="problema" class="motivo-reclamacao opcoesReclamacao"  required onchange="exibeCaixa('select3','problemaOutro3')" id="select3">
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="porta-quebrada">Porta quebrada</option>
+                        <option value="ar-desligado">Ar Condicionado desligado</option>
+                        <option value="sujeira">Trem muito sujo</option>
+                        <option value="janela-quebrada">Janela quebrada</option>
+                        <option value="Outro">Outro</option>
+                    <textarea name="outroProblema" rows="1" class="descricao-outro" id="problemaOutro3" maxlength="25" placeholder="Digite aqui..."></textarea>
+                    </select>
+                </div>
+                <br><br>
+                <label for="descricao-reclamacao">Fale um pouco mais sobre sua experiência:</label>
+                <textarea name="descricaoProblema" placeholder="Digite aqui..." class="descricao-reclamacao" required></textarea>
+                <br><br>
+                <input type="radio" name="tipo" value="3" checked style="display: none !important">
+                <button type="submit" value="Enviar" class="botao">Enviar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
 </div>
 
-
-<script src="javascript/reclamacao.js"></script>
+{{>partials/footer}}
+<script src="/javascript/reclamacao.js"></script>

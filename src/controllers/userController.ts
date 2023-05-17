@@ -42,11 +42,16 @@ export const cadastrar_usuario = ((req: Request, res: Response) => {
                 data_cadastro: data_cadastro
             })
             await novo_usuario.save()
-            res.redirect('/')
+            res.render('pages/login', {
+                toast: "Usuário cadastrado com sucesso!",
+                sucesso: true
+            })
         }
         else {
-            // Mensagem de erro, dados inválidos ou já existente no banco.
-            res.redirect('/')
+            res.render('pages/cadastro', {
+                toast: "Dados inválidos ou já existente no banco!",
+                sucesso: false
+            })
         }
     })
 })
@@ -55,37 +60,42 @@ export const login = ((req: Request, res: Response) => {
     res.render('pages/login')
 })
 
+export const login_notfy = ((req: Request, res: Response) => {
+    const sucesso = req.params.sucesso === "true"? true : false
+    res.render('pages/login', {
+        toast: req.params.toast,
+        sucesso: sucesso
+    })
+})
+
 export const logout = ((req: Request, res: Response) => {
     req.session.destroy((error) => {
-        console.log("Usuário fez logout.")
-        res.redirect('/')
+        res.redirect('/home/Saiu com sucesso/true')
     });
 })
 
 export const pesquisa_usuario = async (req:Request, res: Response, next: NextFunction) => {
     passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
+        successRedirect: '/home/Autenticado com sucesso!/true',
+        failureRedirect: '/login/Usuário ou senha inválidos./false',
         failureFlash: true
     })(req, res, next)
 }
 
 export const denunciar = async(req: Request, res: Response) => {
-    if (!req.isAuthenticated())
+    const autenticado = req.isAuthenticated()
+
+    if (!autenticado)
     {
-        req.flash("Erro", 'Você precisa estar logado para conseguir denunciar comentários.')
-        console.log("Usuário não autenticado tentando denúnciar um comentário.")
-        res.redirect('/')
+        res.redirect("/home/Você precisa estar autenticado para conseguir denunciar comentários./false")
     }
     else {
         const cod_comentario = req.params.cod_comentario
         const denunciante = res.locals.user.codigo
         let motivo = req.body.botoes
         if(motivo  === "Outro"){
-
             motivo = req.body.outro_motivo
         }
-        console.log(motivo)
         
         const denuncias = await Denuncia.findAll({where: {cod_reclamacao: cod_comentario}})
         const denunciaUsuario = await Denuncia.findAll({where: {cod_reclamacao: cod_comentario, cod_usuario: denunciante}})
@@ -93,17 +103,17 @@ export const denunciar = async(req: Request, res: Response) => {
         // Impede um usuário de denúnciar o mesmo comentário mais de uma vez.
         if (denunciaUsuario.length == 0){
             arquivarDenuncia(cod_comentario, denunciante,motivo)
+            
+            // Quando o número de denúncias chaga à 10, a reclamação é deletado.
+            if (denuncias.length >= 9){
+                deletarReclamacao(cod_comentario)
+            }
+            res.redirect("/home/Comentário denunciado com sucesso!/true")
         }
         else {
-            // Toast
-            console.log(`Não é possível denúnciar o mesmo comentário mais de uma vez!`)
+            res.redirect("/home/Não é possível denúnciar o mesmo comentário mais de uma vez!/false")
         }
     
-        // Quando o número de denúncias chaga à 10, a reclamação é deletado.
-        if (denuncias.length >= 9){
-            deletarReclamacao(cod_comentario)
-        }
-        res.redirect('/')
     }
 }
 

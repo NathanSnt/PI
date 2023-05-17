@@ -8,6 +8,7 @@ import { Op } from 'sequelize'
 
 
 export const home = async (req:Request, res:Response) => {
+    const sucesso = req.params.sucesso === "true"? true : false
     const autenticado = req.isAuthenticated()
     const cod_usuario = autenticado? res.locals.user.codigo : null
     const dataAtual = new Date()
@@ -20,7 +21,11 @@ export const home = async (req:Request, res:Response) => {
     try {
         if (comentarios.length === 0){
             res.render('pages/home', {
-                status
+                status,
+                cod_usuario,
+                autenticado,
+                toast: req.params.toast,
+                sucesso: sucesso
             })
         }
         else {
@@ -51,7 +56,9 @@ export const home = async (req:Request, res:Response) => {
                 status,
                 cod_usuario: cod_usuario,
                 autenticado,
-                comentarios: comentData
+                comentarios: comentData,
+                toast: req.params.toast,
+                sucesso: sucesso
             })
         }
     } catch (error) {
@@ -60,57 +67,69 @@ export const home = async (req:Request, res:Response) => {
 }
 
 export const sobre = ((req: Request, res: Response) => {
-    res.render('pages/sobre')
+    const autenticado = req.isAuthenticated()
+    const cod_usuario = autenticado? res.locals.user.codigo : null
+    res.render('pages/sobre', {
+        autenticado,
+        cod_usuario
+    })
 })
 
 export const reclamar = ((req: Request, res: Response) => {
-    res.render('pages/reclamar.mustache')
+    const autenticado = req.isAuthenticated()
+    const cod_usuario = autenticado? res.locals.user.codigo : null
+    res.render('pages/reclamar', {
+        autenticado,
+        cod_usuario
+    })
 })
 
 export const arquivar_reclamacao = async (req: Request, res: Response) => {
     let tipo = req.body.tipo
-    let erros: Object[] = []
+    const autenticado = req.isAuthenticated()
+    const cod_usuario = autenticado? res.locals.user.codigo : null
     
-    if(req.isAuthenticated()){
+    if(autenticado){
         let usuario = res.locals.user.codigo
         try{
 
             switch (tipo) {
                 case '1':
-                    // Exibir mensagem de sucesso
-                    arquivarReclamacaoTipo1(req, usuario)
+                    await arquivarReclamacaoTipo1(req, usuario)
                     break
         
                 case '2':
-                    // Exibir mensagem de sucesso
-                    arquivarReclamacaoTipo2(req, usuario)
+                    await arquivarReclamacaoTipo2(req, usuario)
                     break
         
                 case '3':
-                    arquivarReclamacaoTipo3(req, usuario)
-                    // Exibir mensagem de sucesso
+                    await arquivarReclamacaoTipo3(req, usuario)
                     break
             }
-            res.redirect('/')
+            res.redirect("/home/Reclamação enviada!/true")
         }
         catch (error) {
             console.log(`Erro ao arquivar reclamação:\n${error}`)
         }
     }
     else {
-        erros.push({texto: "Você precisa fazer login para conseguir enviar uma reclamação."})
-        res.render('pages/reclamar', {
-            erros
-        })
+        res.redirect("/login/Você precisa fazer login para conseguir enviar uma reclamação./false")
     }
 }
 
 export const mapa = ((req: Request, res: Response) => {
-    res.render('pages/mapa.mustache')
+    const autenticado = req.isAuthenticated()
+    const cod_usuario = autenticado? res.locals.user.codigo : null
+    res.render('pages/mapa', {
+        autenticado,
+        cod_usuario
+    })
 })
 
 export async function estacao(req: Request, res: Response) {
     let nome_estacao: string = req.query.estacao as string
+    const autenticado = req.isAuthenticated()
+    const cod_usuario = autenticado? res.locals.user.codigo : null
 
     try {
         const estacao = await Estacao.findOne({ where: { nome: nome_estacao } });
@@ -142,6 +161,8 @@ export async function estacao(req: Request, res: Response) {
         
         if (comentarios.length === 0){
             res.render('pages/estacao', {
+                autenticado,
+                cod_usuario,
                 status,
                 caracteristicas,
                 estacao
@@ -163,10 +184,15 @@ export async function estacao(req: Request, res: Response) {
             }))
         
             if (estacao === null){
-                res.render('pages/not_found')
+                res.render('pages/not_found', {
+                    autenticado,
+                    cod_usuario
+                })
             }
             else {
                 res.render('pages/estacao', {
+                    autenticado,
+                    cod_usuario,
                     status,
                     estacao,
                     caracteristicas: caracteristicas,
@@ -180,22 +206,49 @@ export async function estacao(req: Request, res: Response) {
 }
 
 export async function usuario(req: Request, res: Response) {
+    const autenticado = req.isAuthenticated()
+    const cod_usuario = autenticado? res.locals.user.codigo : null
     try {
         let visitante = null
-        if (req.isAuthenticated()){
+        if (autenticado){
             visitante = res.locals.user.codigo
         }
         const codigo = req.params.cod_usuario
-        console.log(`Buscando dados do usuário com código ${codigo}`)
         const usuario = await Usuario.findOne({where: {codigo: codigo}})
         const reclamacoes = await Reclamacao.findAll({where: {cod_usu: usuario?.codigo}})
         const qtdReclamacoes = reclamacoes.length
 
+        // TESTANDO CALCULAR TEMPO DE COMENTÁRIO
+        const comentData = await Promise.all(reclamacoes.map(async (comentario) => { 
+            const usuario = await Usuario.findOne({ where: { codigo: comentario?.cod_usu } })
+            const tempo = calculaTempo(comentario?.data_hora) // Tempo de existência do comentário
+
+            let reclamacoes = [null, 'Sobre a linha', 'Estação específica', 'Carro específico']
+
+            const estacao = await Estacao.findOne({where: {codigo: comentario?.cod_estacao}}) 
+
+            const comentInfo = {
+                cod_usuario: usuario?.codigo,
+                codigo: comentario.codigo,
+                descricao: comentario?.descricao,
+                usuario: usuario?.nome,
+                tempo: tempo,
+                tipo: reclamacoes[comentario?.tipo],
+                estacao: estacao?.nome,
+                carro: comentario.numero_carro,
+                foto_perfil: usuario?.foto_perfil
+            }
+
+            return comentInfo
+        }))
+
         try {
             res.render('pages/usuario', {
+                autenticado,
+                cod_usuario,
                 perfil: visitante == codigo,
                 qtdReclamacoes,
-                reclamacoes,
+                reclamacoes: comentData,
                 usuario
             })
         }
@@ -244,8 +297,6 @@ function calculaStatus(status_estacao: StatusInstance[], estacao: Boolean){
         status?.status_movimentacao == "Muito Cheio"? cheio++:cheio+=0
     })
 
-    console.log(`Reports = ${status_estacao.length}\nVazio = ${vazio}\nModerado = ${moderado}\ncheio = ${cheio}`)
-    
     if (moderado >= cheio && moderado > 10){
         return estacao? "Moderado" : {estado: "Moderado", imagem :"neutro.png"}
     }

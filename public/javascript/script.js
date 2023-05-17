@@ -33,9 +33,9 @@ function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
         },
         success: function(data) {
             $(divId).html(data)
-            $('html, body').animate({
-                scrollTop: $('#conteudo').offset().top
-            })
+            // $('html, body').animate({
+            //     scrollTop: $('#conteudo').offset().top
+            // })
             mudarCarrossel(carrossel)
         }
     })
@@ -117,8 +117,21 @@ function exibeCaixa(select, texto){
 
 }
 
+function alerta() {
+    const alerta = document.querySelector(".alerta");
+    alerta.style.opacity = "0";
+}
+
 window.addEventListener('load', function() {
     atualizaTamanhoFaixa()
+    // $('html, body').animate({
+    //     scrollTop: $('#conteudo').offset().top
+    // })
+
+    // Exibindo Toast
+    this.setTimeout(() =>{
+        alerta()
+    }, 3500)
 })
 window.addEventListener('resize', function() {
     atualizaTamanhoFaixa()
