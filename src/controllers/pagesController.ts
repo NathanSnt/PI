@@ -5,6 +5,8 @@ import { Usuario } from '../models/Usuario'
 import { Caracteristica } from '../models/Caracteristica'
 import { Status, StatusInstance } from '../models/Status'
 import { Op } from 'sequelize'
+import { Endereco } from '../models/Endereco'
+import { Servico } from '../models/Servico'
 
 
 export const home = async (req:Request, res:Response) => {
@@ -30,7 +32,7 @@ export const home = async (req:Request, res:Response) => {
         }
         else {
             const comentData = await Promise.all(comentarios.map(async (comentario) => { 
-                const usuario = await Usuario.findOne({ where: { codigo: comentario?.cod_usu } })
+                const usuario = await Usuario.findOne({ where: { codigo: comentario?.cod_usuario } })
                 const tempo = calculaTempo(comentario?.data_hora) // Tempo de existência do comentário
 
                 let reclamacoes = [null, 'Sobre a linha', 'Estação específica', 'Carro específico']
@@ -46,7 +48,7 @@ export const home = async (req:Request, res:Response) => {
                     tipo: reclamacoes[comentario?.tipo],
                     estacao: estacao?.nome,
                     carro: comentario.numero_carro,
-                    foto_perfil: usuario?.foto_perfil
+                    foto_perfil: usuario?.foto_perfil,
                 }
 
                 return comentInfo
@@ -133,29 +135,32 @@ export async function estacao(req: Request, res: Response) {
 
     try {
         const estacao = await Estacao.findOne({ where: { nome: nome_estacao } });
+        const enderecos = await Endereco.findAll({where: {cod_estacao: estacao?.codigo}})
+
+        console.log(enderecos)
         const [caracteristica, status_estacao, comentarios] = await Promise.all([
-            Caracteristica.findAll({where: {cod_estacao: estacao?.codigo}}),
+            Servico.findAll({where: {cod_estacao: estacao?.codigo}}),
             Status.findAll({where: {cod_estacao: estacao?.codigo, expiracao: {[Op.gt]: new Date()} }}),
             Reclamacao.findAll({ where: { cod_estacao: estacao?.codigo }, order: [['codigo', 'DESC']] })
         ]);
         
         let caracteristicas = {}
-        caracteristica.forEach(element => {
+        // caracteristica.forEach(element => {
 
-            let tipo = `${element?.tipo}`
-            let valor
-            if (element.cod_estado == 1) {valor = "Não Tem"}
-            else if (element.cod_estado == 2) {valor = "Funcionando"}
-            else if (element.cod_estado == 3) {valor = "Quebrado"}
-            else {valor = "Em Manutenção"}
+            // let tipo = `${element?.nome}`
+            // let valor
+            // if (element.cod_estado == 1) {valor = "Não Tem"}
+            // else if (element.cod_estado == 2) {valor = "Funcionando"}
+            // else if (element.cod_estado == 3) {valor = "Quebrado"}
+            // else {valor = "Em Manutenção"}
 
-            Object.defineProperty(caracteristicas, tipo, {
-                value: valor,
-                writable: true,
-                enumerable: true,
-                configurable: true
-            })
-        })
+        //     Object.defineProperty(caracteristicas, tipo, {
+        //         value: valor,
+        //         writable: true,
+        //         enumerable: true,
+        //         configurable: true
+        //     })
+        // })
 
         const status = calculaStatus(status_estacao, true)
         
@@ -165,13 +170,14 @@ export async function estacao(req: Request, res: Response) {
                 cod_usuario,
                 status,
                 caracteristicas,
-                estacao
+                estacao,
+                enderecos: enderecos
             })
         }
         else {
             const comentData = await Promise.all(comentarios.map(async (comentario) => {
                 const tempo = calculaTempo(comentario?.data_hora)
-                const usuario = await Usuario.findOne({ where: { codigo: comentario?.cod_usu } });
+                const usuario = await Usuario.findOne({ where: { codigo: comentario?.cod_usuario } });
 
                 const comentInfo = {
                     descricao: comentario?.descricao,
@@ -195,6 +201,7 @@ export async function estacao(req: Request, res: Response) {
                     cod_usuario,
                     status,
                     estacao,
+                    enderecos: enderecos,
                     caracteristicas: caracteristicas,
                     comentarios: comentData
                 })
@@ -215,12 +222,12 @@ export async function usuario(req: Request, res: Response) {
         }
         const codigo = req.params.cod_usuario
         const usuario = await Usuario.findOne({where: {codigo: codigo}})
-        const reclamacoes = await Reclamacao.findAll({where: {cod_usu: usuario?.codigo}})
+        const reclamacoes = await Reclamacao.findAll({where: {cod_usuario: usuario?.codigo}})
         const qtdReclamacoes = reclamacoes.length
 
         // TESTANDO CALCULAR TEMPO DE COMENTÁRIO
         const comentData = await Promise.all(reclamacoes.map(async (comentario) => { 
-            const usuario = await Usuario.findOne({ where: { codigo: comentario?.cod_usu } })
+            const usuario = await Usuario.findOne({ where: { codigo: comentario?.cod_usuario } })
             const tempo = calculaTempo(comentario?.data_hora) // Tempo de existência do comentário
 
             let reclamacoes = [null, 'Sobre a linha', 'Estação específica', 'Carro específico']
@@ -320,7 +327,7 @@ async function arquivarReclamacaoTipo1(req: Request, usuario: string){
         tipo: '1',
         descricao: req.body.descricaoProblema,
         motivo: req.body.problema,
-        cod_usu: usuario
+        cod_usuario: usuario
     })
     await novo_status.save()
     await nova_reclamacao.save()
@@ -343,7 +350,7 @@ async function arquivarReclamacaoTipo2(req: Request, usuario: string){
             descricao: req.body.descricaoProblema,
             motivo: req.body.problema,
             cod_estacao: codigo_estacao,
-            cod_usu: usuario
+            cod_usuario: usuario
         })
         await novo_status.save()
         await nova_reclamacao.save()
@@ -359,7 +366,7 @@ async function arquivarReclamacaoTipo3(req: Request, usuario: string){
         descricao: req.body.descricaoProblema,
         motivo: req.body.problema,
         numero_carro: req.body.numeroCarro,
-        cod_usu: usuario
+        cod_usuario: usuario
     })
     await nova_reclamacao.save()
 }

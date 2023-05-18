@@ -12,9 +12,16 @@
     
         <div id="informacoes">
             <div id="sobre">
-                <p>Localização: {{estacao.localizacao}}</p>
+                
+                {{#enderecos}}
+                Localização:
+                {{#enderecos.length}}
+                    <p>Rua: {{rua}}, {{numero}}</p>
+                    Bairro: {{bairro}} CEP: {{cep}}
+                    <hr>
+                {{/enderecos.length}}
+                {{/enderecos}}
                 <p>Horário de funcionamento: Todos os dias das 4h00 à 0h00</p>
-                <p>Saídas: </p>
             </div>
     
             <div id="caracteristicas">
