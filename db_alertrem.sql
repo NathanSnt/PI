@@ -1,10 +1,10 @@
 create database db_alertrem;
 use db_alertrem;
 
-create table tb_usuarios (
+create table tb_perfis (
 	codigo int not null auto_increment,
 	nome varchar(50) not null,
-    salt varchar(60) not null,
+    salt varchar(256) not null,
 	senha varchar(256) not null,
 	email varchar(100) not null,
 	cpf char(14) not null,
@@ -14,36 +14,70 @@ create table tb_usuarios (
 	primary key(codigo) 
 );
 
-create table tb_estacoes (
+create table tb_funcionarios (
     codigo int not null auto_increment,
     nome varchar(50) not null,
-    localizacao varchar(150) not null,
+    cpf varchar(14) not null,
+    telefone varchar(20) not null,
+    data_cadastro date not null default now(),
 
-    primary key (codigo)
+    primary key(codigo)
 );
 
-insert into tb_estacoes (nome, localizacao) values
-('Osasco', 'Praça Antonio Menck, s/nº (Centro)/ Rua Erasmo Braga, s/nº (Bonfim) – Osasco 06093-090'),
-('Presidente Altino', 'Rua Abílio Mendes, 08 - Presidente Altino - Osasco'),
-('Ceasa', 'Avenida das Nações Unidas, 1.390 - Vila Leopoldina - São Paulo 05311-000 '),
-('Vila Lobos Jaguare', 'Avenida das Nações Unidas, 2.100 - Jaguaré - São Paulo 05477-000 '),
-('Cidade Universitaria', 'Avenida das Nações Unidas, 6.202 - Jardim Universidade Pinheiros - São Paulo 05477-000 '),
-('Pinheiros', 'Rua Capri, 145 - Pinheiros - São Paulo 05477-000 '),
-('Hebraica Reboucas', 'Rua Ofélia, 255 - Pinheiros - São Paulo 05423-110'),
-('Cidade Jardim', 'Rua Prof. Artur Ramos, 787 (Jardim Paulistano) / Rua Hungria, s/nº (Jardim Europa) – São Paulo 05477-000'),
-('Vila Olimpia', 'Avenida das Nações Unidas, 10.900 (Brooklin Paulista) / Rua Beira Rio, s/nº (Vila Olímpia) – São Paulo 04578-000'),
-('Berrini', 'Berrini Rua Guilherme Barbosa de Melo, nº 117 / Rua Joel Carlos Borges, 179 – Cidade Monções – São Paulo 04578-000'),
-('Morumbi', 'Avenida das Nações Unidas, 14.171 - Vila Gertrudes - São Paulo 04578-000'),
-('Granja Julieta', 'Rua Alexandre Dumas, 4.403 - Chácara Santo Antonio - São Paulo 04717-004 '),
-('Joao Dias', 'Avenida das Nações Unidas, 18667 - Santo Amaro - 04730-90'),
-('Santo Amaro', 'Avenida das Nações Unidas, s/nº - Jardim Promissão - São Paulo 04795-100 '),
-('Socorro', 'Av. das Nações Unidas, s/nº (Jurubatuba)/ Rua Florenville s/nº (Santo Amaro) – São Paulo 04696-010'),
-('Jurubatuba', 'Av. Octales M. Ferreira, 391 - Jurubatuba - São Paulo 04696-010'),
-('Autodromo', 'Rua Plínio Schmidt, nº 307 - Jardim Marcel -São Paulo 4815130 '),
-('Primavera Interlagos', 'Rua Jequirituba, 83 (Jardim Colonial)/ Rua Alexandre Gandini, 71( Parque Santana) - São Paulo 04822-000 '),
-('Grajau', 'Rua Giovanni Bononcini, 77 - Parque Brasil - São Paulo 04822-000 '),
-('Mendes Vila Natal', 'Estrada dos Mendes, s/n - Jardim Icarai – Grajaú - 04860-140'),
-('Varginha', 'Sem endereço ainda');
+create table tb_usuarios (
+    codigo int not null auto_increment,
+    usuario varchar(50) not null,
+    salt varchar(256) not null,
+	senha varchar(256) not null,
+    cod_funcionario int not null,
+
+    primary key (codigo),
+    foreign key (cod_funcionario) references tb_funcionarios (codigo)
+);
+
+create table tb_estacoes (
+    codigo int not null auto_increment,
+    nome varchar(100) not null,
+    cod_usuario int not null,
+
+    primary key (codigo),
+    foreign key (cod_usuario) references tb_usuarios (codigo)
+);
+
+-- insert into tb_estacoes (nome, cod_usuario) values
+-- ('Osasco', 1),
+-- ('Presidente Altino', 1),
+-- ('Ceasa', 1),
+-- ('Vila Lobos Jaguare', 1),
+-- ('Cidade Universitaria', 1),
+-- ('Pinheiros', 1),
+-- ('Hebraica Reboucas', 1),
+-- ('Cidade Jardim', 1),
+-- ('Vila Olimpia', 1),
+-- ('Berrini', 1),
+-- ('Morumbi', 1),
+-- ('Granja Julieta', 1),
+-- ('Joao Dias', 1),
+-- ('Santo Amaro', 1),
+-- ('Socorro', 1),
+-- ('Jurubatuba', 1),
+-- ('Autodromo', 1),
+-- ('Primavera Interlagos', 1),
+-- ('Grajau', 1),
+-- ('Mendes Vila Natal', 1),
+-- ('Varginha', 1);
+
+create table tb_enderecos (
+    codigo int null auto_increment,
+    rua varchar(100) not null,
+    numero varchar(6) not null,
+    bairro varchar(100) not null,
+    cep varchar(9) not null,
+    cod_estacao int not null,
+
+    primary key (codigo),
+    foreign key (cod_estacao) references tb_estacoes (codigo)
+);
 
 create table tb_estados_operacionais (
     codigo int not null auto_increment,
@@ -60,13 +94,21 @@ insert into tb_estados_operacionais (estado) values
 
 create table tb_caracteristicas(
     codigo int not null auto_increment,
-    tipo varchar(100) not null,
-    cod_estado int not null,
+    nome varchar(100) not null,
+
+    primary key (codigo)
+);
+
+create table tb_estacao_caracteristica_estado_operacional (
+    codigo int not null auto_increment,
     cod_estacao int not null,
+    cod_caracteristica int not null,
+    cod_estado_operacional int not null,
 
     primary key (codigo),
-    foreign key (cod_estado) references tb_estados_operacionais (codigo),
-    foreign key (cod_estacao) references tb_estacoes (codigo)
+    foreign key (cod_estacao) references tb_estacoes (codigo),
+    foreign key (cod_caracteristica) references tb_caracteristicas (codigo),
+    foreign key (cod_estado_operacional) references tb_estados_operacionais (codigo)
 );
 
 create table tb_reclamacoes (
@@ -76,50 +118,38 @@ create table tb_reclamacoes (
 	descricao varchar(500),
 	motivo varchar(100),
     numero_carro int,
-	cod_usu int,
+	cod_usuario int not null,
 	cod_estacao int,
 
-	foreign key(cod_usu)references tb_usuarios(codigo),
-	foreign key(cod_estacao)references tb_estacoes(codigo),
-	primary key(codigo)
+	primary key(codigo),
+	foreign key(cod_usuario)references tb_perfis(codigo),
+	foreign key(cod_estacao)references tb_estacoes(codigo)
 );
 
-create table tb_funcionarios (
-    codigo int not null auto_increment,
-    nome varchar(50) not null,
-    usuario varchar(50) not null,
-    salt varchar(60) not null,
-	senha varchar(256) not null,
-    data_hora datetime not null default now(),
-
-    primary key(codigo)
-);
 
 create table tb_denuncias (
     codigo int not null auto_increment,
-    cod_reclamacao int not null,
-    cod_usuario int not null,
     motivo varchar(100) not null,
+    cod_usuario int not null,
+    cod_reclamacao int not null,
 
-    foreign key (cod_reclamacao) references tb_reclamacoes(codigo),
-    foreign key (cod_usuario) references tb_usuarios(codigo),
-    primary key (codigo)
+    primary key (codigo),
+    foreign key (cod_usuario) references tb_perfis(codigo),
+    foreign key (cod_reclamacao) references tb_reclamacoes(codigo)
 );
 
 create table tb_status (
     codigo int not null auto_increment,
     status_movimentacao varchar(50) not null,
     cod_estacao int,
-    data_hora timestamp not null default current_timestamp,
+    data_hora datetime not null default now(),
     expiracao timestamp ,
 
-    foreign key (cod_estacao) references tb_estacoes(codigo),
-    primary key (codigo)
+    primary key (codigo),
+    foreign key (cod_estacao) references tb_estacoes(codigo)
 );
 
 create trigger set_expiracao
 before insert on tb_status
 for each row
 set new.expiracao = now() + interval 30 minute;
-
--- SELECT * FROM tb_status WHERE expiracao > NOW();
