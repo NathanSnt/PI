@@ -7,6 +7,7 @@ import { Status, StatusInstance } from '../models/Status'
 import { Op } from 'sequelize'
 import { Endereco } from '../models/Endereco'
 import { Servico } from '../models/Servico'
+import { EstadoOperacional } from '../models/EstadoOperacional'
 
 
 export const home = async (req:Request, res:Response) => {
@@ -145,22 +146,20 @@ export async function estacao(req: Request, res: Response) {
         ]);
         
         let caracteristicas = {}
-        // caracteristica.forEach(element => {
+        caracteristica.forEach(async element =>  {
 
-            // let tipo = `${element?.nome}`
-            // let valor
-            // if (element.cod_estado == 1) {valor = "Não Tem"}
-            // else if (element.cod_estado == 2) {valor = "Funcionando"}
-            // else if (element.cod_estado == 3) {valor = "Quebrado"}
-            // else {valor = "Em Manutenção"}
+            let carac = await Caracteristica.findOne({where: {codigo: element.cod_caracteristica}})
+            let tipo = carac?.nome
+            let estado = await EstadoOperacional.findOne({where: {codigo: element.cod_estado_operacional}})
+            let estado_operacional = estado?.estado
 
-        //     Object.defineProperty(caracteristicas, tipo, {
-        //         value: valor,
-        //         writable: true,
-        //         enumerable: true,
-        //         configurable: true
-        //     })
-        // })
+            Object.defineProperty(caracteristicas, tipo || "", {
+                value: estado_operacional,
+                writable: true,
+                enumerable: true,
+                configurable: true
+            })
+        })
 
         const status = calculaStatus(status_estacao, true)
         
