@@ -33,9 +33,9 @@ function mudarConteudo(pagina, divId, carrossel, nome_estacao) {
         },
         success: function(data) {
             $(divId).html(data)
-            $('html, body').animate({
-                scrollTop: $('#conteudo').offset().top
-            })
+            // $('html, body').animate({
+            //     scrollTop: $('#conteudo').offset().top
+            // })
             mudarCarrossel(carrossel)
         }
     })
@@ -102,6 +102,21 @@ function esconde(elemento){
     card.classList.remove('exibir');
 }
 
+
+function exibeCaixa(select, texto){
+
+    var selecao = document.getElementById(select);
+    var caixaDeTexto = document.getElementById(texto);
+    if(selecao.options[selecao.selectedIndex].text === "Outro"){
+        
+        caixaDeTexto.classList.add("caixaOutro");
+    }
+    else{
+        caixaDeTexto.classList.remove("caixaOutro");  
+    }
+
+}
+
 function alerta() {
     const alerta = document.querySelector(".alerta");
     alerta.style.opacity = "0";
@@ -109,9 +124,9 @@ function alerta() {
 
 window.addEventListener('load', function() {
     atualizaTamanhoFaixa()
-    $('html, body').animate({
-        scrollTop: $('#conteudo').offset().top
-    })
+    // $('html, body').animate({
+    //     scrollTop: $('#conteudo').offset().top
+    // })
 
     // Exibindo Toast
     this.setTimeout(() =>{

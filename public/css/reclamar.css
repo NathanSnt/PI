@@ -122,6 +122,22 @@ option{
     text-align: center;
 }
 
+.descricao-outro{
+    display: none;
+}
+
+.caixaOutro{
+    display: block !important;
+    margin-top: 10px;
+    width: 215px;;
+    padding: 5px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 10px;
+    resize: none;
+}
+
+
+
 @media (max-width: 1050px) {
     #botoesRadio {
         flex-direction: column;

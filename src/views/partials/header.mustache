@@ -34,12 +34,14 @@
                         <img class="menu-img" src="/images/sobreNos2.png" alt="">
                     </a>
                 </li>
+                {{#autenticado}}
                 <li onclick="mudarCarrossel('noticia')">
                     <a href="/reclamar">
                         <img src="/images/bola-verde.jpg" class="bola-verde" alt="bola verde">
                         <img class="menu-img" src="/images/reclamar2.png" alt="">
                     </a>
                 </li>
+                {{/autenticado}}
                 {{#autenticado}}
                 <li onclick="mudarCarrossel('noticia')">
                     <a href="/usuario/{{cod_usuario}}">

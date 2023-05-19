@@ -8,7 +8,7 @@ export interface ReclamacaoInstance extends Model {
     descricao: string
     motivo: string
     numero_carro: number
-    cod_usu: number
+    cod_usuario: number
     cod_estacao: number
 }
 
@@ -37,7 +37,7 @@ export const Reclamacao = sequelize.define<ReclamacaoInstance>("Reclamacao,", {
     numero_carro: {
         type: DataTypes.INTEGER
     },
-    cod_usu: {
+    cod_usuario: {
         type:DataTypes.INTEGER,
         references: {
             model: 'Usuario',

@@ -4,7 +4,6 @@ import {sequelize} from '../configs/mysql'
 export interface EstacaoInstance extends Model {
     codigo : number,
     nome : string,
-    localizacao : string
 }
 
 export const Estacao = sequelize.define<EstacaoInstance>("Estacao,", {
@@ -15,10 +14,6 @@ export const Estacao = sequelize.define<EstacaoInstance>("Estacao,", {
         allowNull: false
     },
     nome : {
-        allowNull: false,
-        type:DataTypes.STRING
-    },
-    localizacao : {
         allowNull: false,
         type:DataTypes.STRING
     }

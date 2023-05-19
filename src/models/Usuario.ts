@@ -48,6 +48,6 @@ export const Usuario = sequelize.define<UsuarioInstance>("Usuario,",{
         allowNull: false
     }
 },{
-    tableName:'tb_usuarios',
+    tableName:'tb_perfis',
     timestamps:false
 })
