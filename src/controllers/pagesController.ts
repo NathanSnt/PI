@@ -138,7 +138,6 @@ export async function estacao(req: Request, res: Response) {
         const estacao = await Estacao.findOne({ where: { nome: nome_estacao } });
         const enderecos = await Endereco.findAll({where: {cod_estacao: estacao?.codigo}})
 
-        console.log(enderecos)
         const [caracteristica, status_estacao, comentarios] = await Promise.all([
             Servico.findAll({where: {cod_estacao: estacao?.codigo}}),
             Status.findAll({where: {cod_estacao: estacao?.codigo, expiracao: {[Op.gt]: new Date()} }}),
@@ -147,9 +146,10 @@ export async function estacao(req: Request, res: Response) {
         
         let caracteristicas = {}
         caracteristica.forEach(async element =>  {
-
+            
             let carac = await Caracteristica.findOne({where: {codigo: element.cod_caracteristica}})
             let tipo = carac?.nome
+            console.log(carac)
             let estado = await EstadoOperacional.findOne({where: {codigo: element.cod_estado_operacional}})
             let estado_operacional = estado?.estado
 

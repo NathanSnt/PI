@@ -111,6 +111,11 @@
     text-align: center;
 }
 
+#sobre hr{
+    width: 70%;
+    margin: 5% 0px 5% 15%;
+}
+
 @media screen and (max-width: 1440px) {
     #nome h3{
         font-size: 3.5rem;
