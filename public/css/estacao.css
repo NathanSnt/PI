@@ -21,6 +21,11 @@
     padding: 20px;
 }
 
+#foto-perfil {
+    width: 12.5% !important;
+    border-radius: 50%;
+}
+
 #nome img{
     width: 5%;
 }
@@ -49,6 +54,7 @@
 
 #sobre{
     font-size: 1.6rem;
+    margin-bottom: 15px;
 }
 
 #caixa-reclamar {
