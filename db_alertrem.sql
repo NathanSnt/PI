@@ -68,7 +68,7 @@ create table tb_estacoes (
 -- ('Varginha', 1);
 
 create table tb_enderecos (
-    codigo int null auto_increment,
+    codigo int not null auto_increment,
     rua varchar(100) not null,
     numero varchar(6) not null,
     bairro varchar(100) not null,
