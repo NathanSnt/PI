@@ -145,11 +145,10 @@ export async function estacao(req: Request, res: Response) {
         ]);
         
         let caracteristicas = {}
-        caracteristica.forEach(async element =>  {
+        for (const element of caracteristica) {
             
             let carac = await Caracteristica.findOne({where: {codigo: element.cod_caracteristica}})
             let tipo = carac?.nome
-            console.log(carac)
             let estado = await EstadoOperacional.findOne({where: {codigo: element.cod_estado_operacional}})
             let estado_operacional = estado?.estado
 
@@ -159,7 +158,7 @@ export async function estacao(req: Request, res: Response) {
                 enumerable: true,
                 configurable: true
             })
-        })
+        }
 
         const status = calculaStatus(status_estacao, true)
         
