@@ -32,8 +32,12 @@ A página home é a primeira tela que você vê quando acessa o site do AlerTrem
 
 Esta é a home enquanto o usuário não está autenticado.
 ![Imagem da home do site exibindo o menu principal e o carrossel](https://github.com/NathanSnt/PI/assets/79227411/ae7c18c9-3f9f-4042-ba65-f46bc3b1b2f4)
+
+
 Esta é a home quando o usuário está autenticado.
 ![Imagem da home do site exibindo o menu principal e o carrossel quando o usuário está autenticado](https://github.com/NathanSnt/PI/assets/79227411/84919385-d4da-4c8d-919d-e28a0e9bdc3d)
+
+
 Esta é o restante da home.
 ![Imagem mostrarndo segunda parte da home](https://github.com/NathanSnt/PI/assets/79227411/9cfcb6a1-91fc-4c35-8130-5379ba443f2f)
 
@@ -55,4 +59,49 @@ Esta é o restante da home.
 
 ## Como usar
 
-Adicionar passo-a-passo para a instalação.
+Para conseguir executar este projeto:
+
+- ### Clone e instale as dependências
+
+	Vá até o local onde deseja salvar o projeto, abra o cmd e execute:
+	```
+	git clone https://github.com/NathanSnt/PI
+	cd PI
+	npm install
+	```
+
+- ### Suba o banco de dados
+
+	Dentro da pasta PI tem um arquivo chamado `db_alertrem.sql` que, contém o script necessário para a criação do banco.
+	Execute ele no seu SGBD de preferência.
+
+- ### Configure variáveis de ambiente
+
+	Ainda dentro da pasta PI, existe um arquivo chamado `.env`.
+	Abra ele em qualquer editor de código para conseguir realizar as configurações necessárias.
+
+	Variáveis:
+	- `PORT` (Porta na qual o servidor estará sendo executado);
+	- `MYSQL_DB` (Nome do banco de dados)
+	- `MYSQL_USER` (Usuário para obter acesso ao banco)
+	- `MYSQL_PASSWORD` (Senha do usuário)
+	- `MYSQL_PORT` (Porta na qual o banco está sendo executado)
+	- `MYSQL_HOST` (IP do servidor de banco de dados)
+
+- ### Crie um usuário no banco de dados
+
+	Acesse o banco e execute o seguinte comando:
+	```
+	CREATE USER 'alertrem'@'%' IDENTIFIED BY 'alertrem';
+	GRANT ALL ON db_alertrem.* TO 'alertrem'@'%';
+	FLUSH PRIVILEGES;
+	```
+
+- ### Execute o servidor
+
+	Volte ao cmd na pasta PI e execute:
+	```
+	npm run start-dev
+	```
+
+E pronto! Se tudo estiver corretamente configurado, o servidor ja vai estar online.
