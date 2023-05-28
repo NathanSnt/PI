@@ -12,9 +12,21 @@ Os integrantes do grupo são:
 - [Gabriel](https://github.com/Chefin004)
 - [Nathan](https://github.com/NathanSnt)
 
-## Sobre o projeto
 
-O projeto consiste em duas partes: um site e um sistema de administração. O site é uma plataforma que fornece informações atualizadas sobre a linha 9 esmeralda, operada pela Via Mobilidade em São Paulo. O sistema de administração é uma ferramenta para gerenciar o conteúdo e os dados do site. O código-fonte do sistema de administração pode ser encontrado no repositório [BrunoJoGomes/Alertrem-sistema](https://github.com/BrunoJoGomes/Alertrem-sistema).
+# Índice
+
+- [Sobre o projeto](#sobre-o-projeto)
+- [Sobre as páginas](#sobre-as-páginas)
+- [Como executar](#como-executar)
+
+
+# Sobre o projeto
+
+O projeto consiste em duas partes: um site e um sistema de administração. O site é uma plataforma que fornece informações atualizadas sobre a linha 9 esmeralda, operada pela Via Mobilidade em São Paulo. O sistema de administração é uma ferramenta para gerenciar o conteúdo e os dados do site.
+
+Código-fonte do site: [NathanSnt/PI](https://github.com/NathanSnt/PI).
+
+Código-fonte do sistema de administração: [BrunoJoGomes/Alertrem-sistema](https://github.com/BrunoJoGomes/Alertrem-sistema).
 
 No site, os usuários podem:
 
@@ -26,7 +38,15 @@ No site, os usuários podem:
 - Visualizar os reports dos outros usuários
 - Ficar sabendo sobre as últimas notícias sobre a linha 9 esmeralda, como obras, interrupções ou eventos
 
-## Sobre as páginas
+No sistema de administração, é possível:
+
+- Ler e apagar reclamações feita pelo usuário.
+- Visualizar as informações do usuário.
+- Visualizar, editar ou cadastrar informação de uma estação.
+- Visualizar, editar ou cadastrar características de uma estação.
+
+
+# Sobre as páginas
 
 A página home é a primeira tela que você vê quando acessa o site do AlerTrem. Nela, você pode encontrar informações sobre a linha 9 esmeralda, as estações, as notícias e as reclamações dos usuários. Veja abaixo como navegar pela página home:
 
@@ -57,11 +77,10 @@ Esta é o restante da home.
 
 - No conteúdo principal, no centro da página, você pode ver o status da linha em geral, que pode ser bom, neutro ou ruim, de acordo com os reports dos usuários. Você também pode ver a lista de todas as reclamações dos usuários sobre a linha ou as estações. Você pode clicar em uma reclamação para ver mais detalhes ou fazer um comentário.
 
-## Como usar
 
-Para conseguir executar este projeto:
+# Como executar
 
-- ### Clone e instale as dependências
+- **Clone e instale as dependências**
 
 	Vá até o local onde deseja salvar o projeto, abra o cmd e execute:
 	```
@@ -70,12 +89,14 @@ Para conseguir executar este projeto:
 	npm install
 	```
 
-- ### Suba o banco de dados
+
+- **Suba o banco de dados**
 
 	Dentro da pasta PI tem um arquivo chamado `db_alertrem.sql` que, contém o script necessário para a criação do banco.
-	Execute ele no seu SGBD de preferência.
+	Execute ele um SGBD de sua preferência.
 
-- ### Configure variáveis de ambiente
+
+- **Configure variáveis de ambiente**
 
 	Ainda dentro da pasta PI, existe um arquivo chamado `.env`.
 	Abra ele em qualquer editor de código para conseguir realizar as configurações necessárias.
@@ -88,7 +109,8 @@ Para conseguir executar este projeto:
 	- `MYSQL_PORT` (Porta na qual o banco está sendo executado)
 	- `MYSQL_HOST` (IP do servidor de banco de dados)
 
-- ### Crie um usuário no banco de dados
+
+- **Crie um usuário no banco de dados**
 
 	Acesse o banco e execute o seguinte comando:
 	```
@@ -97,7 +119,8 @@ Para conseguir executar este projeto:
 	FLUSH PRIVILEGES;
 	```
 
-- ### Execute o servidor
+
+- **Execute o servidor**
 
 	Volte ao cmd na pasta PI e execute:
 	```
@@ -105,3 +128,6 @@ Para conseguir executar este projeto:
 	```
 
 E pronto! Se tudo estiver corretamente configurado, o servidor ja vai estar online.
+
+para acessa-lo, abra um navegador da sua preferência e coloque o ip da máquina que está executando o servidor mais a porta que ele foi configurado.
+`10.0.0.10:8080` por exemplo; Ou `localhost:8080` caso o servidor esteja sendo executado em sua máquina e na porta 8080.
