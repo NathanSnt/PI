@@ -24,6 +24,9 @@ create table tb_funcionarios (
     primary key(codigo)
 );
 
+insert int tb_funcionarios (nome, cpf, telefone) 
+values ("alertrem", "000.000.000-00", "(00) 0 0000-0000");
+
 create table tb_usuarios (
     codigo int not null auto_increment,
     usuario varchar(50) not null,
@@ -35,6 +38,9 @@ create table tb_usuarios (
     foreign key (cod_funcionario) references tb_funcionarios (codigo)
 );
 
+insert into tb_usuarios (usuario, salt, senha , cod_funcionario)
+values ("alertrem", "$2a$11$yekIC19oteTZ/lby6R3Rqe", "$2a$11$yekIC19oteTZ/lby6R3Rqe9/B1DdRNfo6v1MtdUkPIeOsGpp0R2CG", 1)
+
 create table tb_estacoes (
     codigo int not null auto_increment,
     nome varchar(100) not null,
@@ -44,28 +50,28 @@ create table tb_estacoes (
     foreign key (cod_usuario) references tb_usuarios (codigo)
 );
 
--- insert into tb_estacoes (nome, cod_usuario) values
--- ('Osasco', 1),
--- ('Presidente Altino', 1),
--- ('Ceasa', 1),
--- ('Vila Lobos Jaguare', 1),
--- ('Cidade Universitaria', 1),
--- ('Pinheiros', 1),
--- ('Hebraica Reboucas', 1),
--- ('Cidade Jardim', 1),
--- ('Vila Olimpia', 1),
--- ('Berrini', 1),
--- ('Morumbi', 1),
--- ('Granja Julieta', 1),
--- ('Joao Dias', 1),
--- ('Santo Amaro', 1),
--- ('Socorro', 1),
--- ('Jurubatuba', 1),
--- ('Autodromo', 1),
--- ('Primavera Interlagos', 1),
--- ('Grajau', 1),
--- ('Mendes Vila Natal', 1),
--- ('Varginha', 1);
+insert into tb_estacoes (nome, cod_usuario) values
+('Osasco', 1),
+('Presidente Altino', 1),
+('Ceasa', 1),
+('Vila Lobos Jaguare', 1),
+('Cidade Universitaria', 1),
+('Pinheiros', 1),
+('Hebraica Reboucas', 1),
+('Cidade Jardim', 1),
+('Vila Olimpia', 1),
+('Berrini', 1),
+('Morumbi', 1),
+('Granja Julieta', 1),
+('Joao Dias', 1),
+('Santo Amaro', 1),
+('Socorro', 1),
+('Jurubatuba', 1),
+('Autodromo', 1),
+('Primavera Interlagos', 1),
+('Grajau', 1),
+('Mendes Vila Natal', 1),
+('Varginha', 1);
 
 create table tb_enderecos (
     codigo int not null auto_increment,
@@ -125,7 +131,6 @@ create table tb_reclamacoes (
 	foreign key(cod_usuario)references tb_perfis(codigo),
 	foreign key(cod_estacao)references tb_estacoes(codigo)
 );
-
 
 create table tb_denuncias (
     codigo int not null auto_increment,
